@@ -33,7 +33,7 @@ EVAL_TF = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(MEAN, STD),
 ])
-CKPT = "experiments/checkpoints/dinov3_finetuned.pt"
+CKPT = "experiments/results/checkpoints/dinov3_finetuned.pt"
 
 
 class BackboneClassifier(nn.Module):

@@ -4,7 +4,6 @@ Structural checks (no heavy deps) run anywhere; torch-dependent checks skip
 gracefully when ``torch`` is not installed, so CI/local can at least validate
 the tree even without the full GPU environment.
 """
-import os
 from pathlib import Path
 
 import pytest

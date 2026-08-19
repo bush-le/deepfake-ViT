@@ -32,7 +32,7 @@ deepfake/
 ## Cài đặt môi trường
 
 ```bash
-python -m venv venv
+python -m venv .venv
 
 # Kích hoạt môi trường ảo
 source .venv/bin/activate
@@ -99,8 +99,8 @@ python src/training/finetune_compare.py --model-type cnn \
 ```
 
 > `--amp` bật mixed-precision bfloat16 (hoạt động trên CUDA/CPU; tự tắt trên MPS).
-> Kết quả: checkpoint trong `experiments/checkpoints/`, report JSON trong
-> `experiments/results/`.
+> Trên Windows/macOS, thêm `--num-workers 0` để tránh chi phí spawn worker.
+> Kết quả: checkpoint + report trong `experiments/results/` (`finetune/` hoặc `checkpoints/`).
 
 ### Eval
 

@@ -27,6 +27,7 @@ env/
 data/processed/*
 !data/processed/.gitkeep
 data/raw/DF40/
+data/DF40/
 
 # Experiments: run state + checkpoints/weights are not committed
 experiments/runs/*

@@ -1,6 +1,13 @@
 # LOGGING_CHECKPOINT_RULES.md — Logging, Checkpointing & Resumability Rules
 
 - **Motivation/Background**: Training must survive interruptions and every run must be reproducible. Training inside notebooks with only best-state `.pt` saves loses optimizer/scheduler/RNG state and history; notebooks also cannot be relied on to persist outputs.
+- **Status note (this repo)**: the DF40 project's training scripts
+  ([src/training/train.py](../src/training/train.py),
+  [src/training/finetune_lora.py](../src/training/finetune_lora.py),
+  [src/training/finetune_compare.py](../src/training/finetune_compare.py))
+  currently save best-state-only checkpoints; full-state checkpointing +
+  resume + `run_logger.py`/`checkpoint_utils.py` are a **planned improvement
+  (ARCH-1, open)** — see [CODEBASE_AUDIT_STATUS.md](../progress/CODEBASE_AUDIT_STATUS.md).
 - **Purpose**: Define the authoritative, **project-generic** rules for log files, checkpoints, directory layout, naming, the load/resume procedure, and automatic output persistence. They apply to every feature project in this repository. Project-specific examples live in the optional [Appendix A](#appendix-a-optional--project-specific-example).
 - **Overview Pipeline**: Codified during the refactor that moved all training out of notebooks into script entry points and upgraded `src/training/train.py` with full-state checkpointing and `src/utils/run_logger.py` (zero-dependency logging).
 - **Detailed Plan**: §1 policy (scripts vs notebooks, automatic persistence); §2 directory structure; §3 checkpoint file format; §4 naming rules; §5 resume procedure; §6 metrics storage & compression; §7 log levels & real-time monitoring; §8 acceptance checklist; Appendix A (optional) project-specific example.

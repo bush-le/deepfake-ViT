@@ -1,0 +1,162 @@
+{
+  "experiment_id": "EXP-02",
+  "status": "Completed",
+  "best_epoch": 8,
+  "val_metrics": {
+    "loss": 0.17733278258401117,
+    "accuracy": 0.9746,
+    "roc_auc": 0.99515128,
+    "precision": 0.9821210889882162,
+    "recall": 0.9668,
+    "f1": 0.9744003225156218,
+    "opt_tau": 0.5533846020698547,
+    "accuracy_opt": 0.9752,
+    "f1_opt": 0.9749190938511327,
+    "cm": [
+      [
+        2456,
+        44
+      ],
+      [
+        83,
+        2417
+      ]
+    ]
+  },
+  "test_metrics": {
+    "accuracy_standard": 0.9158200290275762,
+    "accuracy_tta": 0.9158200290275762,
+    "accuracy_tta_optimal_tau": 0.918722786647315,
+    "optimal_tau": 0.5533846020698547,
+    "fake_recall": 0.9366231253023706,
+    "real_specificity": 0.9342699448068239,
+    "f1_score": 0.9201520912547528,
+    "roc_auc": 0.9731545242129354,
+    "confusion_matrix": [
+      [
+        1862,
+        205
+      ],
+      [
+        131,
+        1936
+      ]
+    ],
+    "total_errors": 336,
+    "total_samples": 4134
+  },
+  "domain_breakdown": [
+    {
+      "Domain": "cdc",
+      "Samples": 1012,
+      "Errors": 173,
+      "Accuracy": 0.8290513833992095
+    },
+    {
+      "Domain": "efs",
+      "Samples": 796,
+      "Errors": 80,
+      "Accuracy": 0.8994974874371859
+    },
+    {
+      "Domain": "fe",
+      "Samples": 203,
+      "Errors": 13,
+      "Accuracy": 0.9359605911330049
+    },
+    {
+      "Domain": "ffc",
+      "Samples": 1554,
+      "Errors": 59,
+      "Accuracy": 0.9620334620334621
+    },
+    {
+      "Domain": "oth",
+      "Samples": 569,
+      "Errors": 11,
+      "Accuracy": 0.9806678383128296
+    }
+  ],
+  "weak_methods_comparison": [
+    {
+      "Method": "MidJourney",
+      "Total": 44,
+      "Detected": 9,
+      "Baseline_Det%": 31.82,
+      "EXP02_Det%": 20.454545454545457,
+      "Gain%": -11.365454545454543
+    },
+    {
+      "Method": "whichfaceisreal",
+      "Total": 51,
+      "Detected": 19,
+      "Baseline_Det%": 49.02,
+      "EXP02_Det%": 37.254901960784316,
+      "Gain%": -11.765098039215687
+    },
+    {
+      "Method": "styleclip",
+      "Total": 68,
+      "Detected": 55,
+      "Baseline_Det%": 77.94,
+      "EXP02_Det%": 80.88235294117648,
+      "Gain%": 2.9423529411764804
+    },
+    {
+      "Method": "CollabDiff",
+      "Total": 43,
+      "Detected": 36,
+      "Baseline_Det%": 90.7,
+      "EXP02_Det%": 83.72093023255815,
+      "Gain%": -6.979069767441857
+    },
+    {
+      "Method": "CelebDF_fake",
+      "Total": 122,
+      "Detected": 113,
+      "Baseline_Det%": 78.0,
+      "EXP02_Det%": 92.62295081967213,
+      "Gain%": 14.622950819672127
+    },
+    {
+      "Method": "lia",
+      "Total": 49,
+      "Detected": 46,
+      "Baseline_Det%": 83.67,
+      "EXP02_Det%": 93.87755102040816,
+      "Gain%": 10.207551020408161
+    },
+    {
+      "Method": "faceswap",
+      "Total": 49,
+      "Detected": 40,
+      "Baseline_Det%": 85.71,
+      "EXP02_Det%": 81.63265306122449,
+      "Gain%": -4.077346938775506
+    },
+    {
+      "Method": "e4e",
+      "Total": 58,
+      "Detected": 55,
+      "Baseline_Det%": 90.0,
+      "EXP02_Det%": 94.82758620689656,
+      "Gain%": 4.827586206896555
+    },
+    {
+      "Method": "inswap",
+      "Total": 28,
+      "Detected": 25,
+      "Baseline_Det%": 90.0,
+      "EXP02_Det%": 89.28571428571429,
+      "Gain%": -0.7142857142857082
+    },
+    {
+      "Method": "facedancer",
+      "Total": 50,
+      "Detected": 48,
+      "Baseline_Det%": 92.5,
+      "EXP02_Det%": 96.0,
+      "Gain%": 3.5
+    }
+  ]
+}

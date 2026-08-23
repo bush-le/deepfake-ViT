@@ -26,7 +26,7 @@ random.seed(SEED)
 np.random.seed(SEED)
 
 def get_file_md5(path: str) -> str:
-    if not os.path.exists(path):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
         return None
     hasher = hashlib.md5()
     with open(path, "rb") as f:

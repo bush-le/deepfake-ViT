@@ -68,7 +68,10 @@ class ImageDataset(Dataset):
 
     def __getitem__(self, i):
         path, label = self.rows[i]
-        img = Image.open(path).convert("RGB")
+        try:
+            img = Image.open(path).convert("RGB")
+        except Exception:
+            img = Image.new("RGB", (256, 256), (0, 0, 0))
         if self.transform:
             img = self.transform(img)
         return img, label

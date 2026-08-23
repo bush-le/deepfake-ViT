@@ -272,8 +272,10 @@ def main():
 
     # Build Model
     print("Loading Pretrained DINOv3 ViT Backbone...")
-    backbone = load_dinov3(pretrained=True, num_classes=0)
-    backbone.unfreeze_top_k_layers(3)
+    weights_path = PROJECT_ROOT / "models" / "dinov3-vits16plus-pretrain-lvd1689m" / "model-3.safetensors"
+    if not weights_path.exists():
+        weights_path = PROJECT_ROOT / "experiments" / "checkpoints" / "weights" / "dinov3-vits16plus-pretrain-lvd1689m" / "model-3.safetensors"
+    backbone = load_dinov3(str(weights_path), img_size=256)
     model = EnhancedDinoViTClassifier(backbone, num_classes=2, hidden_dim=384, dropout=0.2).to(device)
 
     criterion = LabelSmoothingCrossEntropy(smoothing=args.label_smoothing).to(device)

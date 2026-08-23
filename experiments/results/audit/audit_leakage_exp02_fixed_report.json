@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-08-23 07:15:30",
+  "train_csv": "/workspace/quangmanh/deepfake/data/finetune_exp02/train_max_v3.csv",
+  "original_test_csv": "/workspace/quangmanh/deepfake/experiments/results/error_analysis_lora/test_balanced.csv",
+  "fixed_test_csv": "/workspace/hoangtuan/deepfake-ViT/data/splits/test_balanced_fixed_zero_leakage.csv",
+  "train_total": 152410,
+  "fixed_test_total": 2354,
+  "fixed_test_real": 1177,
+  "fixed_test_fake": 1177,
+  "level_1_filepath_overlap": {
+    "count": 0,
+    "status": "PASS"
+  },
+  "level_2_basename_overlap": {
+    "count": 0,
+    "status": "PASS"
+  },
+  "level_3_replaced_ffpp_real_count": 681,
+  "level_3_replaced_starganv2_fake_count": 37,
+  "level_4_md5_leakage": {
+    "original_test_contaminated_count": 716,
+    "original_test_contamination_pct": 30.42,
+    "fixed_test_contaminated_count": 0,
+    "fixed_test_contamination_pct": 0.0,
+    "status": "PASS_ZERO_LEAKAGE_CERTIFIED"
+  }
+}

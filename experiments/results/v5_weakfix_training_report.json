@@ -1,0 +1,310 @@
+{
+  "timestamp": "2026-08-23T20:17:02.871121",
+  "checkpoint": "/workspace/hoangtuan/deepfake-ViT/experiments/checkpoints/exp05_v5_weakfix/best_model.pt",
+  "test_metrics": {
+    "acc": 0.9719626168224299,
+    "auc": 0.9972519163317884,
+    "precision": 0.9809523809523809,
+    "recall": 0.9626168224299065,
+    "f1": 0.9716981132075472,
+    "cm": [
+      [
+        1155,
+        22
+      ],
+      [
+        44,
+        1133
+      ]
+    ]
+  },
+  "method_breakdown": [
+    {
+      "Method": "fomm",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9696
+    },
+    {
+      "Method": "sd2.1",
+      "Label": "FAKE",
+      "Samples": 64,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9749
+    },
+    {
+      "Method": "StyleGAN3",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9754
+    },
+    {
+      "Method": "hyperreenact",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9812
+    },
+    {
+      "Method": "mcnet",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9653
+    },
+    {
+      "Method": "danet",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9698
+    },
+    {
+      "Method": "MRAA",
+      "Label": "FAKE",
+      "Samples": 29,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9681
+    },
+    {
+      "Method": "DiT",
+      "Label": "FAKE",
+      "Samples": 41,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9647
+    },
+    {
+      "Method": "styleclip",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9634
+    },
+    {
+      "Method": "starganv2",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.838
+    },
+    {
+      "Method": "facevid2vid",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9781
+    },
+    {
+      "Method": "stargan",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9343
+    },
+    {
+      "Method": "SiT",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9463
+    },
+    {
+      "Method": "e4s",
+      "Label": "FAKE",
+      "Samples": 15,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9106
+    },
+    {
+      "Method": "tpsm",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9671
+    },
+    {
+      "Method": "ddim",
+      "Label": "FAKE",
+      "Samples": 24,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9351
+    },
+    {
+      "Method": "MidJourney",
+      "Label": "FAKE",
+      "Samples": 26,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.956
+    },
+    {
+      "Method": "RDDM",
+      "Label": "FAKE",
+      "Samples": 22,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9706
+    },
+    {
+      "Method": "heygen",
+      "Label": "FAKE",
+      "Samples": 1,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9121
+    },
+    {
+      "Method": "StyleGANXL",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9738
+    },
+    {
+      "Method": "StyleGAN2",
+      "Label": "FAKE",
+      "Samples": 25,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9764
+    },
+    {
+      "Method": "deepfacelab",
+      "Label": "FAKE",
+      "Samples": 1,
+      "Accuracy": 100.0,
+      "Mean Fake Probability": 0.9746
+    },
+    {
+      "Method": "mobileswap",
+      "Label": "FAKE",
+      "Samples": 56,
+      "Accuracy": 98.21,
+      "Mean Fake Probability": 0.9459
+    },
+    {
+      "Method": "e4e",
+      "Label": "FAKE",
+      "Samples": 40,
+      "Accuracy": 97.5,
+      "Mean Fake Probability": 0.9576
+    },
+    {
+      "Method": "pixart",
+      "Label": "FAKE",
+      "Samples": 37,
+      "Accuracy": 97.3,
+      "Mean Fake Probability": 0.9511
+    },
+    {
+      "Method": "CollabDiff",
+      "Label": "FAKE",
+      "Samples": 31,
+      "Accuracy": 96.77,
+      "Mean Fake Probability": 0.9107
+    },
+    {
+      "Method": "one_shot_free",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 96.3,
+      "Mean Fake Probability": 0.9484
+    },
+    {
+      "Method": "pirender",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 96.3,
+      "Mean Fake Probability": 0.9297
+    },
+    {
+      "Method": "simswap",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 96.3,
+      "Mean Fake Probability": 0.9102
+    },
+    {
+      "Method": "uniface",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 96.3,
+      "Mean Fake Probability": 0.9405
+    },
+    {
+      "Method": "VQGAN",
+      "Label": "FAKE",
+      "Samples": 24,
+      "Accuracy": 95.83,
+      "Mean Fake Probability": 0.9391
+    },
+    {
+      "Method": "blendface",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 92.59,
+      "Mean Fake Probability": 0.8946
+    },
+    {
+      "Method": "fsgan",
+      "Label": "FAKE",
+      "Samples": 26,
+      "Accuracy": 92.31,
+      "Mean Fake Probability": 0.8785
+    },
+    {
+      "Method": "whichfaceisreal",
+      "Label": "FAKE",
+      "Samples": 30,
+      "Accuracy": 90.0,
+      "Mean Fake Probability": 0.8571
+    },
+    {
+      "Method": "inswap",
+      "Label": "FAKE",
+      "Samples": 19,
+      "Accuracy": 89.47,
+      "Mean Fake Probability": 0.8482
+    },
+    {
+      "Method": "wav2lip",
+      "Label": "FAKE",
+      "Samples": 22,
+      "Accuracy": 86.36,
+      "Mean Fake Probability": 0.8307
+    },
+    {
+      "Method": "lia",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 85.19,
+      "Mean Fake Probability": 0.8422
+    },
+    {
+      "Method": "sadtalker",
+      "Label": "FAKE",
+      "Samples": 26,
+      "Accuracy": 84.62,
+      "Mean Fake Probability": 0.8045
+    },
+    {
+      "Method": "facedancer",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 81.48,
+      "Mean Fake Probability": 0.7978
+    },
+    {
+      "Method": "faceswap",
+      "Label": "FAKE",
+      "Samples": 27,
+      "Accuracy": 62.96,
+      "Mean Fake Probability": 0.657
+    },
+    {
+      "Method": "real",
+      "Label": "REAL",
+      "Samples": 1177,
+      "Accuracy": 98.13,
+      "Mean Fake Probability": 0.058
+    }
+  ]
+}

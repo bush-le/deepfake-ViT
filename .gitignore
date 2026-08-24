@@ -37,14 +37,17 @@ experiments/checkpoints/weights/*
 !experiments/checkpoints/weights/.gitkeep
 experiments/results/features/
 
-*.png
-*.jpg 
-# Model weights
+# Model weights & Binary Arrays / Caches
 *.pt
 *.pth
 *.ckpt
 *.onnx
 *.safetensors
+*.npz
+*.npy
+*.h5
+*.parquet
+*.feather
 models/*
 !models/.gitkeep
 

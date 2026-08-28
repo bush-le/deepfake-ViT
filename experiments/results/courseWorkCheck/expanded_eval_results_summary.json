@@ -1,0 +1,688 @@
+{
+  "balanced_25k": {
+    "name": "Expanded Balanced 1:1 Test Set (25,046 samples)",
+    "samples": 25046,
+    "accuracy": 0.9202267827197955,
+    "roc_auc": 0.951101736758688,
+    "precision": 0.9828424626112487,
+    "recall": 0.855386089595145,
+    "f1": 0.9146955853471096,
+    "confusion_matrix": [
+      [
+        12336,
+        187
+      ],
+      [
+        1811,
+        10712
+      ]
+    ],
+    "per_method": [
+      {
+        "method": "CelebDFv2",
+        "label": 1,
+        "total": 300,
+        "correct": 1,
+        "accuracy": 0.0033333333333333335
+      },
+      {
+        "method": "DiT",
+        "label": 1,
+        "total": 300,
+        "correct": 296,
+        "accuracy": 0.9866666666666667
+      },
+      {
+        "method": "MRAA",
+        "label": 1,
+        "total": 300,
+        "correct": 291,
+        "accuracy": 0.97
+      },
+      {
+        "method": "MidJourney",
+        "label": 1,
+        "total": 187,
+        "correct": 187,
+        "accuracy": 1.0
+      },
+      {
+        "method": "RDDM",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "SiT",
+        "label": 1,
+        "total": 300,
+        "correct": 298,
+        "accuracy": 0.9933333333333333
+      },
+      {
+        "method": "StyleGAN2",
+        "label": 1,
+        "total": 300,
+        "correct": 298,
+        "accuracy": 0.9933333333333333
+      },
+      {
+        "method": "StyleGAN3",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "StyleGANXL",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "VQGAN",
+        "label": 1,
+        "total": 300,
+        "correct": 297,
+        "accuracy": 0.99
+      },
+      {
+        "method": "blendface",
+        "label": 1,
+        "total": 300,
+        "correct": 296,
+        "accuracy": 0.9866666666666667
+      },
+      {
+        "method": "danet",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "ddim",
+        "label": 1,
+        "total": 300,
+        "correct": 296,
+        "accuracy": 0.9866666666666667
+      },
+      {
+        "method": "deepfacelab",
+        "label": 1,
+        "total": 25,
+        "correct": 25,
+        "accuracy": 1.0
+      },
+      {
+        "method": "deepfake_faceswap",
+        "label": 1,
+        "total": 300,
+        "correct": 211,
+        "accuracy": 0.7033333333333334
+      },
+      {
+        "method": "dff_inpainting",
+        "label": 1,
+        "total": 300,
+        "correct": 7,
+        "accuracy": 0.023333333333333334
+      },
+      {
+        "method": "dff_insight",
+        "label": 1,
+        "total": 300,
+        "correct": 15,
+        "accuracy": 0.05
+      },
+      {
+        "method": "dff_text2img",
+        "label": 1,
+        "total": 300,
+        "correct": 27,
+        "accuracy": 0.09
+      },
+      {
+        "method": "e4e",
+        "label": 1,
+        "total": 300,
+        "correct": 298,
+        "accuracy": 0.9933333333333333
+      },
+      {
+        "method": "e4s",
+        "label": 1,
+        "total": 300,
+        "correct": 291,
+        "accuracy": 0.97
+      },
+      {
+        "method": "facedancer",
+        "label": 1,
+        "total": 300,
+        "correct": 286,
+        "accuracy": 0.9533333333333334
+      },
+      {
+        "method": "faceswap",
+        "label": 1,
+        "total": 300,
+        "correct": 290,
+        "accuracy": 0.9666666666666667
+      },
+      {
+        "method": "facevid2vid",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "ffhq_real",
+        "label": 0,
+        "total": 11893,
+        "correct": 11735,
+        "accuracy": 0.9867148742958043
+      },
+      {
+        "method": "fomm",
+        "label": 1,
+        "total": 300,
+        "correct": 299,
+        "accuracy": 0.9966666666666667
+      },
+      {
+        "method": "fsgan",
+        "label": 1,
+        "total": 300,
+        "correct": 296,
+        "accuracy": 0.9866666666666667
+      },
+      {
+        "method": "heygen",
+        "label": 1,
+        "total": 11,
+        "correct": 11,
+        "accuracy": 1.0
+      },
+      {
+        "method": "hyperreenact",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "inswap",
+        "label": 1,
+        "total": 300,
+        "correct": 275,
+        "accuracy": 0.9166666666666666
+      },
+      {
+        "method": "kaggle_ai_synth",
+        "label": 1,
+        "total": 300,
+        "correct": 52,
+        "accuracy": 0.17333333333333334
+      },
+      {
+        "method": "lia",
+        "label": 1,
+        "total": 300,
+        "correct": 253,
+        "accuracy": 0.8433333333333334
+      },
+      {
+        "method": "mcnet",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "mobileswap",
+        "label": 1,
+        "total": 300,
+        "correct": 282,
+        "accuracy": 0.94
+      },
+      {
+        "method": "one_shot_free",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "pirender",
+        "label": 1,
+        "total": 300,
+        "correct": 299,
+        "accuracy": 0.9966666666666667
+      },
+      {
+        "method": "pixart",
+        "label": 1,
+        "total": 300,
+        "correct": 296,
+        "accuracy": 0.9866666666666667
+      },
+      {
+        "method": "real",
+        "label": 0,
+        "total": 630,
+        "correct": 601,
+        "accuracy": 0.953968253968254
+      },
+      {
+        "method": "sadtalker",
+        "label": 1,
+        "total": 300,
+        "correct": 271,
+        "accuracy": 0.9033333333333333
+      },
+      {
+        "method": "sd2.1",
+        "label": 1,
+        "total": 300,
+        "correct": 295,
+        "accuracy": 0.9833333333333333
+      },
+      {
+        "method": "sfhq_studio",
+        "label": 1,
+        "total": 300,
+        "correct": 209,
+        "accuracy": 0.6966666666666667
+      },
+      {
+        "method": "simswap",
+        "label": 1,
+        "total": 300,
+        "correct": 287,
+        "accuracy": 0.9566666666666667
+      },
+      {
+        "method": "stargan",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "styleclip",
+        "label": 1,
+        "total": 300,
+        "correct": 297,
+        "accuracy": 0.99
+      },
+      {
+        "method": "tpsm",
+        "label": 1,
+        "total": 300,
+        "correct": 300,
+        "accuracy": 1.0
+      },
+      {
+        "method": "uniface",
+        "label": 1,
+        "total": 300,
+        "correct": 297,
+        "accuracy": 0.99
+      },
+      {
+        "method": "wav2lip",
+        "label": 1,
+        "total": 300,
+        "correct": 283,
+        "accuracy": 0.9433333333333334
+      }
+    ]
+  },
+  "full_59k": {
+    "name": "Expanded Full Test Set (59,276 samples)",
+    "samples": 59276,
+    "accuracy": 0.6985289155813482,
+    "roc_auc": 0.8581941709920267,
+    "precision": 0.9927670490985534,
+    "recall": 0.611970129584889,
+    "f1": 0.7571878906462308,
+    "confusion_matrix": [
+      [
+        13543,
+        203
+      ],
+      [
+        17667,
+        27863
+      ]
+    ],
+    "per_method": [
+      {
+        "method": "CelebDFv2",
+        "label": 1,
+        "total": 2590,
+        "correct": 21,
+        "accuracy": 0.008108108108108109
+      },
+      {
+        "method": "DiT",
+        "label": 1,
+        "total": 982,
+        "correct": 971,
+        "accuracy": 0.9887983706720977
+      },
+      {
+        "method": "MRAA",
+        "label": 1,
+        "total": 674,
+        "correct": 658,
+        "accuracy": 0.9762611275964391
+      },
+      {
+        "method": "MidJourney",
+        "label": 1,
+        "total": 187,
+        "correct": 187,
+        "accuracy": 1.0
+      },
+      {
+        "method": "RDDM",
+        "label": 1,
+        "total": 543,
+        "correct": 543,
+        "accuracy": 1.0
+      },
+      {
+        "method": "SiT",
+        "label": 1,
+        "total": 973,
+        "correct": 958,
+        "accuracy": 0.9845837615621789
+      },
+      {
+        "method": "StyleGAN2",
+        "label": 1,
+        "total": 602,
+        "correct": 599,
+        "accuracy": 0.9950166112956811
+      },
+      {
+        "method": "StyleGAN3",
+        "label": 1,
+        "total": 973,
+        "correct": 973,
+        "accuracy": 1.0
+      },
+      {
+        "method": "StyleGANXL",
+        "label": 1,
+        "total": 968,
+        "correct": 968,
+        "accuracy": 1.0
+      },
+      {
+        "method": "VQGAN",
+        "label": 1,
+        "total": 592,
+        "correct": 588,
+        "accuracy": 0.9932432432432432
+      },
+      {
+        "method": "blendface",
+        "label": 1,
+        "total": 664,
+        "correct": 647,
+        "accuracy": 0.9743975903614458
+      },
+      {
+        "method": "danet",
+        "label": 1,
+        "total": 683,
+        "correct": 680,
+        "accuracy": 0.9956076134699854
+      },
+      {
+        "method": "ddim",
+        "label": 1,
+        "total": 593,
+        "correct": 587,
+        "accuracy": 0.9898819561551433
+      },
+      {
+        "method": "deepfacelab",
+        "label": 1,
+        "total": 25,
+        "correct": 25,
+        "accuracy": 1.0
+      },
+      {
+        "method": "deepfake_faceswap",
+        "label": 1,
+        "total": 1010,
+        "correct": 735,
+        "accuracy": 0.7277227722772277
+      },
+      {
+        "method": "dff_inpainting",
+        "label": 1,
+        "total": 2922,
+        "correct": 60,
+        "accuracy": 0.02053388090349076
+      },
+      {
+        "method": "dff_insight",
+        "label": 1,
+        "total": 2922,
+        "correct": 112,
+        "accuracy": 0.038329911019849415
+      },
+      {
+        "method": "dff_text2img",
+        "label": 1,
+        "total": 2922,
+        "correct": 250,
+        "accuracy": 0.08555783709787816
+      },
+      {
+        "method": "e4e",
+        "label": 1,
+        "total": 447,
+        "correct": 445,
+        "accuracy": 0.9955257270693513
+      },
+      {
+        "method": "e4s",
+        "label": 1,
+        "total": 356,
+        "correct": 344,
+        "accuracy": 0.9662921348314607
+      },
+      {
+        "method": "facedancer",
+        "label": 1,
+        "total": 667,
+        "correct": 611,
+        "accuracy": 0.9160419790104948
+      },
+      {
+        "method": "faceswap",
+        "label": 1,
+        "total": 658,
+        "correct": 629,
+        "accuracy": 0.9559270516717325
+      },
+      {
+        "method": "facevid2vid",
+        "label": 1,
+        "total": 662,
+        "correct": 662,
+        "accuracy": 1.0
+      },
+      {
+        "method": "ffhq_real",
+        "label": 0,
+        "total": 13062,
+        "correct": 12889,
+        "accuracy": 0.9867554738937375
+      },
+      {
+        "method": "fomm",
+        "label": 1,
+        "total": 669,
+        "correct": 668,
+        "accuracy": 0.9985052316890882
+      },
+      {
+        "method": "fsgan",
+        "label": 1,
+        "total": 614,
+        "correct": 587,
+        "accuracy": 0.9560260586319218
+      },
+      {
+        "method": "heygen",
+        "label": 1,
+        "total": 11,
+        "correct": 11,
+        "accuracy": 1.0
+      },
+      {
+        "method": "hyperreenact",
+        "label": 1,
+        "total": 665,
+        "correct": 665,
+        "accuracy": 1.0
+      },
+      {
+        "method": "inswap",
+        "label": 1,
+        "total": 447,
+        "correct": 416,
+        "accuracy": 0.930648769574944
+      },
+      {
+        "method": "kaggle_ai_synth",
+        "label": 1,
+        "total": 6005,
+        "correct": 999,
+        "accuracy": 0.16636136552872607
+      },
+      {
+        "method": "lia",
+        "label": 1,
+        "total": 675,
+        "correct": 602,
+        "accuracy": 0.8918518518518519
+      },
+      {
+        "method": "mcnet",
+        "label": 1,
+        "total": 674,
+        "correct": 672,
+        "accuracy": 0.9970326409495549
+      },
+      {
+        "method": "mobileswap",
+        "label": 1,
+        "total": 1299,
+        "correct": 1257,
+        "accuracy": 0.9676674364896074
+      },
+      {
+        "method": "one_shot_free",
+        "label": 1,
+        "total": 669,
+        "correct": 664,
+        "accuracy": 0.992526158445441
+      },
+      {
+        "method": "pirender",
+        "label": 1,
+        "total": 673,
+        "correct": 667,
+        "accuracy": 0.9910846953937593
+      },
+      {
+        "method": "pixart",
+        "label": 1,
+        "total": 903,
+        "correct": 894,
+        "accuracy": 0.9900332225913622
+      },
+      {
+        "method": "real",
+        "label": 0,
+        "total": 684,
+        "correct": 654,
+        "accuracy": 0.956140350877193
+      },
+      {
+        "method": "sadtalker",
+        "label": 1,
+        "total": 632,
+        "correct": 581,
+        "accuracy": 0.9193037974683544
+      },
+      {
+        "method": "sd2.1",
+        "label": 1,
+        "total": 1460,
+        "correct": 1446,
+        "accuracy": 0.9904109589041096
+      },
+      {
+        "method": "sfhq_studio",
+        "label": 1,
+        "total": 3127,
+        "correct": 2153,
+        "accuracy": 0.6885193476175248
+      },
+      {
+        "method": "simswap",
+        "label": 1,
+        "total": 647,
+        "correct": 621,
+        "accuracy": 0.9598145285935085
+      },
+      {
+        "method": "stargan",
+        "label": 1,
+        "total": 455,
+        "correct": 455,
+        "accuracy": 1.0
+      },
+      {
+        "method": "styleclip",
+        "label": 1,
+        "total": 451,
+        "correct": 447,
+        "accuracy": 0.991130820399113
+      },
+      {
+        "method": "tpsm",
+        "label": 1,
+        "total": 670,
+        "correct": 670,
+        "accuracy": 1.0
+      },
+      {
+        "method": "uniface",
+        "label": 1,
+        "total": 641,
+        "correct": 635,
+        "accuracy": 0.9906396255850234
+      },
+      {
+        "method": "wav2lip",
+        "label": 1,
+        "total": 528,
+        "correct": 500,
+        "accuracy": 0.946969696969697
+      }
+    ]
+  }
+}

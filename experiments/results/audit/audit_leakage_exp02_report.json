@@ -1,0 +1,65 @@
+{
+  "timestamp": "2026-08-23 06:33:56",
+  "train_csv": "/workspace/quangmanh/deepfake/data/finetune_exp02/train_max_v3.csv",
+  "test_csv": "/workspace/quangmanh/deepfake/experiments/results/error_analysis_lora/test_balanced.csv",
+  "train_total": 152410,
+  "test_total": 2354,
+  "train_real": 53526,
+  "train_fake": 98884,
+  "test_real": 1177,
+  "test_fake": 1177,
+  "level_1_filepath_overlap": {
+    "count": 0,
+    "sample_paths": [],
+    "status": "PASS"
+  },
+  "level_2_basename_overlap": {
+    "count": 0,
+    "status": "PASS"
+  },
+  "level_3_identity_leakage": {
+    "ffpp_test_videos_total": 999,
+    "ffpp_leaked_videos": 999,
+    "ffpp_leak_percentage": 100.0,
+    "celeb_test_ids_total": 121,
+    "celeb_leaked_ids": 51,
+    "celeb_leak_percentage": 42.14876033057851,
+    "sample_leaked_ffpp": [
+      "ffpp_436",
+      "ffpp_500",
+      "ffpp_235",
+      "ffpp_307",
+      "ffpp_046",
+      "ffpp_005",
+      "ffpp_065",
+      "ffpp_905",
+      "ffpp_518",
+      "ffpp_553"
+    ],
+    "sample_leaked_celeb": [
+      "celeb_id_22",
+      "celeb_id_17",
+      "celeb_id_40",
+      "celeb_id_49",
+      "celeb_id_57",
+      "celeb_id_25",
+      "celeb_id_44",
+      "celeb_id_34",
+      "celeb_id_30",
+      "celeb_id_48"
+    ],
+    "status": "FAIL_CRITICAL"
+  },
+  "level_4_md5_leakage": {
+    "total_binary_leaks": 744,
+    "unique_test_contaminated": 716,
+    "contamination_percentage": 30.416312659303312,
+    "real_leaked_count": 681,
+    "fake_leaked_count": 63,
+    "method_breakdown": {
+      "real": 681,
+      "starganv2": 63
+    },
+    "status": "FAIL_CRITICAL"
+  }
+}

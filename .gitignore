@@ -26,8 +26,9 @@ env/
 # Data (bulk raw data is ignored via media/archive patterns above)
 data/processed/*
 !data/processed/.gitkeep
+data/external/*
+!data/external/.gitkeep
 data/raw/DF40/
-data/DF40/
 
 # Experiments: run state + checkpoints/weights are not committed
 experiments/runs/*
@@ -38,14 +39,17 @@ experiments/checkpoints/weights/*
 !experiments/checkpoints/weights/.gitkeep
 experiments/results/features/
 
-*.png
-*.jpg 
-# Model weights
+# Model weights & Binary Arrays / Caches
 *.pt
 *.pth
 *.ckpt
 *.onnx
 *.safetensors
+*.npz
+*.npy
+*.h5
+*.parquet
+*.feather
 models/*
 !models/.gitkeep
 

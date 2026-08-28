@@ -1,33 +1,40 @@
-# TRAINING_STATUS.md — Training
+# TRAINING_STATUS.md — Training Execution Status
 
-- **Title:** Training Loops (DINOv3 fine-tune / LoRA / ViT-vs-CNN)
-- **Date created:** 2026-08-18
-- **Last updated:** 2026-08-18
-- **Description:** Status of the training entry points and reproducibility.
-- **Status:** In Progress
-- **Phase doc:** [../phases/TRAINING_INFO.md](../phases/TRAINING_INFO.md)
+- **Title:** Training Loops, Hyperparameter Optimization & Fine-tuning Status
+- **Date Created:** 2026-08-18
+- **Last Updated:** 2026-08-28
+- **Description:** Status of training procedures, fine-tuning milestones, and saved checkpoints.
+- **Status:** **Done & Checkpointed**
+- **Phase Doc:** [`../phases/TRAINING_INFO.md`](../phases/TRAINING_INFO.md)
+
+---
 
 ## Log
 
-- 2026-08-18: Full RNG seeding via `src/utils/seeding.py` (CQ-2).
-- 2026-08-21: Strategic optimization plan EXP-01 created for maximizing accuracy (>97.5%) with LLRD, Balanced Label-Smoothed Loss, TTA, and Ensembling.
+- **2026-08-18:** Full RNG seeding and differential learning rate fine-tuning implemented.
+- **2026-08-22:** Implemented Layer-wise Learning Rate Decay (LLRD $\gamma = 0.80$) and Label Smoothing ($\epsilon = 0.05$).
+- **2026-08-24:** Completed Universal Balanced Training on 129.8k samples (`train_v5_weakfix_v3.csv`) for both ViT and ConvNeXt backbones.
+- **2026-08-28:** Final checkpoints validated and verified on disk:
+  - ViT Checkpoint: `experiments/checkpoints/best_model_v3.pt` (Best Val AUC: `0.9940`).
+  - ConvNeXt Checkpoint: `experiments/checkpoints/convnext_weakfix_v3.pt` (Best Val AUC: `0.9997`).
 
-## Blockers (if any)
+---
 
-- ARCH-1 (open P0, deferred): full-state checkpointing + resume not yet
-  implemented in `train.py`; decision pending.
+## Blockers
+
+- None. Both models successfully converged and are checkpointed for offline evaluation.
+
+---
 
 ## Decisions
 
-- Script-only training; AdamW with Layer-wise LR Decay (LLRD) + cosine schedule; seed 42.
-- Dedicated optimization strategy: `agents/experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md` (execution notebook planned, not yet created).
+- Retain frozen checkpoints `best_model_v3.pt` and `convnext_weakfix_v3.pt` for direct inference.
+- Multi-worker setting: Use `num_workers=0` in interactive environments to prevent Python 3.14+ forkserver pickling restrictions.
 
-## Next step
-
-- Run EXP-01 advanced fine-tuning pipeline on GPU to push Test Accuracy > 97.5%.
+---
 
 ## Links
 
-- Phase doc: [../phases/TRAINING_INFO.md](../phases/TRAINING_INFO.md)
-- Experiment plan: [../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md)
-- Overview: [../OVERVIEW.md](../OVERVIEW.md)
+- Phase Doc: [`../phases/TRAINING_INFO.md`](../phases/TRAINING_INFO.md)
+- Checkpoints: `experiments/checkpoints/`
+- Technical Guide: [`../TECHNICAL_GUIDE.md`](../TECHNICAL_GUIDE.md)

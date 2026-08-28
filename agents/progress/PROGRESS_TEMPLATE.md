@@ -34,5 +34,5 @@ re-reading the whole phase doc.
 
 ## Links
 
-- Phase doc: [../phases/<PHASE>.md](../phases/<PHASE>.md)
-- Experiment record: [../experiments/<EXP>.md](../experiments/<EXP>.md)
+- Phase doc: 
+- Experiment record: 

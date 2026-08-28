@@ -31,7 +31,7 @@ MD_creation_guide.md — see that file for full rationale and examples.
   bare text. This keeps documentation verifiable and drift-free.
 - Link form:
   - Same tree: relative link from the document's location
-    (`src/training/train.py`, `notebooks/<analysis>.ipynb`).
+    (`src/training/train_model.py`, `notebooks/<analysis>.ipynb`).
   - Jump to a heading: cross-file anchor link
     (`agents/rules/LOGGING_CHECKPOINT_RULES.md#5-resume-procedure`).
   - External resources: absolute URL.

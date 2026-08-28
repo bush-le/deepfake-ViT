@@ -44,15 +44,15 @@ A `## References` block with **working cross-reference links** to everything the
 notebook consumes or documents. Links are relative to the notebook's own
 location (`notebooks/`), so from a notebook the paths start with `../`:
 
-| Reference | Link (relative to `notebooks/`) |
+| Reference | Example Link Format (from `notebooks/`) |
 |---|---|
-| Rules | `[LOGGING_CHECKPOINT_RULES.md](../agents/rules/LOGGING_CHECKPOINT_RULES.md)`, `[RESULTS_REPORTING.md](../agents/rules/RESULTS_REPORTING.md)` |
-| Training / experiment scripts | `src/training/<script>.py`, `src/experiments/<script>.py` (whichever produced the artifacts) |
-| Artifact locations | `experiments/runs/`, `experiments/results/<experiment>/`, `experiments/plots/` |
+| Rules | `[LOGGING_CHECKPOINT_RULES.md](LOGGING_CHECKPOINT_RULES.md)` |
+| Training / experiment scripts | `` |
+| Artifact locations | `experiments/runs/`, `experiments/results/` |
 | Related notebooks / docs | phase docs, experiment reports |
 
 Each entry is a relative markdown link written from the notebook's location,
-e.g. ``[<feature>_train.py](../src/training/<feature>_train.py)`` —
+e.g. ```` —
 never bare paths. See [MD_CONVENTION.md](MD_CONVENTION.md#mandatory-cross-reference-links).
 
 ## Hard rule

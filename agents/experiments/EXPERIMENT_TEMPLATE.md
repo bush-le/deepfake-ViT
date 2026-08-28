@@ -47,4 +47,4 @@ experiment. Register it in `agents/experiments/README.md`.
 ## Links
 
 - Notebook: <relative path>
-- Status: [../progress/<EXP>_STATUS.md](../progress/<EXP>_STATUS.md)
+- Status: 

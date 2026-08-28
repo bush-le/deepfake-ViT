@@ -1,49 +1,64 @@
-# MODEL.md — Model Definitions
+# MODEL.md — Model Definitions & Architecture Specifications
 
-- **Title:** Model Definitions (DINOv3 ViT / ConvNeXt / LoRA)
-- **Date created:** 2026-08-18
-- **Last updated:** 2026-08-18
-- **Description:** The DINOv3 ViT-S/16 backbone, the matched ConvNeXt CNN
-  baseline, and LoRA adapters.
-- **Status:** Done
+- **Title:** Model Definitions (Meta DINOv3 ViT-S/16, ConvNeXt-Tiny, LoRA, Ensemble)
+- **Date Created:** 2026-08-18
+- **Last Updated:** 2026-08-28
+- **Description:** Structural specifications and implementation details for the Primary Vision Transformer (DINOv3 ViT-S/16), Matched CNN Baseline (DINOv3 ConvNeXt-Tiny), LoRA Adapter, and Joint Inference Ensemble.
+- **Status:** **Completed & Verified**
 
-## Background
+---
 
-The deliverable is a Vision Transformer classifier; a CNN of matched
-parameter count is required for comparison. All models are implemented from
-the checkpoint tensor layout.
+## 1. Background & Design Rationale
 
-## Goals / Purpose
+To assess deepfake detection capabilities under different inductive biases, the project implements two comparable architectures:
+1. **Self-Supervised Vision Transformer (Meta DINOv3 ViT-Small/16):** Captures long-range spatial dependencies and global self-attention anomalies.
+2. **Modern Convolutional Network (Meta DINOv3 ConvNeXt-Tiny):** Exploits localized convolutional inductive biases to spot boundary blending and high-frequency edge artifacts.
 
-- DINOv3 ViT-S/16 (embed 384, depth 12, 6 heads, 4 registers, SwiGLU MLP).
-- ConvNeXt-Tiny CNN with comparable parameter count.
-- LoRA adapters for parameter-efficient fine-tuning.
-- Load from `.safetensors` with `strict=True` and `weights_only=True`.
+---
 
-## Input / Output
+## 2. Model Specifications
 
-- **Input:** pretrained `model.safetensors` in `experiments/checkpoints/weights/`.
-- **Output:** `nn.Module` graphs + loader functions.
+### 2.1 Meta DINOv3 ViT-Small/16 (`src/models/dinov3_vit.py`)
+- **Backbone:** Self-Supervised DINOv3 ViT-S/16 (`embed_dim=384`, `depth=12`, `num_heads=6`, 4 register tokens, SwiGLU MLP).
+- **Classification Head:** Single linear layer `Linear(384, 2)` mapped to binary logits `[Real, Fake]`.
+- **Parameter Count:** **21,602,306** (~21.60M params).
+- **Checkpoint:** [`experiments/checkpoints/best_model_v3.pt`](../../experiments/checkpoints/best_model_v3.pt).
 
-## How to do it (general plan)
+### 2.2 Meta DINOv3 ConvNeXt-Tiny (`src/models/dinov3_convnext.py` & `src/models/classifier_v2.py`)
+- **Backbone:** ConvNeXt-Tiny architecture with 4 stages (`depths=[3, 3, 9, 3]`, `dims=[96, 192, 384, 768]`, $7\times 7$ depthwise convolutions, LayerScale $\gamma$).
+- **Classification Head (`DinoConvNextClassifier`):**
+  $$\text{LayerNorm(768)} \rightarrow \text{Dropout(0.2)} \rightarrow \text{Linear(768, 384)} \rightarrow \text{GELU} \rightarrow \text{Dropout(0.1)} \rightarrow \text{Linear(384, 2)}$$
+- **Parameter Count:** **28,124,354** (~28.12M params).
+- **Checkpoint:** [`experiments/checkpoints/convnext_weakfix_v3.pt`](../../experiments/checkpoints/convnext_weakfix_v3.pt).
 
-- [src/models/dinov3_vit.py](../src/models/dinov3_vit.py) — `load_dinov3()`, `DinoViT`.
-- [src/models/dinov3_convnext.py](../src/models/dinov3_convnext.py) — `load_dinov3_convnext()`.
-- [src/models/lora.py](../src/models/lora.py) — `apply_lora()`.
+### 2.3 Joint Inference Ensemble (`src/models/classifier_v2.py`)
+- Combines probability outputs: $P_{\text{ensemble}} = 0.65 \cdot P_{\text{ViT}} + 0.35 \cdot P_{\text{CNN}}$.
+- Fuses global attention contextual cues with sharp localized convolutional edge detection.
 
-## Pipeline
+### 2.4 LoRA Adapter (`src/models/lora.py`)
+- Low-Rank Adaptation applied to query/value projection matrices in ViT self-attention blocks ($r=8, \alpha=16$).
 
+---
+
+## 3. Loading & Execution Patterns
+
+```python
+# Load ViT
+from src.models.dinov3_vit import build_dinov3_classifier
+model_vit = build_dinov3_classifier(weights_path=None, num_classes=2, img_size=256, device="cuda")
+model_vit.load_state_dict(torch.load("experiments/checkpoints/best_model_v3.pt")["model_state_dict"], strict=False)
+
+# Load ConvNeXt
+from src.models.dinov3_convnext import DinoConvNext
+from src.models.classifier_v2 import DinoConvNextClassifier
+model_cnn = DinoConvNextClassifier(DinoConvNext(), num_classes=2, hidden_dim=384)
+model_cnn.load_state_dict(torch.load("experiments/checkpoints/convnext_weakfix_v3.pt")["model_state_dict"], strict=False)
 ```
-safetensors → load_* (strict, weights_only) → nn.Module (backbone) → head
-```
 
-## Detailed plan / gotchas
+---
 
-- Classifier head is `Linear(384, 2)` on the CLS token (binary real/fake).
-- Parameter-count parity with the CNN is verified by
-  [src/experiments/model_param_count.py](../src/experiments/model_param_count.py).
+## 4. Links & References
 
-## Links
-
-- Progress: [../progress/MODEL_STATUS.md](../progress/MODEL_STATUS.md)
-- Overview: [../OVERVIEW.md](../OVERVIEW.md)
+- Technical Guide: [`../TECHNICAL_GUIDE.md`](../TECHNICAL_GUIDE.md)
+- Status Tracker: [`../progress/MODEL_STATUS.md`](../progress/MODEL_STATUS.md)
+- Evaluation Notebook: [`../../notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb)

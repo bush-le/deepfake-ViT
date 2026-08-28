@@ -29,5 +29,5 @@ tables, and links as needed.>
 
 ## Related
 
-- Related phases: [../phases/<PHASE>.md](../phases/<PHASE>.md)
+- Related phases: 
 - External source: <https://...>

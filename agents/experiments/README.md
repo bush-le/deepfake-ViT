@@ -1,33 +1,38 @@
-# Model Experiments Log
+# Model Experiments & Research Documentation
 
-This directory contains experiment plans, hyperparameter trial logs, and model
-comparison documentation in `.md` format.
+This directory contains research experiment proposals, optimization plans, methodology audits, and empirical benchmark logs for the `deepfake-ViT` project.
 
-## 🏗️ Architecture Overview
+---
 
-Experiments are the **research layer** between training and reporting:
+## 🏗️ Experiment Lifecycle
 
 ```
-Training scripts (src/training, src/experiments/*_train.py)
-        │  full-state checkpoints + JSONL history (experiments/runs/)
-        ▼
-This folder: plans, status, results — every number carries 5W1H context
-        │
-        ▼
-Summary reports → teacher/team presentations
+Research Proposal & Plan (agents/experiments/EXP_*.md)
+        ↓
+Script-Only Execution (src/training/, scripts/)
+        ↓
+Checkpointing & Evaluation Artifacts (experiments/checkpoints/, experiments/results/)
+        ↓
+Interactive Verification (notebooks/coursework_deepfake.ipynb)
+        ↓
+5W1H Reporting & Status Sync (agents/progress/, agents/phases/)
 ```
 
-Rules: results must follow the 5W1H principle
-([agents/rules/RESULTS_REPORTING.md](../rules/RESULTS_REPORTING.md)); training
-never happens in notebooks
-([LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md)).
+---
 
 ## 📋 Experiments Index
 
-Add one row per experiment document, created from
-[EXPERIMENT_TEMPLATE.md](EXPERIMENT_TEMPLATE.md):
+| Experiment ID | Title & Strategic Objective | Target / Metric | Status | Primary Document |
+| :---: | :--- | :---: | :---: | :--- |
+| **`EXP-01`** | **Strategic Accuracy Optimization Plan** (LLRD, Balanced Batches, Label Smoothing, TTA, Ensemble) | Acc $>97.5\%$ | Completed | [`EXP_01_ACCURACY_OPTIMIZATION_PLAN.md`](EXP_01_ACCURACY_OPTIMIZATION_PLAN.md) |
+| **`EXP-02`** | **Deep Error Analysis & Domain Generalization** (Hard method discovery, Midjourney boost) | Cross-domain Acc | Completed | [`EXP_02_ACCURACY_IMPROVEMENT_PLAN.md`](EXP_02_ACCURACY_IMPROVEMENT_PLAN.md) |
+| **`EXP-03`** | **3-Tier Zero-Leakage Dataset Rebuild** (Identity disjoint, Path disjoint, MD5 Byte Collision Deduplication) | 0.00% Leak | Completed | [`EXP_03_ZERO_LEAKAGE_AND_BALANCED_TRAINING_PLAN.md`](EXP_03_ZERO_LEAKAGE_AND_BALANCED_TRAINING_PLAN.md) |
+| **`EXP-04`** | **CourseWork 44-Methods Zero-Leakage Benchmark** (DINOv3 ViT vs. ConvNeXt Side-by-Side Evaluation & Diagnostics) | 44 Methods $>97\%$ | Completed | [`EXP_04_COURSEWORK_44METHODS_BENCHMARK.md`](EXP_04_COURSEWORK_44METHODS_BENCHMARK.md) |
 
-| ID | Title & Summary | Status | Link |
-|:--:|:---|:---:|:---|
-| `EXP-01` | <One-sentence summary> | Done | [EXP_01_<name>.md](EXP_01_<name>.md) |
-| `EXP-02` | <One-sentence summary> | In Progress | [EXP_02_<name>.md](EXP_02_<name>.md) |
+---
+
+## 📚 Experiment Guidelines
+
+1. **5W1H Result Reporting:** All empirical results must explicitly state Who, What, When, Where, Why, and How ([rules/RESULTS_REPORTING.md](../rules/RESULTS_REPORTING.md)).
+2. **Deterministic Reproducibility:** Fixed seeds, pinned hyperparameters, and frozen checkpoints.
+3. **No Training in Notebooks:** Full-scale model training is performed strictly via scripts.

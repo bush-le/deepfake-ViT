@@ -193,18 +193,52 @@ class DinoViTClassifier(nn.Module):
         return self.head(features)  # Logits (B, num_classes)
 
 
+class EnhancedDinoViTClassifier(nn.Module):
+    """DINOv3 ViT with LayerNorm, Dropout, and 2-layer GELU MLP head."""
+
+    def __init__(
+        self,
+        backbone: nn.Module,
+        num_classes: int = 2,
+        hidden_dim: int = 384,
+        dropout: float = 0.2,
+    ):
+        super().__init__()
+        self.backbone = backbone
+        embed_dim = backbone.embed_dim
+
+        self.head = nn.Sequential(
+            nn.LayerNorm(embed_dim),
+            nn.Dropout(dropout),
+            nn.Linear(embed_dim, hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout * 0.5),
+            nn.Linear(hidden_dim, num_classes),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        feat = self.backbone(x)  # CLS token (B, embed_dim)
+        return self.head(feat)
+
+
 def build_dinov3_classifier(
     weights_path: str = None,
     num_classes: int = 2,
     img_size: int = 256,
     device: str = "cpu",
-) -> DinoViTClassifier:
-    """Build and initialize DinoViTClassifier with pre-trained DINOv3 weights."""
+    enhanced: bool = False,
+    dropout: float = 0.2,
+) -> nn.Module:
+    """Build and initialize DinoViTClassifier or EnhancedDinoViTClassifier with pre-trained DINOv3 weights."""
     if weights_path:
         backbone = load_dinov3(weights_path, img_size=img_size)
     else:
         backbone = DinoViT(img_size=img_size)
-    model = DinoViTClassifier(backbone=backbone, num_classes=num_classes)
+    
+    if enhanced:
+        model = EnhancedDinoViTClassifier(backbone=backbone, num_classes=num_classes, dropout=dropout)
+    else:
+        model = DinoViTClassifier(backbone=backbone, num_classes=num_classes)
     return model.to(device)
 
 

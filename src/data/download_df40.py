@@ -7,8 +7,8 @@ Nguồn ưu tiên hiện tại là Hugging Face Hub:
     hf download ManhQuangAI/DF40_train --repo-type dataset --local-dir data/raw/DF40
 Script này giữ lại cho trường hợp Drive vẫn hoạt động (real files + JSON).
 
-- Lưu vào data/raw/DF40/
-- Log từng bước ra data/raw/DF40/download.log (timestamp, retry quota, summary)
+- Lưu vào data/DF40/
+- Log từng bước ra data/DF40/download.log (timestamp, retry quota, summary)
 - Tự retry khi Google Drive báo "Too many users" (hết quota tạm thời)
 - Resume được (gdown --continue / --remaining-ok)
 
@@ -30,7 +30,7 @@ import subprocess
 import sys
 import time
 
-BASE = os.path.join("data", "raw", "DF40")
+BASE = os.path.join("data", "DF40")
 LOG_PATH = os.path.join(BASE, "download.log")
 PY = sys.executable
 

@@ -68,7 +68,10 @@ class ImageDataset(Dataset):
 
     def __getitem__(self, i):
         path, label = self.rows[i]
-        img = Image.open(path).convert("RGB")
+        try:
+            img = Image.open(path).convert("RGB")
+        except Exception:
+            img = Image.new("RGB", (256, 256), (0, 0, 0))
         if self.transform:
             img = self.transform(img)
         return img, label
@@ -130,8 +133,6 @@ def main():
 
     if args.device == "auto":
         device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
-    else:
-        device = args.device
     device_type = "cuda" if device == "cuda" else "cpu"
     print(f"Device: {device}", flush=True)
 

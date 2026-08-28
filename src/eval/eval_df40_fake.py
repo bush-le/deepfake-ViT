@@ -1,6 +1,6 @@
 """Đánh giá detection rate (bắt ảnh fake) trên DF40 fake-only (blendface + ddim).
 
-Dùng checkpoint fine-tuned ViT sẵn có (experiments/results/checkpoints/dinov3_finetuned.pt).
+Dùng checkpoint fine-tuned ViT sẵn có (experiments/checkpoints/dinov3_finetuned.pt).
 - blendface: face-swap fake, ddim: diffusion-synthesis fake.
 - Metric: detection rate = % ảnh fake bị model gán p(fake) > 0.5.
 
@@ -72,7 +72,7 @@ def detection_rate(model, paths, device, batch_size=32):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=500)
-    ap.add_argument("--ckpt", default="experiments/results/checkpoints/dinov3_finetuned.pt")
+    ap.add_argument("--ckpt", default="experiments/checkpoints/dinov3_finetuned.pt")
     ap.add_argument("--backbone", default="experiments/checkpoints/weights/dinov3_small/model.safetensors")
     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     args = ap.parse_args()

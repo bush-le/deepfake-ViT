@@ -5,7 +5,7 @@ Model có AUC 0.92 (xếp hạng tốt) nhưng real/ffc = 0.27 ở ngưỡng 0.5
   - dump P(fake) của từng ảnh
   - sweep ngưỡng → tìm điểm cân bằng real_acc vs fake_det (Youden J / balanced acc)
 
-Chạy: .venv/bin/python src/eval/analyze_threshold.py --ckpt experiments/results/finetune/vit_lora_finetuned.pt
+Chạy: .venv/bin/python src/eval/analyze_threshold.py --ckpt experiments/checkpoints/finetune/vit_lora_finetuned.pt
 """
 import argparse
 import os
@@ -51,15 +51,11 @@ def dump_probs(model, items, device, batch_size=64):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="test_data_v3")
-    ap.add_argument("--ckpt", default="experiments/results/finetune/vit_lora_finetuned.pt")
+    ap.add_argument("--ckpt", default="experiments/checkpoints/finetune/vit_lora_finetuned.pt")
     ap.add_argument("--batch-size", type=int, default=64)
-    ap.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     args = ap.parse_args()
 
-    if args.device == "auto":
-        device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
-    else:
-        device = args.device
+    device = "mps" if torch.backends.mps.is_available() else "cpu"
     ck = torch.load(args.ckpt, map_location="cpu", weights_only=True)
     backbone = DinoViT(img_size=IMG_SIZE, gated_mlp=True)
     if "lora_config" in ck:

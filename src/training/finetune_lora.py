@@ -135,8 +135,6 @@ def main():
 
     if args.device == "auto":
         device = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
-    else:
-        device = args.device
     device_type = "cuda" if device == "cuda" else "cpu"
     print(f"Device: {device}", flush=True)
 

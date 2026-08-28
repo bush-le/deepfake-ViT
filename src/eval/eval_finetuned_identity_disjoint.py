@@ -39,7 +39,7 @@ EVAL_TF = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize(MEAN, STD),
 ])
-CKPT = "experiments/results/finetune/vit_finetuned.pt"
+CKPT = "experiments/checkpoints/finetune/vit_finetuned.pt"
 ROOT = "test_data_v3"
 
 

@@ -51,5 +51,5 @@ src/... → src/... → ... → data/processed/...
 
 ## Links
 
-- Progress tracking: [../progress/<PHASE>_STATUS.md](../progress/<PHASE>_STATUS.md)
+- Progress tracking: 
 - Related phases: [OVERVIEW.md](../OVERVIEW.md), [EVAL.md](../phases/EVAL.md)

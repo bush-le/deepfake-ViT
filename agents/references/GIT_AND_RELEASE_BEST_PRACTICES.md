@@ -1,4 +1,4 @@
-﻿# GIT_AND_RELEASE_BEST_PRACTICES.md — Git, CI, and Release Best Practices
+# GIT_AND_RELEASE_BEST_PRACTICES.md — Git, CI, and Release Best Practices
 
 - **Motivation/Background**: AI agents can trivially `git commit`, `git push`,
   and publish releases, but an unapproved push can overwrite teammate work,
@@ -14,8 +14,7 @@
   §2 GitHub Actions; §3 release pushes; §4 updating or fixing an existing
   release; §5 checklist.
 - **References**: `git`, `git tag`, GitHub REST API, GitHub Actions,
-  [MD_CONVENTION.md](../rules/MD_CONVENTION.md), [LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md),
-  [.github/workflows/ci.yml](../../.github/workflows/ci.yml).
+  [MD_CONVENTION.md](../rules/MD_CONVENTION.md), [LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md).
 
 ---
 
@@ -165,7 +164,7 @@ jobs:
 - Never upload secrets as build artifacts or release assets.
 
 ### 3.5 CI runs lint and tests
-- Enforce the project lint config ([pyproject.toml](../../pyproject.toml)) and
+- Enforce the project lint config (`ruff` / standard formatting) and
   the test suite. Fail the job on violations.
 - Keep CI deterministic and fast: cache dependencies, run data-independent
   tests (skip when `data/raw` is absent, see
@@ -173,7 +172,7 @@ jobs:
 
 ### 3.6 References
 The project's CI lives in
-[.github/workflows/ci.yml](../../.github/workflows/ci.yml) (lint + pytest on
+ (lint + pytest on
 push/PR). Extend it, do not duplicate it.
 
 ## 4. Release Pushes

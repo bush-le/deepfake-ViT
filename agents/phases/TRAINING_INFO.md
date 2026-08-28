@@ -1,52 +1,84 @@
-# TRAINING_INFO.md — Training
+# TRAINING_INFO.md — Training Protocols & Optimization Procedures
 
-- **Title:** Training Loops (DINOv3 fine-tune / LoRA / ViT-vs-CNN)
-- **Date created:** 2026-08-18
-- **Last updated:** 2026-08-18
-- **Description:** Script-only training entry points and hyperparameters.
-- **Status:** In Progress
+- **Title:** Training Loops, Optimization Schedules & Checkpointing
+- **Date Created:** 2026-08-18
+- **Last Updated:** 2026-08-28
+- **Description:** Standalone script training procedures, Layer-wise Learning Rate Decay (LLRD), Balanced Batch Samplers, Label Smoothing, and Mixed-Precision Optimization.
+- **Status:** **Completed & Checkpointed**
 
-## Background
+---
 
-Training must run only from scripts (never notebooks) and be reproducible and
-resumable.
+## 1. Background & Principles
 
-## Goals / Purpose
+Training is executed strictly through reproducible command-line scripts located in `src/training/` and `scripts/`. Interactive notebooks never execute full training loops; they consume artifacts produced by training scripts.
 
-- Fine-tune the DINOv3 backbone + head; provide LoRA and ViT-vs-CNN variants.
-- Reproducible runs via full RNG seeding (see `src/utils/seeding.py`).
-- Record metrics per epoch for reporting.
+---
 
-## Input / Output
-
-- **Input:** train/val/test CSVs (from DATA_PREP) + pretrained weights.
-- **Output:** best checkpoints + metrics reports in `experiments/`.
-
-## How to do it (general plan)
-
-## How to do it (general plan)
-
-- [src/training/train.py](../../src/training/train.py) — standard differential LR fine-tuning.
-- [src/training/finetune_lora.py](../../src/training/finetune_lora.py) — LoRA adaptation.
-- [src/training/finetune_compare.py](../../src/training/finetune_compare.py) — ViT vs CNN comparison.
-- **Optimization strategy:** [EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md) — Layer-wise LR Decay (LLRD) + 50:50 Balanced Batches via `WeightedRandomSampler` (planned; execution notebook not yet created).
-
-## Pipeline
+## 2. Optimization Pipeline & Techniques
 
 ```
-Dataset (25:1 imbalance) → WeightedRandomSampler (50:50 Batches) → LLRD AdamW (gamma=0.80) → Label-Smoothed Loss (eps=0.05) → CosineAnnealingLR → Validation Checkpointing (best AUC)
+Train Dataset (129,884 samples across 51 subsets)
+  ↓
+Weighted / Focused Random Sampler (Balanced Real/Fake Batches)
+  ↓
+Layer-wise Learning Rate Decay (LLRD γ = 0.80 across 12 Transformer layers)
+  ↓
+AdamW Optimizer (Base LR: 1.5e-5, Head LR: 4.0e-4, Weight Decay: 0.05)
+  ↓
+Label-Smoothed Cross-Entropy Loss (ε = 0.05) + PyTorch AMP (bfloat16)
+  ↓
+Cosine Annealing Learning Rate Scheduler with Warmup
+  ↓
+Validation Checkpointing on ROC-AUC / F1-Score
 ```
 
-## Detailed plan / gotchas
+---
 
-- **Imbalance Solution:** `WeightedRandomSampler` assigns $w_{real} = 1 / N_{real}$ and $w_{fake} = 1 / N_{fake}$ to ensure every batch contains 50% Real and 50% Fake images.
-- **LLRD Schedule:** $\eta_l = 10^{-5} \cdot (0.80)^{11-l}$ (Layer 11: $10^{-5}$ down to Layer 0: $1.07 \times 10^{-6}$; Head: $10^{-3}$).
-- **Regularization:** Label Smoothing $\epsilon = 0.05$ prevents overconfident logit saturation.
-- **Checkpoints:** Local storage in `experiments/checkpoints/dinov3_vit_max_acc.pt`.
+## 3. Key Hyperparameter Specifications
 
-## Links
+| Parameter | DINOv3 ViT-Small/16 | DINOv3 ConvNeXt-Tiny | Description |
+| :--- | :--- | :--- | :--- |
+| **Input Resolution** | $256 \times 256$ | $256 \times 256$ | Standard bicubic resized face crops |
+| **Batch Size** | 64 / 128 | 64 / 128 | Fits comfortably in 4GB–8GB VRAM |
+| **Optimizer** | AdamW | AdamW | Betas: `(0.9, 0.999)`, eps: `1e-8` |
+| **Base LR (Backbone)** | $1.5 \times 10^{-5}$ | $1.5 \times 10^{-5}$ | Preserves foundational representations |
+| **Head LR** | $4.0 \times 10^{-4}$ | $4.0 \times 10^{-4}$ | Fast convergence for classification head |
+| **LLRD Decay Factor ($\gamma$)** | $0.80$ | N/A (Stage-wise) | $\eta_l = \text{base\_lr} \cdot \gamma^{11-l}$ |
+| **Weight Decay** | $0.05$ | $0.05$ | Prevents parameter explosion |
+| **Label Smoothing ($\epsilon$)** | $0.05$ | $0.05$ | Softens binary cross-entropy targets |
+| **Precision** | `bfloat16` / `fp16` | `bfloat16` / `fp16` | Accelerated mixed precision |
 
-- Phase doc: [TRAINING_INFO.md](TRAINING_INFO.md)
-- Experiment plan: [../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](../experiments/EXP_01_ACCURACY_OPTIMIZATION_PLAN.md)
-- Progress: [../progress/TRAINING_STATUS.md](../progress/TRAINING_STATUS.md)
-- Overview: [../OVERVIEW.md](../OVERVIEW.md)
+---
+
+## 4. Primary Training Entry Points
+
+```bash
+# 1. Standard differential fine-tuning (ViT)
+.venv/bin/python src/training/finetune_compare.py \
+    --model vit \
+    --train_csv data/splits/train_v5_weakfix_v3.csv \
+    --val_csv data/splits/val_v5_combined_universal_kaggle_boost.csv \
+    --epochs 5 --batch_size 64 --lr 1.5e-5 --amp
+
+# 2. ConvNeXt fine-tuning
+.venv/bin/python src/training/finetune_compare.py \
+    --model convnext \
+    --train_csv data/splits/train_v5_weakfix_v3.csv \
+    --val_csv data/splits/val_v5_combined_universal_kaggle_boost.csv \
+    --epochs 5 --batch_size 64 --lr 1.5e-5 --amp
+```
+
+---
+
+## 5. Checkpoint Verification
+
+- **ViT Best Checkpoint:** `experiments/checkpoints/best_model_v3.pt` (Epoch 3, Val AUC: `0.9940`).
+- **ConvNeXt Best Checkpoint:** `experiments/checkpoints/convnext_weakfix_v3.pt` (Epoch 1, Val AUC: `0.9997`).
+
+---
+
+## 6. Links & References
+
+- Technical Guide: [`../TECHNICAL_GUIDE.md`](../TECHNICAL_GUIDE.md)
+- Status Tracker: [`../progress/TRAINING_STATUS.md`](../progress/TRAINING_STATUS.md)
+- Logging Rules: [`../rules/LOGGING_CHECKPOINT_RULES.md`](../rules/LOGGING_CHECKPOINT_RULES.md)

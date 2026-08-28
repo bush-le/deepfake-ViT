@@ -1,35 +1,38 @@
-# EXP-03 STATUS — Zero-Leakage Dataset Rebuild & Balanced Training
+# EXP-03 / EXP-04 Status & Benchmark Progress Tracker
 
-- **Title:** Tái cấu trúc dataset chuẩn Zero-Leakage & Huấn luyện DINOv3 ViT
-- **Date created:** 2026-08-22
-- **Last updated:** 2026-08-22
-- **Description:** Theo dõi tiến độ EXP-03 nhằm giải quyết triệt để rò rỉ dữ liệu (495 ảnh MD5 hash & 697 ID FF++), bổ sung mẫu EFS/MidJourney vào train và tối ưu hóa accuracy.
-- **Status:** In Progress (Dataset Rebuilt & Gatekeeper Verified 100% Clean)
-- **Experiment doc:** [../experiments/EXP_03_ZERO_LEAKAGE_AND_BALANCED_TRAINING_PLAN.md](../experiments/EXP_03_ZERO_LEAKAGE_AND_BALANCED_TRAINING_PLAN.md)
+- **Experiment Name:** EXP-03 / EXP-04 Zero-Leakage 44-Methods Benchmarking
+- **Status:** **COMPLETED & VERIFIED ON DISK**
+- **Target Notebooks:**
+  - [`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb) (Master EDA, 46 cells (20 sections))
+  - [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb) (Master Evaluation, 35 cells)
+  - [`notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb) (Single Image Predictor, 9 cells)
 
-## Log
+---
 
-- 2026-08-22: Hoàn thành audit rò rỉ dữ liệu của EXP-02 (phát hiện 495 ảnh Test trùng MD5 với Train, 697 ID FF++ trùng lặp).
-- 2026-08-22: Thiết lập kế hoạch EXP-03 với quy tắc 3 Không (Zero Hash, Zero Identity, Zero Video Leakage).
-- 2026-08-22: Xây dựng thành công bộ dữ liệu V3 sạch (`train_v3_clean.csv`: 50,000 ảnh 1:1, `val_v3_clean.csv`: 5,000 ảnh 1:1).
-- 2026-08-22: **GATEKEEPER VERIFICATION PASSED (100% Clean ✔)**:
-  - Exact Path Overlap: **0**
-  - MD5 Hash Matches in Test: **0**
-  - Balance Ratio: **1.0 : 1.0 (Exact 25K/25K Real/Fake)**
-- 2026-08-22: Chạy Smoke Test thành công cho `src/training/train_exp03.py`.
+## 1. Objectives & Key Achievements
+- [x] Engineered expanded 44-methods test benchmarks:
+  - `test_coursework_44methods_balanced_zero_leakage.csv` (21,446 images, exact 1:1)
+  - `test_coursework_44methods_full_zero_leakage.csv` (50,084 images, exact 1:1)
+- [x] Executed full 3-tier Zero-Leakage audit (0 path overlap, 127k MD5 hashes deduplicated).
+- [x] Evaluated **Meta DINOv3 ViT-Small/16** (`best_model_v3.pt`, 21.60M params) vs. **Meta DINOv3 ConvNeXt-Tiny** (`convnext_weakfix_v3.pt`, 28.12M params).
+- [x] Achieved benchmark accuracy $>97.6\%$ and ROC-AUC $>99.6\%$.
+- [x] Successfully verified all notebook cells under Python 3.14 with zero runtime errors.
 
-## Current Dataset Baseline (EXP-03 Clean Split)
+---
 
-| Split | Total Samples | Real | Fake | Hash Overlap with Test |
-|:---|:---:|:---:|:---:|:---:|
-| **Train V3 Clean** | 50,000 | 25,000 | 25,000 | **0 (Zero Leak ✔)** |
-| **Val V3 Clean** | 5,000 | 2,500 | 2,500 | **0 (Zero Leak ✔)** |
-| **Test Balanced (Frozen)** | 4,134 | 2,067 | 2,067 | Benchmark Chuẩn |
+## 2. Quantitative Benchmark Summary (Test Balanced 21.4k)
 
-## Next Steps
+| Metric | DINOv3 ViT-S/16 | DINOv3 ConvNeXt-Tiny | Joint Ensemble | Coursework Target |
+| :--- | :---: | :---: | :---: | :---: |
+| **Accuracy** | **97.66%** | **97.26%** | **97.80%** | $\ge 95.0\%$ |
+| **ROC-AUC** | **99.64%** | **99.58%** | **99.68%** | $\ge 98.0\%$ |
+| **F1-Score** | **97.68%** | **97.26%** | **97.80%** | $\ge 95.0\%$ |
+| **Fake Recall** | **98.24%** | **97.24%** | **98.05%** | $\ge 95.0\%$ |
+| **Real Specificity**| **97.09%** | **97.28%** | **97.55%** | $\ge 95.0\%$ |
 
-1. [x] Tạo `src/data/build_dataset_v3_clean.py` & xuất CSV V3.
-2. [x] Chạy `src/data/verify_zero_leakage.py` (Passed 100%).
-3. [x] Tạo `src/training/train_exp03.py` & Smoke Test Passed.
-4. [ ] Khởi chạy full training EXP-03 (10 Epochs với ModelEMA + LLRD + CosineAnnealing).
-5. [ ] Đánh giá toàn diện trên test benchmark và trực quan hóa kết quả.
+---
+
+## 3. Related Documentation
+- Experiment Report: [`agents/experiments/EXP_04_COURSEWORK_44METHODS_BENCHMARK.md`](../experiments/EXP_04_COURSEWORK_44METHODS_BENCHMARK.md)
+- Training Specification: [`agents/phases/TRAINING_INFO.md`](../phases/TRAINING_INFO.md)
+- Evaluation Specification: [`agents/phases/EVAL.md`](../phases/EVAL.md)

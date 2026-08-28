@@ -1,59 +1,60 @@
-# 🎨 ĐẶC TẢ TĂNG CƯỜNG DỮ LIỆU ĐỘC LẬP MIỀN (DOMAIN-AGNOSTIC DATA AUGMENTATIONS - BƯỚC 3)
+# Domain-Agnostic Data Augmentation Specification
+
+This document defines the official data augmentation pipeline for training robust deepfake detectors without destroying discriminative high-frequency artifacts.
 
 ---
 
-## 1. Lý do áp dụng (Rationale)
-Vision Transformer (ViT) có xu hướng ghi nhớ các đặc trưng tần số cao đặc thù của chuẩn nén JPEG/H.264 và cảm biến camera. Để tăng cường khả năng tổng quát hóa ra ngoài phân phối (Out-of-Distribution Generalization), pipeline tiền xử lý cần phá vỡ các đặc trưng phong cách cục bộ.
+## 1. Principles of Forensic-Safe Augmentation
+1. **Artifact Preservation**: Do NOT apply aggressive Gaussian blur, strong downsampling, or severe JPEG compression ($\text{quality} < 60$), which destroys discriminative GAN checkerboard patterns and boundary blending seams.
+2. **Photometric Robustness**: Apply mild brightness/contrast jittering to prevent the model from overfitting to specific camera sensor lighting profiles.
+3. **Geometric Invariance**: Standard horizontal flips and subtle affine transformations maintain natural facial geometry while expanding spatial variety.
 
 ---
 
-## 2. Kiến trúc Data Augmentation Pipeline
+## 2. Recommended Training Augmentation Pipeline
 
 ```python
+import torchvision.transforms as transforms
+
 train_transform = transforms.Compose([
-    # 1. Chuẩn hóa kích thước
-    transforms.Resize((256, 256)),
+    transforms.Resize((256, 256), interpolation=transforms.InterpolationMode.BICUBIC),
     transforms.RandomHorizontalFlip(p=0.5),
-
-    # 2. Xóa bỏ thiên kiến màu sắc và ánh sáng camera
     transforms.ColorJitter(
-        brightness=0.2,   # Thay đổi độ sáng ngẫu nhiên +/- 20%
-        contrast=0.2,     # Thay đổi độ tương phản ngẫu nhiên +/- 20%
-        saturation=0.2,   # Thay đổi độ bão hòa màu +/- 20%
-        hue=0.05          # Thay đổi sắc độ màu ngẫu nhiên +/- 5%
+        brightness=0.1,
+        contrast=0.1,
+        saturation=0.05,
+        hue=0.02
     ),
-
-    # 3. Triệt tiêu hạt nhiễu nén riêng (JPEG/Codec Artifact Invariance)
-    transforms.RandomApply([
-        transforms.GaussianBlur(kernel_size=(3, 3), sigma=(0.1, 2.0))
-    ], p=0.3),
-
-    # 4. Biến thiên độ sắc nét ngẫu nhiên (chống overfit ảnh quá nét/mờ)
-    transforms.RandomAdjustSharpness(sharpness_factor=1.5, p=0.3),
-
-    # 5. Chuyển tensor và chuẩn hóa ImageNet
+    transforms.RandomAffine(
+        degrees=5,
+        translate=(0.02, 0.02),
+        scale=(0.98, 1.02)
+    ),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-
-    # 6. Che phủ khuôn mặt ngẫu nhiên (Face Cutout / Random Erasing)
-    # Ép Transformer chú ý vào toàn bộ khuôn mặt thay vì chỉ một vùng nhỏ
-    transforms.RandomErasing(p=0.2, scale=(0.02, 0.2), value='random'),
+    transforms.Normalize(
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
+    )
 ])
 ```
 
 ---
 
-## 3. Tác dụng kỹ thuật của từng phép biến đổi
+## 3. Evaluation & Inference Transform
 
-| Phép biến đổi | Mục tiêu giải quyết | Hiệu quả đối với ViT |
-| :--- | :--- | :--- |
-| **ColorJitter** | Chống lại sự khác biệt tông màu giữa các studio quay video | Ép mô hình học hình học khuôn mặt thay vì màu da |
-| **GaussianBlur** | Phá vỡ pattern nén video MP4/H.264 cục bộ | Buộc mạng tìm kiếm artifact ở tỷ lệ đa mức (multi-scale) |
-| **RandomAdjustSharpness** | Mô phỏng các mức độ phân giải và chất lượng camera khác nhau | Cải thiện nhận diện trên video độ phân giải thấp/cao |
-| **RandomErasing (Cutout)** | Ngăn mô hình chỉ tập trung vào một vị trí duy nhất (như miệng) | Kích hoạt nhiều attention heads phân tán trên toàn khuôn mặt |
+```python
+eval_transform = transforms.Compose([
+    transforms.Resize((256, 256), interpolation=transforms.InterpolationMode.BICUBIC),
+    transforms.ToTensor(),
+    transforms.Normalize(
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
+    )
+])
+```
 
 ---
 
-## 4. Tích hợp vào Notebook và Training Scripts
-* Notebook: [02_training_balanced_dataset.ipynb](../notebooks/02_training_balanced_dataset.ipynb)
-* Script huấn luyện: [src/training/train.py](../src/training/train.py)
+## 4. Verification & Validation Metrics
+- Ensure validation loss stability without augmentation-induced divergence.
+- Validate that models trained with this pipeline maintain $>97\%$ accuracy across all 44 test methods in [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb).

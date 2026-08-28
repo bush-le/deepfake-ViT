@@ -1,68 +1,63 @@
-# FOLDER_STRUCTURE.md
+# FOLDER_STRUCTURE.md — Repository Layout Specification
 
-Source of truth for where things live. The agent should check this
-before creating any new file, and update it (with human approval)
-if the structure changes.
+This document is the official source of truth for the directory layout of `deepfake-ViT`. All agents and contributors must follow this structure.
 
 ```
-project_root/
-├── agents/                # Agent AI Knowledge Base (behavior layer, rules, plans, progress)
-│   ├── README.md          # Index & guide for Agent AI
-│   ├── OVERVIEW.md        # Core project overview & roadmap
-│   ├── PURPOSE.md         # Original brief & requirements
-│   ├── HOW_TO_SETUP_AI_AGENT.md  # Agent workflow setup guide
-│   ├── rules/             # Guidelines & standards for Agent AI
-│   │   ├── AGENT_AI.md    # Agent AI philosophy & behavior rules
-│   │   ├── CODEBASE_AUDIT.md # Codebase audit procedure
-│   │   ├── FOLDER_STRUCTURE.md
-│   │   ├── MD_CONVENTION.md
-│   │   ├── NAMING_CONVENTION.md
-│   │   └── NOTEBOOK_HEADER_CONVENTION.md
-│   ├── phases/            # Phase & pipeline documentation
-│   │   ├── PHASE_TEMPLATE.md
-│   │   └── <PHASE>.md     # e.g. DATA_PREP.md, MODEL.md, TRAINING_INFO.md, EVAL.md
-│   ├── templates/         # Document & checklist templates
-│   │   ├── PROJECT_ROADMAP_TEMPLATE.md
-│   │   ├── PHASE_DOC_TEMPLATE.md
-│   │   ├── PROGRESS_STATUS_TEMPLATE.md
-│   │   ├── CODEBASE_AUDIT_TEMPLATE.md
-│   │   └── SMOKE_TEST_CHECKLIST.md
-│   ├── references/        # External guides & reference docs
-│   │   ├── REFERENCE_TEMPLATE.md
-│   │   └── <GUIDE>.md     # e.g. OPTUNA_DB_GUIDE.md, GIT_AND_RELEASE_BEST_PRACTICES.md
-│   ├── experiments/       # Experiment reports, plans & technical comparisons
-│   │   ├── README.md
-│   │   └── <EXP>.md       # from EXPERIMENT_TEMPLATE.md
-│   ├── progress/          # One status file per task/phase
-│   │   └── <PHASE>_STATUS.md  # from PROGRESS_TEMPLATE.md
-│   └── bugs/              # Documented bug reports
-│       ├── README.md
-│       └── BUG_<NN>_<SHORT>.md  # from BUG_TEMPLATE.md
+deepfake-ViT/
+├── agents/                       # Centralized Agent AI Knowledge Base & Control Layer
+│   ├── README.md                 # Entry point & navigation guide
+│   ├── OVERVIEW.md               # Core project overview & strategic roadmap
+│   ├── PURPOSE.md                # Problem brief & academic rubric requirements
+│   ├── TECHNICAL_GUIDE.md        # Technical architecture, loading & evaluation guide
+│   ├── DATA_SPLIT_SUMMARIZE.md   # Official dataset census & zero-leakage breakdown
+│   ├── DATA_PREP_SUMMARY_REPORT.md # Extraction, cleaning & test set report
+│   ├── EDA_DATA_INVENTORY.md     # 44 Fake methods & 7 real domains taxonomy
+│   ├── CODEBASE_AUDIT.md         # Codebase health & security audit report
+│   ├── HOW_TO_SETUP_AI_AGENT.md  # Agent workflow setup manual
+│   ├── ML_PIPELINE_REFERENCE_v3.md # End-to-end 18-step ML pipeline reference
+│   ├── rules/                    # Mandatory guidelines & standards
+│   ├── phases/                   # Pipeline phase specifications
+│   ├── progress/                 # Live phase milestone tracking
+│   ├── experiments/              # Experiment proposals & research logs
+│   ├── bugs/                     # Bug reports & troubleshooting guides
+│   ├── references/               # External reference guides
+│   └── templates/                # Standard documentation skeletons
+│
 ├── data/
-│   ├── raw/               # never edited by the agent
-│   ├── processed/
-│   └── external/
+│   ├── splits/                   # Official CSV splits (train_v5, val_v5, test_coursework)
+│   ├── raw/                      # Read-only raw data partitions
+│   └── processed/                # Extracted face crops and metadata manifests
+│
 ├── src/
-│   ├── data/              # loading, cleaning, transforms, dataloaders
-│   ├── models/            # model definitions
-│   ├── training/          # training loops (script entry points)
-│   ├── eval/              # metrics, evaluation scripts
-│   ├── experiments/       # python experiment execution scripts
-│   └── utils/
-├── notebooks/             # exploratory & deliverable notebooks (no training)
-├── configs/
-├── models/                # pretrained backbone weights (gitignored; HF cache)
-├── outputs/               # legacy/local scratch artifacts (docs moved to experiments/results)
-├── experiments/           # run outputs, checkpoints, plots, results
-└── tests/                 # smoke tests + unit tests
+│   ├── data/                     # Dataset loaders, split builders & augmentations
+│   ├── models/                   # DINOv3 ViT, ConvNeXt, LoRA & Ensemble definitions
+│   ├── training/                 # Standalone script-only training loops & LLRD
+│   ├── eval/                     # Evaluation routines, metrics & benchmarking
+│   └── utils/                    # Seeding, device management & logging helpers
+│
+├── scripts/                      # Standalone evaluation & analysis execution scripts
+│   └── eval_v5_weakfix_v3_report.py
+│
+├── notebooks/                    # Interactive evaluation & visualization notebooks
+│   ├── coursework_deepfake.ipynb # Master live GPU evaluation & ViT vs ConvNeXt benchmark (35 cells)
+│   ├── coursework_eda.ipynb# Master training dataset EDA, FFT & taxonomy census (24 cells)
+│   ├── predict_image.ipynb       # Interactive single-image prediction playground
+│   └── archived/                 # Historical exploratory notebooks (00 to 15)
+│
+├── experiments/
+│   ├── checkpoints/              # Model weights (best_model_v3.pt, convnext_weakfix_v3.pt)
+│   ├── results/                  # Evaluation reports, JSON results & CSV tables
+│   ├── plots/                    # Confusion matrices, ROC curves & attention maps
+│   └── runs/                     # Training run logs & telemetry
+│
+└── tests/                        # Automated smoke tests & data verification tests
 ```
 
-## Rules
+---
 
-- Agent must not create top-level folders without flagging it first
-- Anything in `data/raw/` is read-only — never written to by any script
-- Exploratory/throwaway code stays in `notebooks/`, not `src/`
-- If actual folder structure diverges from this file, that's a
-  CODEBASE_AUDIT.md finding, not something to silently "fix"
-- Before working on a phase, read the matching `agents/phases/<phase>.md` and
-  `agents/progress/<phase>_STATUS.md` yourself before asking the human for context.
+## 🔒 Mandatory Repository Rules
+
+1. **No New Root Folders:** Never create arbitrary top-level directories without explicit approval.
+2. **Immutable Raw Data:** `data/raw/` is strictly read-only.
+3. **No Training in Notebooks:** Interactive notebooks are strictly for evaluation, metric visualization, and single-image testing. All training must occur via `src/training/` scripts.
+4. **Frozen Checkpoints:** Checkpoints `experiments/checkpoints/best_model_v3.pt` and `experiments/checkpoints/convnext_weakfix_v3.pt` are frozen.

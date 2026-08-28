@@ -15,10 +15,11 @@ from torchvision import transforms as T
 from sklearn.metrics import accuracy_score, roc_auc_score, precision_score, recall_score, f1_score, confusion_matrix
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
-HT = Path('/workspace/hoangtuan/deepfake-ViT')
+ROOT = Path(__file__).resolve().parent.parent.parent
+HT = ROOT if ROOT.exists() else Path('/workspace/hoangtuan/deepfake-ViT')
 DATA_DIR = Path('/workspace/data/zero_leakage_benchmark_fixed')
 
-V3_CKPT = HT / 'experiments/checkpoints/exp05_v5_weakfix_v3/best_model.pt'
+V3_CKPT = HT / 'experiments/checkpoints/best_model_v3.pt' if (HT / 'experiments/checkpoints/best_model_v3.pt').exists() else HT / 'experiments/checkpoints/exp05_v5_weakfix_v3/best_model.pt'
 PRETRAINED = HT / 'models/dinov3_small/model.safetensors'
 OUT = HT / 'experiments/results/courseWorkCheck'
 OUT.mkdir(parents=True, exist_ok=True)

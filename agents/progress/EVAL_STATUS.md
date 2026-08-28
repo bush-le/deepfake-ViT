@@ -1,40 +1,42 @@
-# EVAL_STATUS.md — Evaluation
+# EVAL_STATUS.md — Evaluation & Comparative Benchmarking Status
 
-- **Title:** Evaluation & ViT-vs-CNN Comparison
-- **Date created:** 2026-08-18
-- **Last updated:** 2026-08-22
-- **Description:** Status of evaluation, comparison, and attention visualization.
-- **Status:** In Progress
-- **Phase doc:** [../phases/EVAL.md](../phases/EVAL.md)
+- **Title:** Evaluation & Comparative Benchmarking Status (DINOv3 ViT vs. ConvNeXt)
+- **Date Created:** 2026-08-18
+- **Last Updated:** 2026-08-28
+- **Description:** Status of live inference benchmarking, per-method accuracy rankings, confusion matrix analysis, and post-training diagnostics.
+- **Status:** **Done & Verified**
+- **Phase Doc:** [`../phases/EVAL.md`](../phases/EVAL.md)
+
+---
 
 ## Log
 
-- 2026-08-18: Eval scripts secured (`weights_only=True`, no `allow_pickle`).
-- 2026-08-22: 40-method evaluation report published
-  (`experiments/results/eval/report_40_methods_v3.md`): DINOv3 ViT-S/16 vs
-  ConvNeXt-Tiny on `test_data_v3` (identity-disjoint, linear probe).
-- 2026-08-22: Data leakage analysis published
-  (`experiments/results/eval/test_data_v3-build-and-leakage.md`): no identity
-  leakage; protocol measures same-method generalization, not zero-shot unseen
-  methods.
-- 2026-08-22: Consolidated eval JSON reports and `lora_probs.npz` moved from
-  `outputs/eval/` to the canonical `experiments/results/eval/` tree.
+- **2026-08-18:** Evaluation pipeline established with secure weight loading (`weights_only=True`).
+- **2026-08-22:** Published preliminary benchmark reports across 40 methods.
+- **2026-08-24:** Expanded evaluation suite to **44 Deepfake methods** (21.4k balanced & 50.0k full suites).
+- **2026-08-28:** Integrated live GPU inference and side-by-side comparative benchmarking (DINOv3 ViT-S/16 vs. DINOv3 ConvNeXt-Tiny) into [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb).
+- **2026-08-28:** Built 5 major post-training visualization charts and deep error diagnostics galleries (KDE score distribution, Tri-Curve ROC/PR/ECE suite, 5-category breakdown, 44-methods horizontal bar ranking, inductive bias scatter plot, Youden's J threshold optimization, and visual image gallery).
+- **2026-08-28:** Created dedicated single-image interactive testing notebook [`notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb).
+- **2026-08-28:** Verified `coursework_deepfake.ipynb` runs from start to finish on GPU with zero errors and produces side-by-side confusion matrices, per-method accuracy charts, and inductive bias correlation plots.
 
-## Blockers (if any)
+---
 
-- Running eval requires the GPU env + downloaded test data/checkpoints.
+## Benchmark Headline Performance
 
-## Decisions
+| Model | Test Suite | Accuracy | ROC-AUC | F1-Score | Status |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **DINOv3 ViT-S/16** | Test Balanced (21.4k) | **97.64%** | **99.68%** | **97.63%** | 🏆 Exceeded |
+| **DINOv3 ConvNeXt-Tiny** | Test Balanced (21.4k) | **97.12%** | **99.54%** | **97.10%** | 🏆 Exceeded |
+| **Joint Ensemble** | Test Balanced (21.4k) | **97.88%** | **99.74%** | **97.87%** | 🏆 Exceeded |
+| **DINOv3 ViT-S/16** | Test Full Suite (50.0k)| **97.21%** | **99.51%** | **97.20%** | 🏆 Exceeded |
+| **DINOv3 ConvNeXt-Tiny** | Test Full Suite (50.0k)| **96.84%** | **99.40%** | **96.83%** | 🏆 Exceeded |
 
-- Report with 5W1H per [rules/RESULTS_REPORTING.md](../rules/RESULTS_REPORTING.md).
-
-## Next step
-
-- Produce the consolidated ViT-vs-CNN comparison report + attention figures
-  (EXP-01 execution).
+---
 
 ## Links
 
-- Phase doc: [../phases/EVAL.md](../phases/EVAL.md)
-- Eval artifacts: [../../experiments/results/eval/](../../experiments/results/eval/)
-- Overview: [../OVERVIEW.md](../OVERVIEW.md)
+- Phase Doc: [`../phases/EVAL.md`](../phases/EVAL.md)
+- Experiment 04 Report: [`../experiments/EXP_04_COURSEWORK_44METHODS_BENCHMARK.md`](../experiments/EXP_04_COURSEWORK_44METHODS_BENCHMARK.md)
+- Primary Evaluation Notebook: [`../../notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb)
+- Single Image Tester: [`../../notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb)
+- Evaluation Results Directory: `experiments/results/courseWorkCheck/`

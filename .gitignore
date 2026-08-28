@@ -28,7 +28,14 @@ data/processed/*
 !data/processed/.gitkeep
 data/external/*
 !data/external/.gitkeep
-data/raw/DF40/
+data/raw/*
+!data/raw/.gitkeep
+data_train/
+data_train_local/
+test_data_v3/
+
+# Finetune outputs
+experiments/results/finetune/
 
 # Experiments: run state + checkpoints/weights are not committed
 experiments/runs/*

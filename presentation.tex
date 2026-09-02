@@ -1,0 +1,116 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usetheme{default}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{background canvas}{bg=white}
+
+\title{Theory and Model Comparison}
+\author{Deepfake‑ViT Project}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+% -------------------------------------------------
+\section{Theoretical Foundations}
+\begin{frame}{Deepfake Forensics Goal}
+  \begin{itemize}
+    \item Detect subtle spatial, spectral, and semantic artifacts.
+    \item Benchmark Vision Transformers (ViT) vs. Convolutional Neural Networks (CNN).
+  \end{itemize}
+\end{frame}
+
+% -------------------------------------------------
+\section{Backbone Architectures}
+\subsection{Meta DINOv3 ViT‑S/16}
+\begin{frame}{ViT‑S/16 Overview}
+  \begin{itemize}
+    \item 21.6M parameters, patch size 16×16, 12 encoder layers, dim 384.
+    \item Global all‑to‑all self‑attention → captures whole‑face illumination and symmetry.
+    \item Strengths: Global receptive field, high scalability with pretrained foundation.
+    \item Weaknesses: No spatial inductive bias, quadratic cost $O(N^2 D)$.
+  \end{itemize}
+\end{frame}
+
+\subsection{Meta DINOv3 ConvNeXt‑Tiny}
+\begin{frame}{ConvNeXt‑Tiny Overview}
+  \begin{itemize}
+    \item 28.1M parameters, 4 hierarchical stages, channels [96,192,384,768].
+    \item 7×7 depthwise kernels + LayerScale → retains 2D locality.
+    \item Strengths: Fast inference (153 FPS), excellent on local boundary artifacts.
+    \item Weaknesses: Limited long‑range context, receptive field bound by depth.
+  \end{itemize}
+\end{frame}
+
+\subsection{Classical CNN Baselines}
+\begin{frame}{ResNet‑50 & EfficientNet‑B4}
+  \begin{itemize}
+    \item Proven convergence, small memory footprint.
+    \item Limitations: Small $3\times3$ kernels, BatchNorm sensitivity to domain shift.
+  \end{itemize}
+\end{frame}
+
+% -------------------------------------------------
+\section{Joint Weighted Ensemble}
+\begin{frame}{Ensemble Formula}
+  \[ P_{\text{ens}} = 0.65\,P_{\text{ViT}} + 0.35\,P_{\text{CNN}} \]
+  \begin{itemize}
+    \item Improves accuracy to 97.88 % and ROC‑AUC to 99.74 %.
+    \item Reduces false negatives by 12.9 % over ViT alone.
+  \end{itemize}
+\end{frame}
+
+% -------------------------------------------------
+\section{Model Comparison Matrix}
+\begin{frame}{Key Evaluation Aspects}
+  \begin{tabular}{lcccc}
+    \toprule
+    Aspect & ResNet‑50 & ConvNeXt‑Tiny & ViT‑S/16 & Ensemble \\
+    \midrule
+    Inductive Bias & Strong & Strong & None & Dual \\
+    Information Scope & Local & Mid‑Local & Global & Dual \\
+    Data Requirement & Moderate & Moderate & High & High \\
+    Computational Cost & $O(C K^2 HW)$ & $O(C K^2 HW)$ & $O(N^2 D)$ & Sum \\
+    Best For & Small datasets & Real‑time & Large pre‑train & Mission‑critical \\
+    \bottomrule
+  \end{tabular}
+\end{frame}
+
+% -------------------------------------------------
+\section{When ViT > CNN}
+\begin{frame}{ViT‑Preferred Scenarios}
+  \begin{enumerate}
+    \item Diffusion‑based generators (global illumination inconsistencies).
+    \item Whole‑image GAN synthesis (subtle geometric asymmetries).
+    \item Availability of large pretrained foundations.
+  \end{enumerate}
+\end{frame}
+
+% -------------------------------------------------
+\section{When CNN > ViT}
+\begin{frame}{CNN‑Preferred Scenarios}
+  \begin{enumerate}
+    \item FaceSwap / local blending seams (boundary artifacts).
+    \item Resource‑constrained or real‑time video pipelines.
+    \item Training from scratch on limited data (<10k samples).
+  \end{enumerate}
+\end{frame}
+
+% -------------------------------------------------
+\section{Practical Guidance}
+\begin{frame}{Decision Guide}
+  \begin{itemize}
+    \item <5k samples → ResNet / ConvNeXt.
+    \item 20k–50k samples → ConvNeXt‑Tiny.
+    \item >100k samples → ViT‑S/16.
+    \item Accuracy‑critical → Joint Ensemble.
+    \item Edge devices → ConvNeXt‑Tiny.
+  \end{itemize}
+\end{frame}
+
+\end{document}

@@ -48,10 +48,14 @@ class Attention(nn.Module):
         k = self.k_proj(x).reshape(B, N, H, D).transpose(1, 2)
         v = self.v_proj(x).reshape(B, N, H, D).transpose(1, 2)
 
-        attn = (q @ k.transpose(-2, -1)) * (D ** -0.5)
-        attn = F.softmax(attn, dim=-1)
-        self.attn = attn  # lưu để visualize (B, H, N, N)
-        out = (attn @ v).transpose(1, 2).reshape(B, N, C)
+        if hasattr(self, "save_attn") and self.save_attn:
+            attn = (q @ k.transpose(-2, -1)) * (D ** -0.5)
+            attn = F.softmax(attn, dim=-1)
+            self.attn = attn  # lưu để visualize (B, H, N, N)
+            out = (attn @ v).transpose(1, 2).reshape(B, N, C)
+        else:
+            out = F.scaled_dot_product_attention(q, k, v)
+            out = out.transpose(1, 2).reshape(B, N, C)
         return self.o_proj(out)
 
 
@@ -198,12 +202,13 @@ def build_dinov3_classifier(
     num_classes: int = 2,
     img_size: int = 256,
     device: str = "cpu",
+    **kwargs,
 ) -> DinoViTClassifier:
     """Build and initialize DinoViTClassifier with pre-trained DINOv3 weights."""
     if weights_path:
-        backbone = load_dinov3(weights_path, img_size=img_size)
+        backbone = load_dinov3(weights_path, img_size=img_size, **kwargs)
     else:
-        backbone = DinoViT(img_size=img_size)
+        backbone = DinoViT(img_size=img_size, **kwargs)
     model = DinoViTClassifier(backbone=backbone, num_classes=num_classes)
     return model.to(device)
 

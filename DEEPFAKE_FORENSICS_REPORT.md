@@ -7,7 +7,7 @@
 > **Repository:** `bush-le/deepfake-ViT`  
 > **Tác giả:** Hoang Tuan & Team (`ManhQuangAI`, `bushle`)  
 > **Hạ tầng Dữ liệu Đã Quét:** 23 Jupyter Notebooks | 207,414 ảnh tổng thể | 129,884 ảnh huấn luyện (`bushle/deepfake_train_129k_images`) | 20,846 ảnh Test Balanced Zero-Leakage (38-44 phương pháp) | 48,064 ảnh Test Full Suite  
-> **Kiến trúc Trọng tâm:** Meta DINOv3 ViT-Small/16 (21.60M params) & ViT-Plus (28.69M params) vs. Meta DINOv3 ConvNeXt-Tiny (28.12M params) vs. Joint Weighted Ensemble (49.72M params)  
+> **Kiến trúc Trọng tâm:** Meta DINOv3 ViT-Small/16 (21.60M params) & ViT-Plus s1_best (`plus_v3_s1_best.pt`, 28.69M params) vs. Meta DINOv3 ConvNeXt-Tiny (`convnext_weakfix_v3.pt`, 28.12M params) vs. Joint Weighted Ensemble (49.72M params)  
 > **Chứng nhận:** 🛡️ Zero-Leakage Protocol Certified (0% MD5 Collision, Identity-Disjoint)
 
 ---
@@ -337,74 +337,74 @@ Nhóm nghiên cứu triển khai bổ sung có chủ đích:
 Kết quả đánh giá trên tập **Test Balanced Suite (20,846 ảnh: 10,423 Real, 10,423 Fake)**:
 
 | Kiến trúc Mô hình | Tham số (Params) | Test Accuracy | ROC-AUC | Precision | Fake Recall | Real Specificity | F1-Score | FP (Báo động giả) | FN (Bỏ sót giả) | FPS / Latency |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Classical ResNet-50** | 25.56M | 92.40% | 96.80% | 92.10% | 91.00% | 93.80% | 91.54% | ~646 | ~938 | 170 FPS (5.8 ms) |
-| **Meta DINOv3 ConvNeXt-Tiny** | 28.12M | **99.22%** | **99.98%** | **99.79%** | 98.64% | **99.79%** 🏆 | **99.21%** | **22** 🏆 | 146 | **153.2 FPS** (6.5 ms) |
+| **Meta DINOv3 ConvNeXt-Tiny** (`convnext_weakfix_v3.pt`) | 28.12M | **99.49%** 🏆 | **99.99%** 🏆 | **99.79%** 🏆 | 99.18% | **99.79%** 🏆 | **99.49%** 🏆 | **22** 🏆 | 85 | **153.2 FPS** (6.5 ms) |
 | **Meta DINOv3 ViT-Plus A0 (Baseline)** | 28.69M | 97.91% | 99.79% | 98.05% | 97.77% | 98.05% | 97.91% | 209 | 239 | 146.4 FPS (6.8 ms) |
-| **Meta DINOv3 ViT-Plus A1 (WeakFix v3)**| 28.69M | **98.47%** | **99.86%** | 97.94% | **99.02%** 🏆 | 97.92% | **98.48%** | 223 | **105** 🏆 | 146.4 FPS (6.8 ms) |
-| **Joint Weighted Ensemble ($0.65\text{ViT} + 0.35\text{CNN}$)** | 49.72M | **99.30%** 🏆 | **99.98%** 🏆 | **99.65%** | **98.95%** | **99.65%** | **99.30%** 🏆 | 36 | 109 | 74.9 FPS (13.4 ms) |
+| **Meta DINOv3 ViT-Plus s1_best** (`plus_v3_s1_best.pt`)| 28.69M | **98.53%** | **99.86%** | 98.03% | **99.04%** | 98.01% | **98.53%** | 207 | **100** | 146.4 FPS (6.8 ms) |
+| **Joint Weighted Ensemble ($0.65\text{ViT} + 0.35\text{CNN}$)** | 49.72M | **99.28%** | **99.97%** | 99.09% | **99.47%** 🏆 | 99.09% | **99.28%** | 95 | **55** 🏆 | 74.9 FPS (13.4 ms) |
 
-![Side-by-Side Confusion Matrices](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_16_img_1.png)
-*Hình 4.2: Ma trận nhầm lẫn đối sánh ViT-Plus vs ConvNeXt vs Joint Ensemble trên 20,846 ảnh Test Balanced (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Side-by-Side Confusion Matrices](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_16_img_1.png)
+*Hình 4.2: Ma trận nhầm lẫn đối sánh ViT-Plus s1_best vs ConvNeXt vs Joint Ensemble trên 20,846 ảnh Test Balanced (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Standard Tri-Curve Suite ROC PR Calibration](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_22_img_3.png)
-*Hình 4.3: Bộ 3 đường cong chuẩn mực: ROC Curve, Precision-Recall Curve và Reliability Calibration (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Standard Tri-Curve Suite ROC PR Calibration](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_22_img_3.png)
+*Hình 4.3: Bộ 3 đường cong chuẩn mực: ROC Curve, Precision-Recall Curve và Reliability Calibration (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Category Breakdown across 5 Paradigms](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_24_img_4.png)
-*Hình 4.4: Hiệu năng phát hiện phân rã theo 5 Chủng loại sinh ảnh chính (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Category Breakdown across 5 Paradigms](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_24_img_4.png)
+*Hình 4.4: Hiệu năng phát hiện phân rã theo 5 Chủng loại sinh ảnh chính (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Per-Method Accuracy Horizontal Ranking Test Balanced](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_26_img_5.png)
-*Hình 4.5: Xếp hạng độ chính xác ngang qua 44 phương pháp trên tập Test Balanced Suite (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Per-Method Accuracy Horizontal Ranking Test Balanced](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_26_img_5.png)
+*Hình 4.5: Xếp hạng độ chính xác ngang qua 44 phương pháp trên tập Test Balanced Suite (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Per-Method Accuracy Horizontal Ranking Test Full 50k](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_28_img_6.png)
-*Hình 4.6: Xếp hạng độ chính xác ngang qua 44 phương pháp trên tập Test Full Suite 50,084 ảnh (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Per-Method Accuracy Horizontal Ranking Test Full 50k](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_28_img_6.png)
+*Hình 4.6: Xếp hạng độ chính xác ngang qua 44 phương pháp trên tập Test Full Suite 48,064 ảnh (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Inductive Bias Scatter Correlation](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_30_img_7.png)
-*Hình 4.7: Đồ thị tương quan phân tán $r=0.94$ giữa ViT và ConvNeXt trên 44 phương pháp (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Inductive Bias Scatter Correlation](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_30_img_7.png)
+*Hình 4.7: Đồ thị tương quan phân tán giữa ViT và ConvNeXt trên 44 phương pháp (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Threshold Sensitivity Curves](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_32_img_8.png)
-*Hình 4.8: Đường cong độ nhạy ngưỡng quyết định tối ưu Youden J Index ($t^*$) (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Threshold Sensitivity Curves](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_32_img_8.png)
+*Hình 4.8: Đường cong độ nhạy ngưỡng quyết định tối ưu Youden J Index ($t^*$) (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
 ---
 
 ## 4.3. Đánh giá Mức độ Cải thiện trên Các Phương pháp Yếu
 
-| Phương pháp Giả mạo | Độ chính xác Trước Finetune | Độ chính xác Sau Finetune (ViT-Plus / Ensemble) | Mức Tăng trưởng (\Delta) | Trạng thái Khắc phục |
+| Phương pháp Giả mạo | Độ chính xác Trước Finetune | Độ chính xác Sau Finetune (ViT-Plus s1_best / Ensemble) | Mức Tăng trưởng (\Delta) | Trạng thái Khắc phục |
 | :--- | :---: | :---: | :---: | :---: |
-| `starganv2` | 72.50% | **100.00%** | **+27.50%** | 🏆 Hoàn hảo tuyệt đối |
-| `whichfaceisreal` | 73.33% | **90.00%** | **+16.67%** | 🏆 Đạt chuẩn an toàn |
-| `facedancer` | 74.07% | **96.30%** | **+22.23%** | 🏆 Đạt chuẩn xuất sắc |
-| `sadtalker` | 80.77% | **96.15%** | **+15.38%** | 🏆 Đạt chuẩn xuất sắc |
-| `fsgan` | 84.62% | **96.15%** | **+11.53%** | 🏆 Đạt chuẩn xuất sắc |
-| `simswap` | 88.89% | **96.30%** | **+7.41%** | 🏆 Đạt chuẩn xuất sắc |
-| `blendface` | 88.89% | **96.30%** | **+7.41%** | 🏆 Đạt chuẩn xuất sắc |
-| `faceswap` | 62.96% | **92.59%** | **+29.63%** | 🏆 Khắc phục triệt để |
+| `starganv2` / `stargan` | 72.50% | **98.46%** (Full) / **100.0%** (Bal) | **+25.96%** | 🏆 Hoàn hảo tuyệt đối |
+| `whichfaceisreal` | 73.33% | **100.00%** | **+26.67%** | 🏆 Đạt chuẩn an toàn |
+| `facedancer` | 74.07% | **97.90%** | **+23.83%** | 🏆 Đạt chuẩn xuất sắc |
+| `sadtalker` | 80.77% | **97.63%** | **+16.86%** | 🏆 Đạt chuẩn xuất sắc |
+| `fsgan` | 84.62% | **95.11%** | **+10.49%** | 🏆 Đạt chuẩn xuất sắc |
+| `simswap` | 88.89% | **99.85%** | **+10.96%** | 🏆 Đạt chuẩn xuất sắc |
+| `blendface` | 88.89% | **99.10%** | **+10.21%** | 🏆 Đạt chuẩn xuất sắc |
+| `faceswap` | 62.96% | **96.66%** | **+33.70%** | 🏆 Khắc phục triệt để |
 
 ---
 
 ## 4.4. Phân tích Phân bố Xác suất Dự đoán & Đồ thị Mật độ (KDE & Histogram)
 
-![Probability Density Distribution KDE & Hist](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_20_img_2.png)
-*Hình 4.9: Đồ thị mật độ xác suất dự đoán $P(\text{Fake})$ thể hiện sự tách bạch 2 cực rõ rệt sau Finetuning (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Probability Density Distribution KDE & Hist](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_20_img_2.png)
+*Hình 4.9: Đồ thị mật độ xác suất dự đoán $P(\text{Fake})$ thể hiện sự tách bạch 2 cực rõ rệt sau Finetuning (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
 ---
 
 ## 4.5. Phân tích Lỗi Sai Điển hình & Thư viện Ảnh Giám định (Error Case Gallery)
 
-![Top 10 False Negatives Gallery](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_36_img_9.png)
-*Hình 4.10: Thư viện giám định Top 10 ca Bỏ sót Giả mạo (Fake $\rightarrow$ Real) (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Top 10 False Negatives Gallery](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_36_img_9.png)
+*Hình 4.10: Thư viện giám định Top 10 ca Bỏ sót Giả mạo (Fake $\rightarrow$ Real) (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Top 10 False Positives Gallery](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_best_cell_36_img_10.png)
-*Hình 4.11: Thư viện giám định Top 10 ca Báo động Giả (Real $\rightarrow$ Fake) và Hard True Positives (Trích xuất từ `coursework_deepfake_plus_v3_best.ipynb`).*
+![Top 10 False Positives Gallery](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_36_img_10.png)
+*Hình 4.11: Thư viện giám định Top 10 ca Báo động Giả (Real $\rightarrow$ Fake) và Hard True Positives (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
 ---
 
 # PHẦN 5: KẾT LUẬN KHOA HỌC & KHUYẾN NGHỊ TRIỂN KHAI
 
 ### 🔬 Tóm tắt Khám phá Thực nghiệm Cốt lõi
-1. **Vision Transformers (Meta DINOv3 ViT-Plus A1):** Là mô hình xuất sắc nhất trong việc **bắt trọn tối đa ảnh Deepfake** với độ nhạy (Recall) lên đến **$99.02\%$**, cắt giảm số ca bỏ sót giả mạo xuống mức kỷ lục (**FN = 105**), đặc biệt thống trị trên các mô hình khuếch tán Diffusion và Reenactment toàn mặt.
-2. **Modern CNNs (Meta DINOv3 ConvNeXt-Tiny):** Là mô hình phòng thủ xuất sắc nhất về **độ tin cậy không báo động giả** với độ đặc hiệu (Specificity) đạt **$99.79\%$** (**FP = 22**), độ chính xác tổng thể **$99.22\%$**, tốc độ suy luận thời gian thực **153.2 FPS** trên GPU thương mại, vượt trội trong việc phát hiện vết cắt ghép đường biên FaceSwap.
-3. **Mô hình Kết hợp (Joint Weighted Ensemble):** Khi kết hợp hai trường phái ($0.65 \cdot P_{\text{ViT}} + 0.35 \cdot P_{\text{CNN}}$), hệ thống tận dụng trọn vẹn cả hai dạng Inductive Bias (Cục bộ & Toàn cục), đẩy hiệu năng lên đỉnh cao **$99.30\%$ Accuracy** và **$99.98\%$ ROC-AUC** trên tập benchmark 44 phương pháp chuẩn.
+1. **Vision Transformers (Meta DINOv3 ViT-Plus s1_best):** Là mô hình xuất sắc trong việc **bắt trọn ảnh Deepfake toàn diện** với độ chính xác **$98.53\%$**, độ nhạy (Recall) **$99.04\%$**, cắt giảm số ca bỏ sót giả mạo xuống mức tối thiểu (**FN = 100** trên 10,423 ảnh giả kiểm thử), đặc biệt thống trị trên các mô hình khuếch tán Diffusion (DiT, SiT, PixArt, MidJourney) và Reenactment toàn mặt.
+2. **Modern CNNs (Meta DINOv3 ConvNeXt-Tiny):** Là mô hình phòng thủ xuất sắc nhất về **độ tin cậy không báo động giả** với độ đặc hiệu (Specificity) đạt **$99.79\%$** (**FP = 22**), độ chính xác tổng thể **$99.49\%$**, tốc độ suy luận thời gian thực **153.2 FPS** (6.5 ms latency) trên GPU thương mại, vượt trội trong việc phát hiện vết cắt ghép đường biên FaceSwap.
+3. **Mô hình Kết hợp (Joint Weighted Ensemble):** Khi kết hợp hai trường phái ($0.65 \cdot P_{\text{ViT}} + 0.35 \cdot P_{\text{CNN}}$), hệ thống tận dụng trọn vẹn cả hai dạng Inductive Bias (Cục bộ & Toàn cục), đẩy Fake Recall lên đỉnh cao **$99.47\%$** (chỉ còn **55 ca FN** trên 10,423 ảnh giả), đạt **$99.28\%$ Accuracy** và **$99.97\%$ ROC-AUC** trên tập benchmark 44 phương pháp chuẩn.
 
 ### 🚀 Khuyến nghị Triển khai Thực tế
 - **Hệ thống Quét Video Thời gian Thực (Real-time Video Stream):** Triển khai độc lập **Meta DINOv3 ConvNeXt-Tiny** để đạt tốc độ >150 FPS với tỷ lệ báo động giả tối thiểu ($0.21\%$).

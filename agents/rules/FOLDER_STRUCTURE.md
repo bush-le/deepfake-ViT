@@ -4,6 +4,14 @@ This document is the official source of truth for the directory layout of `deepf
 
 ```
 deepfake-ViT/
+├── docs/                         # Human-readable Technical Documentation & Research Reports
+│   ├── README.md                 # Master documentation portal
+│   ├── DEEPFAKE_FORENSICS_REPORT.md # Master 5-part forensic & experimental research report
+│   ├── THEORY_AND_MODEL_COMPARISON.md # Theoretical foundations & inductive bias comparison
+│   ├── MODELS.md                 # Checkpoint specifications & parameter inventory
+│   ├── RUNPOD.md                 # GPU cloud infrastructure execution runbook
+│   └── DESCRIPTION_NOTES.md      # Method & dataset synthesis notes
+│
 ├── agents/                       # Centralized Agent AI Knowledge Base & Control Layer
 │   ├── README.md                 # Entry point & navigation guide
 │   ├── OVERVIEW.md               # Core project overview & strategic roadmap

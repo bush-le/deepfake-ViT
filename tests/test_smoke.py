@@ -32,9 +32,14 @@ def test_experiments_layout_exists():
         assert (ROOT / "experiments" / sub).is_dir(), f"missing experiments/{sub}"
 
 
-def test_no_stale_scripts_dir():
-    """The legacy top-level scripts/ dir must be gone after the re-org."""
-    assert not (ROOT / "scripts").exists(), "top-level scripts/ should be removed"
+def test_docs_directory_exists():
+    """Human documentation directory docs/ must exist."""
+    assert (ROOT / "docs").is_dir(), "missing docs/ directory"
+
+
+def test_scripts_dir_exists():
+    """Top-level scripts/ directory must exist according to FOLDER_STRUCTURE.md."""
+    assert (ROOT / "scripts").is_dir(), "scripts/ directory should exist"
 
 
 def test_model_builders_exist():

@@ -78,10 +78,10 @@ flowchart TD
     Extraction_Pipeline --> Infrastructure["Tổng kho 207,414 Ảnh Toàn Dự án"]
 ```
 
-![Multi-Split Census Overview](./experiments/plots/notebook_extracted/coursework_eda_cell_5_img_1.png)
+![Multi-Split Census Overview](../experiments/plots/notebook_extracted/coursework_eda_cell_5_img_1.png)
 *Hình 1.1: Tổng quan phân hoạch dữ liệu toàn dự án (207,414 ảnh) trên 4 tập Train (129.8k), Val (6.0k), Test Balanced (20.8k) và Test Full Suite (48.1k) (Trích xuất từ `coursework_eda.ipynb`).*
 
-![Initial DF40 Raw Samples](./experiments/plots/notebook_extracted/00_comprehensive_dataset_eda_cell_10_img_2.png)
+![Initial DF40 Raw Samples](../experiments/plots/notebook_extracted/00_comprehensive_dataset_eda_cell_10_img_2.png)
 *Hình 1.2: Thống kê số lượng khung hình thô ban đầu trong DF40 và phân bố cân bằng nhãn (Trích xuất từ `00_comprehensive_dataset_eda.ipynb`).*
 
 ---
@@ -99,10 +99,10 @@ flowchart TD
 | **🟠 Diffusion Models & Diffusion Transformers** | `Diffusion` | **25,480** | `MidJourney`, `DiT`, `SiT`, `PixArt-alpha`, `sd2.1`, `RDDM`, `ddim`, `CollabDiff` | Sinh ảnh qua quá trình khử nhiễu khuếch tán đa bước. Dấu vết: Kết cấu da giả lập siêu mịn, mất nhất quán ánh sáng toàn cục (lighting incoherence), mắt nhân tạo. |
 | **🔴 Attribute & Semantic Editing** | `Attribute` | **5,759** | `stargan`, `starganv2`, `styleclip`, `e4s` | Thay đổi thuộc tính (tuổi tác, giới tính, màu tóc, biểu cảm). Dấu vết: Biên ranh giới đổi màu tóc bất thường, biến dạng cục bộ vùng trán/mũi. |
 
-![Generative Paradigms Taxonomy](./experiments/plots/notebook_extracted/coursework_eda_cell_8_img_2.png)
+![Generative Paradigms Taxonomy](../experiments/plots/notebook_extracted/coursework_eda_cell_8_img_2.png)
 *Hình 1.3: Phân loại chi tiết 54 phương pháp tạo ảnh giả thành 6 Chủng loại sinh ảnh chính (Trích xuất từ `coursework_eda.ipynb`).*
 
-![Cross Split Method Heatmap](./experiments/plots/notebook_extracted/coursework_eda_cell_11_img_3.png)
+![Cross Split Method Heatmap](../experiments/plots/notebook_extracted/coursework_eda_cell_11_img_3.png)
 *Hình 1.4: Ma trận phân bố chuẩn hóa 2D (Method $\times$ Split Heatmap) thể hiện tỷ lệ mẫu của 54 phương pháp trên các phân hoạch (Trích xuất từ `coursework_eda.ipynb`).*
 
 ---
@@ -114,75 +114,75 @@ Dựa trên toàn bộ kết quả phân tích khám phá chuyên sâu từ note
 ### 1. Thuộc tính Không gian & Định dạng Tệp
 - $100\%$ ảnh chuẩn hóa về kích thước $256 \times 256$ pixels, tỷ lệ vuông 1:1, chuẩn màu RGB 8-bit (24-bit depth).
 
-![Spatial Dimensions & Physical Properties](./experiments/plots/notebook_extracted/coursework_eda_cell_16_img_4.png)
+![Spatial Dimensions & Physical Properties](../experiments/plots/notebook_extracted/coursework_eda_cell_16_img_4.png)
 *Hình 1.5: Phân bố kích thước không gian, định dạng tệp (PNG vs JPG) và dung lượng bộ nhớ (KB) (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 2. Phân tích Quang trắc (Photometric) & Không gian Màu RGB / HSV
 - Đánh giá phân bố cường độ điểm ảnh, độ bão hòa màu (Saturation) và sắc độ (Hue).
 
-![Photometric & Color Space Forensics](./experiments/plots/notebook_extracted/coursework_eda_cell_19_img_5.png)
+![Photometric & Color Space Forensics](../experiments/plots/notebook_extracted/coursework_eda_cell_19_img_5.png)
 *Hình 1.6: Phân bố kênh màu RGB và không gian màu HSV trên các miền dữ liệu (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 3. Phân tích Miền Tần số 2D Fast Fourier Transform (FFT) & 1D Radial PSD
 - Phổ Fourier 2D cho thấy các đỉnh đối xứng tần số cao ở GANs (do upsampling tích chập giải lập) và sự sụt giảm năng lượng ở dải tần số cực cao của Diffusion.
 
-![2D FFT & Radial PSD](./experiments/plots/notebook_extracted/coursework_eda_cell_22_img_6.png)
+![2D FFT & Radial PSD](../experiments/plots/notebook_extracted/coursework_eda_cell_22_img_6.png)
 *Hình 1.7: Phổ công suất 2D FFT và đường suy giảm mật độ phổ xuyên tâm 1D Radial PSD qua 6 chủng loại (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 4. Nhiễu Phần dư Bộ lọc Thông cao (High-Pass Noise Residuals) & Tỷ số SNR
 - Tách lọc $R = I - \text{GaussianBlur}(I, \sigma=2.0)$ để cô lập nhiễu cảm biến quang học PRNU và dấu vết nội suy ghép biên.
 
-![Noise Residuals & SNR](./experiments/plots/notebook_extracted/coursework_eda_cell_24_img_7.png)
+![Noise Residuals & SNR](../experiments/plots/notebook_extracted/coursework_eda_cell_24_img_7.png)
 *Hình 1.8: Phân bố năng lượng phần dư nhiễu thông cao và tỷ số tín hiệu trên nhiễu SNR (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 5. Phân tích Mức Lỗi Nén (Error Level Analysis - ELA $Q=90$)
 - Phát hiện dị biệt tỷ lệ suy thoái nén JPEG dọc theo đường biên ghép khuôn mặt trong FaceSwap.
 
-![Error Level Analysis ELA](./experiments/plots/notebook_extracted/coursework_eda_cell_26_img_8.png)
+![Error Level Analysis ELA](../experiments/plots/notebook_extracted/coursework_eda_cell_26_img_8.png)
 *Hình 1.9: Bản đồ lỗi nén ELA tại $Q=90$ làm nổi rõ đường ranh giới ghép da nhân tạo (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 6. Phân tích Vi cấu trúc Da Local Binary Patterns (LBP Texture Entropy)
 - Đo lường độ nhám vi mô của da. Ảnh Deepfake thường bị làm mịn quá mức, dẫn đến LBP Entropy thấp.
 
-![LBP Micro-Texture Entropy](./experiments/plots/notebook_extracted/coursework_eda_cell_28_img_9.png)
+![LBP Micro-Texture Entropy](../experiments/plots/notebook_extracted/coursework_eda_cell_28_img_9.png)
 *Hình 1.10: Phân tích Entropy vi cấu trúc LBP trên bề mặt da người thật vs da nhân tạo (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 7. Hướng Gradient Sobel & Tính Dị hướng (Gradient Anisotropy)
 - Kiểm tra góc gradient $\theta = \arctan(G_y, G_x)$. Mạng sinh ảnh thường tạo ra thiên kiến vuông góc ($0^\circ, 90^\circ, 180^\circ$).
 
-![Directional Gradient Anisotropy](./experiments/plots/notebook_extracted/coursework_eda_cell_30_img_10.png)
+![Directional Gradient Anisotropy](../experiments/plots/notebook_extracted/coursework_eda_cell_30_img_10.png)
 *Hình 1.11: Phân bố góc gradient Sobel thể hiện tính dị hướng nhân tạo của mạng sinh (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 8. Phân tích Độ loang màu Chrominance & $YC_bC_r$
 - Phát hiện hiện tượng mất cân bằng kênh sắc độ ($C_b, C_r$) tại các vùng biên chi tiết.
 
-![Chrominance Color Bleeding](./experiments/plots/notebook_extracted/coursework_eda_cell_32_img_11.png)
+![Chrominance Color Bleeding](../experiments/plots/notebook_extracted/coursework_eda_cell_32_img_11.png)
 *Hình 1.12: Phân tích độ biến động sắc độ $YC_bC_r$ và hiện tượng loang màu (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 9. Ma trận Đồng Mức Xám GLCM (Contrast & Homogeneity)
 - Định lượng độ tương phản vi mô và độ đồng nhất kết cấu da.
 
-![GLCM Texture Descriptors](./experiments/plots/notebook_extracted/coursework_eda_cell_34_img_12.png)
+![GLCM Texture Descriptors](../experiments/plots/notebook_extracted/coursework_eda_cell_34_img_12.png)
 *Hình 1.13: Phân tích phân bố GLCM Contrast và GLCM Homogeneity (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 10. Chiếu Đa chiều Không gian Đặc trưng (2D t-SNE & PCA)
 - Chiếu vector đặc trưng 10 chiều lên không gian 2D cho thấy sự phân cụm tách biệt rõ rệt giữa Real và Fake.
 
-![t-SNE and PCA Manifold Projection](./experiments/plots/notebook_extracted/coursework_eda_cell_38_img_13.png)
+![t-SNE and PCA Manifold Projection](../experiments/plots/notebook_extracted/coursework_eda_cell_38_img_13.png)
 *Hình 1.14: Không gian đa chiều đặc trưng qua phép chiếu 2D PCA và 2D t-SNE (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 11. Biểu đồ Radar Vân tay Giám định Đa Chiều
 - Định hình profile đặc trưng của 6 chủng loại sinh ảnh trên 6 trục vật lý chuẩn hóa.
 
-![Forensic Fingerprint Radar Chart](./experiments/plots/notebook_extracted/coursework_eda_cell_40_img_14.png)
+![Forensic Fingerprint Radar Chart](../experiments/plots/notebook_extracted/coursework_eda_cell_40_img_14.png)
 *Hình 1.15: Đồ thị Radar vân tay giám định đa chiều cho 6 chủng loại dữ liệu (Trích xuất từ `coursework_eda.ipynb`).*
 
 ### 12. Thư viện Phân rã 6 Chiều Giám định Trực quan & Bộ ảnh 16 Phương pháp
 
-![6-Panel Decomposition Gallery](./experiments/plots/notebook_extracted/coursework_eda_cell_42_img_15.png)
+![6-Panel Decomposition Gallery](../experiments/plots/notebook_extracted/coursework_eda_cell_42_img_15.png)
 *Hình 1.16: Phân rã đồng thời 6 tín hiệu giám định trên mẫu thực tế (RGB, ELA, High-pass, 2D FFT, Sobel, LBP) (Trích xuất từ `coursework_eda.ipynb`).*
 
-![16-Sample Visual Gallery](./experiments/plots/notebook_extracted/coursework_eda_cell_44_img_16.png)
+![16-Sample Visual Gallery](../experiments/plots/notebook_extracted/coursework_eda_cell_44_img_16.png)
 *Hình 1.17: Thư viện 16 mẫu ảnh khuôn mặt đại diện cho toàn bộ các phương pháp và nguồn dữ liệu (Trích xuất từ `coursework_eda.ipynb`).*
 
 ---
@@ -191,13 +191,13 @@ Dựa trên toàn bộ kết quả phân tích khám phá chuyên sâu từ note
 
 Từ notebook `05_midjourney_vs_traditional_deepfakes_eda.ipynb`, nhóm nghiên cứu đã đối sánh độc lập ảnh sinh từ Midjourney v5/v6 với các mô hình GAN/FaceSwap truyền thống:
 
-![Visual Comparison Midjourney vs Traditional](./experiments/plots/notebook_extracted/05_midjourney_vs_traditional_deepfakes_eda_cell_2_img_1.png)
+![Visual Comparison Midjourney vs Traditional](../experiments/plots/notebook_extracted/05_midjourney_vs_traditional_deepfakes_eda_cell_2_img_1.png)
 *Hình 1.18: Đối sánh trực quan cấu trúc khuôn mặt giữa Midjourney, FaceForensics++ Deepfake và Ảnh thật (Trích xuất từ `05_midjourney_vs_traditional_deepfakes_eda.ipynb`).*
 
-![Laplacian Variance Midjourney vs GAN vs Real](./experiments/plots/notebook_extracted/05_midjourney_vs_traditional_deepfakes_eda_cell_4_img_3.png)
+![Laplacian Variance Midjourney vs GAN vs Real](../experiments/plots/notebook_extracted/05_midjourney_vs_traditional_deepfakes_eda_cell_4_img_3.png)
 *Hình 1.19: So sánh phân bố độ sắc nét Laplacian giữa Midjourney, GANs và Ảnh thật (Trích xuất từ `05_midjourney_vs_traditional_deepfakes_eda.ipynb`).*
 
-![FFT Spectrum Midjourney vs Real](./experiments/plots/notebook_extracted/05_midjourney_vs_traditional_deepfakes_eda_cell_6_img_5.png)
+![FFT Spectrum Midjourney vs Real](../experiments/plots/notebook_extracted/05_midjourney_vs_traditional_deepfakes_eda_cell_6_img_5.png)
 *Hình 1.20: So sánh đặc trưng phổ Fourier 2D của Midjourney so với ảnh thật (Trích xuất từ `05_midjourney_vs_traditional_deepfakes_eda.ipynb`).*
 
 ---
@@ -219,10 +219,10 @@ Qua toàn bộ quá trình rà soát tại các notebook `00_comprehensive_datas
 - **Tập Huấn luyện Mở rộng (129k images):** [`bushle/deepfake_train_129k_images`](https://huggingface.co/datasets/bushle/deepfake_train_129k_images/tree/main) (`train_v5_weakfix_v3.csv` - **129,884 ảnh**: 31,006 Real / 98,878 Fake).
 - **Tập Benchmark Test Chuẩn mực:** `test_coursework_44methods_balanced_zero_leakage.csv` (**20,846 ảnh** cân bằng 1:1) và `test_coursework_44methods_full_zero_leakage.csv` (**48,064 ảnh**).
 
-![46 Methods Distribution in Test Set](./experiments/plots/notebook_extracted/15_expanded_46methods_test_set_eda_cell_10_img_1.png)
+![46 Methods Distribution in Test Set](../experiments/plots/notebook_extracted/15_expanded_46methods_test_set_eda_cell_10_img_1.png)
 *Hình 2.1: Phân bổ mẫu theo 46 phương pháp trong tập Test mở rộng (Trích xuất từ `15_expanded_46methods_test_set_eda.ipynb`).*
 
-![Balanced 1:1 Test Set Comparison](./experiments/plots/notebook_extracted/15_expanded_46methods_test_set_eda_cell_12_img_2.png)
+![Balanced 1:1 Test Set Comparison](../experiments/plots/notebook_extracted/15_expanded_46methods_test_set_eda_cell_12_img_2.png)
 *Hình 2.2: So sánh phân bổ cân bằng 1:1 Real vs Fake trong tập Test Balanced (Trích xuất từ `15_expanded_46methods_test_set_eda.ipynb`).*
 
 ---
@@ -231,13 +231,13 @@ Qua toàn bộ quá trình rà soát tại các notebook `00_comprehensive_datas
 
 Dựa trên notebook `08_data_leakage_audit_and_eda_exp02.ipynb` và `10_shared_zero_leakage_audit_and_eda_verification.ipynb`, quy trình chống rò rỉ được thực thi qua 4 tầng:
 
-![4-Tier Zero Leakage Hierarchy](./experiments/plots/notebook_extracted/08_data_leakage_audit_and_eda_exp02_cell_4_img_1.png)
+![4-Tier Zero Leakage Hierarchy](../experiments/plots/notebook_extracted/08_data_leakage_audit_and_eda_exp02_cell_4_img_1.png)
 *Hình 2.3: Hệ thống phân cấp kiểm toán rò rỉ dữ liệu 4 tầng (Trích xuất từ `08_data_leakage_audit_and_eda_exp02.ipynb`).*
 
-![MD5 Hash Collision Deduplication](./experiments/plots/notebook_extracted/08_data_leakage_audit_and_eda_exp02_cell_8_img_3.png)
+![MD5 Hash Collision Deduplication](../experiments/plots/notebook_extracted/08_data_leakage_audit_and_eda_exp02_cell_8_img_3.png)
 *Hình 2.4: Kết quả quét 127,185 mã hash MD5 tập Train và xóa sổ vĩnh viễn 4,085 ảnh trùng khớp khỏi tập Test (Trích xuất từ `08_data_leakage_audit_and_eda_exp02.ipynb`).*
 
-![Identity and Video Leakage Breakdown](./experiments/plots/notebook_extracted/08_data_leakage_audit_and_eda_exp02_cell_10_img_4.png)
+![Identity and Video Leakage Breakdown](../experiments/plots/notebook_extracted/08_data_leakage_audit_and_eda_exp02_cell_10_img_4.png)
 *Hình 2.5: Phân tích phân hoạch độc lập danh tính và video ID (Trích xuất từ `08_data_leakage_audit_and_eda_exp02.ipynb`).*
 
 ---
@@ -262,13 +262,13 @@ Dự án triển khai và đối sánh 3 kiến trúc nền tảng:
 2. **Meta DINOv3 ConvNeXt-Tiny (28.1M params):** Strong Spatial Inductive Bias ($7\times 7$ depthwise conv), bắt vết cắt ghép đường biên cục bộ (seam blending), tốc độ thực thi **153.2 FPS**.
 3. **Classification Head:** 2-Layer MLP Head (`LayerNorm -> Linear(384) -> GELU -> Linear(2)`).
 
-![Forensics Pipeline Architecture](./experiments/results/diagrams/diagram1_forensics_pipeline.png)
+![Forensics Pipeline Architecture](../experiments/results/diagrams/diagram1_forensics_pipeline.png)
 *Hình 2.6: Sơ đồ dòng dữ liệu xử lý đầu-cuối End-to-End Forensics Pipeline.*
 
-![Artifact Scale Decision](./experiments/results/diagrams/diagram2_artifact_scale_decision.png)
+![Artifact Scale Decision](../experiments/results/diagrams/diagram2_artifact_scale_decision.png)
 *Hình 2.7: Cây quyết định lựa chọn kiến trúc dựa trên quy mô dấu vết giả mạo.*
 
-![Data Regime Scaling](./experiments/results/diagrams/diagram3_data_regime_scaling.png)
+![Data Regime Scaling](../experiments/results/diagrams/diagram3_data_regime_scaling.png)
 *Hình 2.8: Quy luật mở rộng năng lực biểu diễn theo lượng dữ liệu huấn luyện (Small Data vs. Large Pretrained Data).*
 
 ---
@@ -293,7 +293,7 @@ Khi đánh giá baseline DINOv3 ViT trên tập test 44 phương pháp chuẩn, 
 | `simswap` | Face-swap | **88.89%** | 0.833 | Tráo mặt bảo toàn đặc trưng |
 | `blendface` / `lia` | Swap / Reenact | **88.89%** | 0.857 | Gradient blending liền mạch |
 
-![Weak Methods Identification](./experiments/plots/notebook_extracted/04_exp02_visual_evaluation_and_weak_analysis_cell_9_img_1.png)
+![Weak Methods Identification](../experiments/plots/notebook_extracted/04_exp02_visual_evaluation_and_weak_analysis_cell_9_img_1.png)
 *Hình 3.1: Định vị các phương pháp yếu qua đánh giá per-method ban đầu (Trích xuất từ `04_exp02_visual_evaluation_and_weak_analysis.ipynb`).*
 
 ---
@@ -327,7 +327,7 @@ Nhóm nghiên cứu triển khai bổ sung có chủ đích:
 - **Differential LR:** $\eta_{\text{backbone}} = 1.5 \times 10^{-5}, \eta_{\text{head}} = 4.0 \times 10^{-4}$ với `CosineAnnealingLR`.
 - **VRAM Optimization:** AMP `bfloat16`, Gradient Accumulation ($16 \times 4 = 64$), đỉnh VRAM chỉ $3.4$ GB trên RTX 3050 Laptop GPU.
 
-![Training Trajectory Loss and AUC](./experiments/plots/notebook_extracted/13_v5_combined_universal_vit_training_cell_10_img_1.png)
+![Training Trajectory Loss and AUC](../experiments/plots/notebook_extracted/13_v5_combined_universal_vit_training_cell_10_img_1.png)
 *Hình 4.1: Tiến trình huấn luyện: Đường cong suy giảm Loss, tăng trưởng AUC và Learning Rate scheduler (Trích xuất từ `13_v5_combined_universal_vit_training.ipynb`).*
 
 ---
@@ -344,25 +344,25 @@ Kết quả đánh giá trên tập **Test Balanced Suite (20,846 ảnh: 10,423 
 | **Meta DINOv3 ViT-Plus s1_best** (`plus_v3_s1_best.pt`)| 28.69M | **98.53%** | **99.86%** | 98.03% | **99.04%** | 98.01% | **98.53%** | 207 | **100** | 146.4 FPS (6.8 ms) |
 | **Joint Weighted Ensemble ($0.65\text{ViT} + 0.35\text{CNN}$)** | 49.72M | **99.28%** | **99.97%** | 99.09% | **99.47%** 🏆 | 99.09% | **99.28%** | 95 | **55** 🏆 | 74.9 FPS (13.4 ms) |
 
-![Side-by-Side Confusion Matrices](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_16_img_1.png)
+![Side-by-Side Confusion Matrices](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_16_img_1.png)
 *Hình 4.2: Ma trận nhầm lẫn đối sánh ViT-Plus s1_best vs ConvNeXt vs Joint Ensemble trên 20,846 ảnh Test Balanced (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Standard Tri-Curve Suite ROC PR Calibration](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_22_img_3.png)
+![Standard Tri-Curve Suite ROC PR Calibration](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_22_img_3.png)
 *Hình 4.3: Bộ 3 đường cong chuẩn mực: ROC Curve, Precision-Recall Curve và Reliability Calibration (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Category Breakdown across 5 Paradigms](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_24_img_4.png)
+![Category Breakdown across 5 Paradigms](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_24_img_4.png)
 *Hình 4.4: Hiệu năng phát hiện phân rã theo 5 Chủng loại sinh ảnh chính (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Per-Method Accuracy Horizontal Ranking Test Balanced](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_26_img_5.png)
+![Per-Method Accuracy Horizontal Ranking Test Balanced](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_26_img_5.png)
 *Hình 4.5: Xếp hạng độ chính xác ngang qua 44 phương pháp trên tập Test Balanced Suite (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Per-Method Accuracy Horizontal Ranking Test Full 50k](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_28_img_6.png)
+![Per-Method Accuracy Horizontal Ranking Test Full 50k](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_28_img_6.png)
 *Hình 4.6: Xếp hạng độ chính xác ngang qua 44 phương pháp trên tập Test Full Suite 48,064 ảnh (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Inductive Bias Scatter Correlation](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_30_img_7.png)
+![Inductive Bias Scatter Correlation](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_30_img_7.png)
 *Hình 4.7: Đồ thị tương quan phân tán giữa ViT và ConvNeXt trên 44 phương pháp (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Threshold Sensitivity Curves](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_32_img_8.png)
+![Threshold Sensitivity Curves](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_32_img_8.png)
 *Hình 4.8: Đường cong độ nhạy ngưỡng quyết định tối ưu Youden J Index ($t^*$) (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
 ---
@@ -377,34 +377,34 @@ Khảo sát đối sánh độc lập từng kiến trúc trên toàn bộ **38 
 - **Độ chính xác:** $89.5\%$ | **Mean Detection Rate:** $88.7\%$
 - Nhận diện hoàn hảo các mô hình toàn cảnh và GAN, nhưng bỏ sót các can thiệp ghép mặt cục bộ và talking-head thô sơ.
 
-![ViT Probe Per-Method](./experiments/plots/chart1_vit_probe_per_method.png)
+![ViT Probe Per-Method](../experiments/plots/chart1_vit_probe_per_method.png)
 *Hình 4.2b: Tỷ lệ phát hiện của ViT-S/16+ Pretrained (Linear Probe) trên 38 phương pháp tạo ảnh giả.*
 
 #### 2. DINOv3 ConvNeXt-Tiny Pretrained (Linear Probe)
 - **Độ chính xác:** $87.8\%$ | **Mean Detection Rate:** $84.3\%$
 - Bắt tốt Midjourney ($99.4\%$) và Styleclip ($86.3\%$) nhờ inductive bias không gian, nhưng suy giảm ở các dạng video reenactment khẩu hình.
 
-![ConvNeXt Probe Per-Method](./experiments/plots/chart2_convnext_probe_per_method.png)
+![ConvNeXt Probe Per-Method](../experiments/plots/chart2_convnext_probe_per_method.png)
 *Hình 4.2c: Tỷ lệ phát hiện của ConvNeXt Pretrained (Linear Probe) trên 38 phương pháp tạo ảnh giả.*
 
 #### 3. DINOv3 ViT-Plus Finetune A1 (`plus_v3_s1_best.pt`)
 - **Độ chính xác:** $98.5\%$ | **Mean Detection Rate:** $99.1\%$
 - Sau tinh chỉnh tập trung với Sampler A1, toàn bộ 8 phương pháp yếu đều vượt ngưỡng an toàn ($>96\%-99\%$).
 
-![ViT-Plus Finetune A1 Per-Method](./experiments/plots/chart3_vit_plus_finetune_per_method.png)
+![ViT-Plus Finetune A1 Per-Method](../experiments/plots/chart3_vit_plus_finetune_per_method.png)
 *Hình 4.2d: Tỷ lệ phát hiện vượt trội của ViT-Plus Finetune A1 sau khi khắc phục các phương pháp yếu.*
 
 #### 4. DINOv3 ConvNeXt-Tiny Finetuned (`convnext_weakfix_v3.pt`)
 - **Độ chính xác:** $99.2\%$ | **Mean Detection Rate:** $98.7\%$
 - Đạt độ ổn định đồng đều tuyệt đối trên mọi chủng loại dữ liệu, tỷ lệ báo động giả thấp nhất.
 
-![ConvNeXt Finetuned Per-Method](./experiments/plots/chart4_convnext_finetuned_per_method.png)
+![ConvNeXt Finetuned Per-Method](../experiments/plots/chart4_convnext_finetuned_per_method.png)
 *Hình 4.2e: Tỷ lệ phát hiện của ConvNeXt Finetuned trên 38 phương pháp tạo ảnh giả.*
 
 #### 5. Đồ Thị Phân Tán Đối Sánh Tổng Hợp 4 Mô Hình
 - Thể hiện sự dịch chuyển rõ rệt của cụm điểm từ dải phân tán rộng ($45\%-100\%$) ở giai đoạn Pretrained co cụm chặt chẽ về sát mốc $100\%$ sau Finetuning.
 
-![4-Model Scatter Comparison](./experiments/plots/chart5_all4_models_scatter_comparison.png)
+![4-Model Scatter Comparison](../experiments/plots/chart5_all4_models_scatter_comparison.png)
 *Hình 4.2f: Đồ thị phân tán đối sánh cả 4 mô hình trên 38 phương pháp (đường nét đứt thể hiện mean det).*
 
 ## 4.3. Đánh giá Mức độ Cải thiện trên Các Phương pháp Yếu
@@ -424,17 +424,17 @@ Khảo sát đối sánh độc lập từng kiến trúc trên toàn bộ **38 
 
 ## 4.4. Phân tích Phân bố Xác suất Dự đoán & Đồ thị Mật độ (KDE & Histogram)
 
-![Probability Density Distribution KDE & Hist](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_20_img_2.png)
+![Probability Density Distribution KDE & Hist](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_20_img_2.png)
 *Hình 4.9: Đồ thị mật độ xác suất dự đoán $P(\text{Fake})$ thể hiện sự tách bạch 2 cực rõ rệt sau Finetuning (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
 ---
 
 ## 4.5. Phân tích Lỗi Sai Điển hình & Thư viện Ảnh Giám định (Error Case Gallery)
 
-![Top 10 False Negatives Gallery](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_36_img_9.png)
+![Top 10 False Negatives Gallery](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_36_img_9.png)
 *Hình 4.10: Thư viện giám định Top 10 ca Bỏ sót Giả mạo (Fake $\rightarrow$ Real) (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
-![Top 10 False Positives Gallery](./experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_36_img_10.png)
+![Top 10 False Positives Gallery](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_36_img_10.png)
 *Hình 4.11: Thư viện giám định Top 10 ca Báo động Giả (Real $\rightarrow$ Fake) và Hard True Positives (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*
 
 ---

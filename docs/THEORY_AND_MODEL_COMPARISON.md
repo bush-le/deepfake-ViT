@@ -345,77 +345,77 @@ ViT-Plus A1           | 28.7M  | 98.47%   | 99.86%  | 97.94%    | 99.02%        
 All figures in this section originate directly from the project coursework notebook [`notebooks/coursework_deepfake.ipynb`](file:///home/bush/Desktop/deepfake-ViT/notebooks/coursework_deepfake.ipynb) and [`notebooks/data_train_test_method_analysis.ipynb`](file:///home/bush/Desktop/deepfake-ViT/notebooks/data_train_test_method_analysis.ipynb).
 
 ### Figure 1: Multi-Split Dataset Census Overview
-![Multi-Split Dataset Census](experiments/results/dataset_analysis/multi_split_census_overview.png)
+![Multi-Split Dataset Census](../experiments/results/dataset_analysis/multi_split_census_overview.png)
 * **Source Notebook:** `data_train_test_method_analysis.ipynb` (Section 1.2).
 * **Observation:** The project architecture manages 129.8k training images, 6k validation images, 20.8k balanced test images, and 48.1k full-suite test images across 51 training and 44 evaluation subsets.
 * **Interpretation:** Confirms rigorous dataset accounting and exact 1:1 balance on test evaluation splits.
 * **Limitation:** Visualizes aggregate volume and does not reflect individual image resolution differences.
 
 ### Figure 2: Generative Paradigm Proportions
-![Generative Paradigm Proportions](experiments/results/dataset_analysis/generative_paradigms_pie_distribution.png)
+![Generative Paradigm Proportions](../experiments/results/dataset_analysis/generative_paradigms_pie_distribution.png)
 * **Source Notebook:** `data_train_test_method_analysis.ipynb` (Section 2.2).
 * **Observation:** Training data consists of 23.9% Real, 23.9% Diffusion, 20.5% GANs, 19.8% Reenactment, 11.5% FaceSwap, and 0.4% Attribute Editing. Test Balanced is exactly 50.0% Real and 50.0% Fake.
 * **Interpretation:** Demonstrates balanced coverage across all 6 generative paradigms during benchmark evaluation.
 * **Limitation:** Proportions reflect dataset curation and do not represent the in-the-wild frequency of deepfake encounters.
 
 ### Figure 3: Certified 3-Tier Zero-Leakage Audit
-![Zero-Leakage Audit](experiments/results/dataset_analysis/leakage_purge_by_method.png)
+![Zero-Leakage Audit](../experiments/results/dataset_analysis/leakage_purge_by_method.png)
 * **Source Notebook:** `data_train_test_method_analysis.ipynb` (Section 5.2) & `coursework_deepfake.ipynb` (Section 1.2).
 * **Observation:** 4,085 duplicate MD5 hash collisions were detected and permanently purged from the candidate evaluation pool (including 100% of candidate frames from `CollabDiff`, `whichfaceisreal`, and `starganv2`).
 * **Interpretation:** Guarantees 0.00% data leakage between training and evaluation splits, ensuring unbiased generalization metrics.
 * **Limitation:** MD5 hash matching catches exact byte-level duplicates but does not detect severe geometric crop variations.
 
 ### Figure 4: 2D Cross-Split Method Density Heatmap
-![Cross-Split Method Heatmap](experiments/results/dataset_analysis/cross_split_method_heatmap.png)
+![Cross-Split Method Heatmap](../experiments/results/dataset_analysis/cross_split_method_heatmap.png)
 * **Source Notebook:** `data_train_test_method_analysis.ipynb` (Section 3.2).
 * **Observation:** 2D normalized distribution matrix across monitored synthesis algorithms shows uniform distribution across evaluation splits.
 * **Interpretation:** Confirms that no single generator dominates the test benchmark, preventing metric skew.
 * **Limitation:** Displays percentage density rather than absolute sample counts.
 
 ### Figure 5: Side-by-Side Dual-Model Confusion Matrices
-![Dual-Split Confusion Matrices](experiments/results/courseWorkCheck/cm_comparison_test_coursework_balanced.png)
+![Dual-Split Confusion Matrices](../experiments/results/courseWorkCheck/cm_comparison_test_coursework_balanced.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 3.3).
 * **Observation:** On Test Balanced (20,846 images), ConvNeXt-Tiny achieves 10,401 true negatives (22 FP) and 10,277 true positives (146 FN). ViT-Plus A1 achieves 10,200 true negatives (223 FP) and 10,318 true positives (105 FN). ViT-Plus A0 achieves 10,214 true negatives (209 FP) and 10,184 true positives (239 FN).
 * **Interpretation:** ConvNeXt exhibits higher specificity on authentic faces, whereas ViT-Plus A1 maximizes true positive recall on deepfake attacks.
 * **Limitation:** Evaluates hard binary predictions at decision thresholds ($t^*$) without displaying continuous prediction probability margins.
 
 ### Figure 6: Statistical Performance Triad (ROC, PR, and Reliability Calibration)
-![Statistical Performance Triad](experiments/results/courseWorkCheck/roc_pr_calibration_triad.png)
+![Statistical Performance Triad](../experiments/results/courseWorkCheck/roc_pr_calibration_triad.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 4.2).
 * **Observation:** ROC-AUC reaches **99.98% for ConvNeXt-Tiny**, **99.86% for ViT-Plus A1**, and **99.79% for ViT-Plus A0**. Average Precision on the PR curve is **99.98% for ConvNeXt** and **99.86% for ViT-Plus A1**. The Expected Calibration Error (ECE) reliability diagram closely tracks the ideal diagonal.
 * **Interpretation:** Both architectures output exceptionally well-calibrated posterior probabilities with sharp confidence separation.
 * **Limitation:** Performance on zero-leakage splits may experience domain degradation on heavily compressed social media videos.
 
 ### Figure 7: Prediction Probability Density Distributions (KDE Real vs. Fake)
-![Probability Density Distributions](experiments/results/courseWorkCheck/probability_density_distribution.png)
+![Probability Density Distributions](../experiments/results/courseWorkCheck/probability_density_distribution.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 4.1).
 * **Observation:** Kernel Density Estimation (KDE) and probability histograms show sharp bimodal separation with near-zero probability mass in the ambiguous interval $[0.3, 0.7]$ across backbones.
 * **Interpretation:** Demonstrates confident model predictions on both authentic and manipulated samples.
 * **Limitation:** Displays 1D density projections and does not expose multi-dimensional feature cluster boundaries.
 
 ### Figure 8: Category Performance Breakdown across 5 Generative Paradigms
-![Category Performance Breakdown](experiments/results/courseWorkCheck/category_performance_breakdown.png)
+![Category Performance Breakdown](../experiments/results/courseWorkCheck/category_performance_breakdown.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 4.3).
 * **Observation:** Diffusion models achieve 100.0% detection across all backbones. GANs achieve >99.4% detection. On FaceSwap and Neural Reenactment, ConvNeXt-Tiny achieves 97.67% and 99.25%, while ViT-Plus A1 achieves 97.80% and 98.83%.
 * **Interpretation:** Demonstrates complementary strengths of global attention versus local convolutions across different generative mechanics.
 * **Limitation:** Method counts vary across categories depending on available zero-leakage test datasets.
 
 ### Figure 9: 44-Method Complete Horizontal Accuracy Ranking
-![44-Method Complete Accuracy Ranking](experiments/results/courseWorkCheck/per_method_accuracy_horizontal_ranking.png)
+![44-Method Complete Accuracy Ranking](../experiments/results/courseWorkCheck/per_method_accuracy_horizontal_ranking.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 4.4).
 * **Observation:** All 44 evaluated manipulation algorithms and real face domains exceed the $\ge 95.0\%$ rubric target on Test Balanced across all three models.
 * **Interpretation:** Proves high cross-method robustness across diverse generative pipelines.
 * **Limitation:** Performance rankings reflect specific held-out test splits and may shift on newer generator architectures.
 
 ### Figure 10: Inductive Bias Cross-Model Scatter Correlation
-![Inductive Bias Scatter Correlation](experiments/results/courseWorkCheck/vit_vs_convnext_scatter_correlation.png)
+![Inductive Bias Scatter Correlation](../experiments/results/courseWorkCheck/vit_vs_convnext_scatter_correlation.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 4.5).
 * **Observation:** Per-method accuracy of ViT-Plus against ConvNeXt-Tiny shows strong consistency around the parity line ($y = x$). Points above the diagonal represent ViT advantages on dynamic multi-point reenactment, while points below represent ConvNeXt advantages on local boundary seams.
 * **Interpretation:** Confirms orthogonal feature representations between self-attention and sliding convolutions.
 * **Limitation:** Scatter correlation represents aggregate method-level metrics and does not show sample-level image divergence.
 
 ### Figure 11: Decision Threshold Sensitivity & Youden's J Optimization
-![Decision Threshold Sensitivity](experiments/results/courseWorkCheck/threshold_sensitivity_curves.png)
+![Decision Threshold Sensitivity](../experiments/results/courseWorkCheck/threshold_sensitivity_curves.png)
 * **Source Notebook:** `coursework_deepfake.ipynb` (Section 5.1).
 * **Observation:** Sweeping decision threshold $\tau \in [0.0, 1.0]$ reveals optimal Youden's J statistics at $t^* = 0.083$ for ConvNeXt-Tiny, $t^* = 0.552$ for ViT-Plus A0, and $t^* = 0.540$ for ViT-Plus A1.
 * **Interpretation:** Proves high robustness against threshold perturbation, confirming broad operating stability across $\tau \in [0.20, 0.80]$.

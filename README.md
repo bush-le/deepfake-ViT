@@ -4,11 +4,23 @@ Academic Coursework & Research Project: Detecting facial deepfakes using Vision 
 
 ---
 
+## 📚 Documentation & Research Reports (`docs/`)
+
+All human-readable technical documentation, academic research reports, and theoretical guides are organized in the [`docs/`](docs/) directory:
+- [**`docs/DEEPFAKE_FORENSICS_REPORT.md`**](docs/DEEPFAKE_FORENSICS_REPORT.md): 🔬 Master Forensic & Experimental Research Report (207k Census, 16 EDA techniques, 4-Model Per-Method Benchmarks).
+- [**`docs/THEORY_AND_MODEL_COMPARISON.md`**](docs/THEORY_AND_MODEL_COMPARISON.md): 📐 Theoretical Foundations & ViT vs. CNN Inductive Bias Analysis.
+- [**`docs/MODELS.md`**](docs/MODELS.md): 🧠 Model Architecture Specifications, Checkpoints & Parameter Counts.
+- [**`docs/RUNPOD.md`**](docs/RUNPOD.md): 🚀 GPU Infrastructure & Cloud Training Execution Guide.
+- [**`docs/DESCRIPTION_NOTES.md`**](docs/DESCRIPTION_NOTES.md): 📝 High-Level Project & Dataset Synthesis Notes.
+
+---
+
 ## 📁 Repository Directory Structure
 
 ```
 deepfake-ViT/
 ├── .venv/              # Virtual environment (Python ≥ 3.10, standardized on 3.11/3.14)
+├── docs/               # Human-readable documentation, reports, and theoretical guides
 ├── agents/             # Agent AI knowledge base (architecture, rules, phases, progress, experiments)
 ├── configs/            # Experiment configuration files (YAML)
 ├── data/

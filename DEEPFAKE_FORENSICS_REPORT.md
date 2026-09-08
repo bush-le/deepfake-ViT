@@ -367,6 +367,46 @@ Kết quả đánh giá trên tập **Test Balanced Suite (20,846 ảnh: 10,423 
 
 ---
 
+
+
+### 4.2.1. Phân Tích Chuyên Sâu 4 Mô Hình trên 38 Phương Pháp Tạo Ảnh Giả (5 Biểu Đồ Độc Lập)
+
+Khảo sát đối sánh độc lập từng kiến trúc trên toàn bộ **38 phương pháp Deepfake** (300 ảnh/method):
+
+#### 1. DINOv3 ViT-S/16+ Pretrained (Linear Probe)
+- **Độ chính xác:** $89.5\%$ | **Mean Detection Rate:** $88.7\%$
+- Nhận diện hoàn hảo các mô hình toàn cảnh và GAN, nhưng bỏ sót các can thiệp ghép mặt cục bộ và talking-head thô sơ.
+
+![ViT Probe Per-Method](./experiments/plots/chart1_vit_probe_per_method.png)
+*Hình 4.2b: Tỷ lệ phát hiện của ViT-S/16+ Pretrained (Linear Probe) trên 38 phương pháp tạo ảnh giả.*
+
+#### 2. DINOv3 ConvNeXt-Tiny Pretrained (Linear Probe)
+- **Độ chính xác:** $87.8\%$ | **Mean Detection Rate:** $84.3\%$
+- Bắt tốt Midjourney ($99.4\%$) và Styleclip ($86.3\%$) nhờ inductive bias không gian, nhưng suy giảm ở các dạng video reenactment khẩu hình.
+
+![ConvNeXt Probe Per-Method](./experiments/plots/chart2_convnext_probe_per_method.png)
+*Hình 4.2c: Tỷ lệ phát hiện của ConvNeXt Pretrained (Linear Probe) trên 38 phương pháp tạo ảnh giả.*
+
+#### 3. DINOv3 ViT-Plus Finetune A1 (`plus_v3_s1_best.pt`)
+- **Độ chính xác:** $98.5\%$ | **Mean Detection Rate:** $99.1\%$
+- Sau tinh chỉnh tập trung với Sampler A1, toàn bộ 8 phương pháp yếu đều vượt ngưỡng an toàn ($>96\%-99\%$).
+
+![ViT-Plus Finetune A1 Per-Method](./experiments/plots/chart3_vit_plus_finetune_per_method.png)
+*Hình 4.2d: Tỷ lệ phát hiện vượt trội của ViT-Plus Finetune A1 sau khi khắc phục các phương pháp yếu.*
+
+#### 4. DINOv3 ConvNeXt-Tiny Finetuned (`convnext_weakfix_v3.pt`)
+- **Độ chính xác:** $99.2\%$ | **Mean Detection Rate:** $98.7\%$
+- Đạt độ ổn định đồng đều tuyệt đối trên mọi chủng loại dữ liệu, tỷ lệ báo động giả thấp nhất.
+
+![ConvNeXt Finetuned Per-Method](./experiments/plots/chart4_convnext_finetuned_per_method.png)
+*Hình 4.2e: Tỷ lệ phát hiện của ConvNeXt Finetuned trên 38 phương pháp tạo ảnh giả.*
+
+#### 5. Đồ Thị Phân Tán Đối Sánh Tổng Hợp 4 Mô Hình
+- Thể hiện sự dịch chuyển rõ rệt của cụm điểm từ dải phân tán rộng ($45\%-100\%$) ở giai đoạn Pretrained co cụm chặt chẽ về sát mốc $100\%$ sau Finetuning.
+
+![4-Model Scatter Comparison](./experiments/plots/chart5_all4_models_scatter_comparison.png)
+*Hình 4.2f: Đồ thị phân tán đối sánh cả 4 mô hình trên 38 phương pháp (đường nét đứt thể hiện mean det).*
+
 ## 4.3. Đánh giá Mức độ Cải thiện trên Các Phương pháp Yếu
 
 | Phương pháp Giả mạo | Độ chính xác Trước Finetune | Độ chính xác Sau Finetune (ViT-Plus s1_best / Ensemble) | Mức Tăng trưởng (\Delta) | Trạng thái Khắc phục |

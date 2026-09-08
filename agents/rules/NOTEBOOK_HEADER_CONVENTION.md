@@ -1,91 +1,57 @@
-# NOTEBOOK_HEADER_CONVENTION.md
-Rules for the first cell of every notebook. Condensed from
-notebook_header_guide.md — see that file for the full worked example.
-Cross-reference link requirements come from
-[MD_CONVENTION.md](MD_CONVENTION.md#mandatory-cross-reference-links).
+# NOTEBOOK_HEADER_CONVENTION.md — Standardized Notebook Headers
 
-Every notebook's first cell = a single markdown cell with 4 sections, in order:
+- **Motivation/Background**: Jupyter notebooks frequently lack context, obscuring where their inputs come from, what scripts they depend on, or which experiment they analyze.
+- **Purpose**: Define the mandatory first-cell markdown header for all interactive notebooks.
+- **Overview Pipeline**: Validated during pre-commit reviews and codebase audits.
+- **Detailed Plan**: §1 Standard First-Cell Template; §2 Mandatory References Block; §3 Prohibited Notebook Behaviors.
+- **References**: `agents/rules/MD_CONVENTION.md`, `agents/rules/LOGGING_CHECKPOINT_RULES.md`.
+- **Created**: 2026-07-25T00:00:00+07:00
+- **Last Updated**: 2026-09-06T20:55:00+07:00
 
-## 1. Title (H1)
-`# <Scope> <N>: <Short Description>`
+---
 
-| Scope prefix | Use for |
-|---|---|
-| `Practice N:` | Standalone practice/learning notebooks |
-| `Phase N:` | Foundational / diagnostic experiments |
-| `Experiment N:` | Single-variable-change experiments |
-| `Appendix N:` | Supplementary / follow-up analysis |
+## Table of Contents
 
-## 2. Subtitle + Purpose (H2 + short paragraph)
-One-line H2 subtitle + 1–2 sentences on what the notebook does and why.
+- [1. Standard First-Cell Template](#1-standard-first-cell-template)
+- [2. Mandatory References Block](#2-mandatory-references-block)
+- [3. Prohibited Notebook Behaviors](#3-prohibited-notebook-behaviors)
 
-For single-variable experiments, use this structured form instead:
+---
+
+## 1. Standard First-Cell Template
+
+The very first cell of every Jupyter notebook in `notebooks/` MUST be a Markdown cell with the following structure:
+
+```markdown
+# <Notebook Title>
+### <Subtitle / Context>
+
+- **Created**: YYYY-MM-DDTHH:MM:SS±HH:MM
+- **Last Updated**: YYYY-MM-DDTHH:MM:SS±HH:MM
+- **Author**: <Author / Team>
+- **Objective**: 1–2 sentences explaining what this notebook explores or validates.
+
+---
+
+## References & Consumed Artifacts
+
+- **Source Code**: [`src/...`](../src/...)
+- **Checkpoints**: [`experiments/runs/...`](../experiments/runs/...)
+- **Configuration**: [`configs/...`](../configs/...)
+- **Governing Rule**: [`agents/rules/LOGGING_CHECKPOINT_RULES.md`](../agents/rules/LOGGING_CHECKPOINT_RULES.md)
 ```
-## Rationale
-<why this experiment>
 
-**Single variable changed**: <the one thing>
-**Held constant**: <everything else — training config, loss, data pipeline, etc.>
-```
+---
 
-## 3. Roadmap Table
-Exactly these 4 columns, one row per notebook step:
-```
-| Step | Description | What it does | Import path |
-```
-- **Step**: sequential number
-- **Description**: short action phrase
-- **What it does**: 5–15 words
-- **Import path**: `src/...` module or `—` if none
-- Table must end with `---` immediately after
+## 2. Mandatory References Block
 
-## 4. References (mandatory)
-A `## References` block with **working cross-reference links** to everything the
-notebook consumes or documents. Links are relative to the notebook's own
-location (`notebooks/`), so from a notebook the paths start with `../`:
+- Every notebook must explicitly list and link all upstream Python modules from `src/` that it imports.
+- Every notebook analyzing trained models must link the exact checkpoint or results file under `experiments/`.
+- All links must use working relative paths.
 
-| Reference | Example Link Format (from `notebooks/`) |
-|---|---|
-| Rules | `[LOGGING_CHECKPOINT_RULES.md](LOGGING_CHECKPOINT_RULES.md)` |
-| Training / experiment scripts | `` |
-| Artifact locations | `experiments/runs/`, `experiments/results/` |
-| Related notebooks / docs | phase docs, experiment reports |
+---
 
-Each entry is a relative markdown link written from the notebook's location,
-e.g. ```` —
-never bare paths. See [MD_CONVENTION.md](MD_CONVENTION.md#mandatory-cross-reference-links).
+## 3. Prohibited Notebook Behaviors
 
-## Hard rule
-This entire header is ONE markdown cell — the first cell in the notebook.
-Section headings in the notebook body come after this block, not inside it.
-
-## Output persistence & cell independence (hard rules)
-
-### 1. Persist every output to its designated folder
-Notebooks are **analysis-only**: they load artifacts produced by scripts and
-never re-create run state. Any data a notebook itself produces must be written
-to its designated folder — never left only in-memory or inside cell outputs:
-
-| Output | Designated folder | Who writes it |
-|---|---|---|
-| Checkpoints, per-epoch history, config, logs, TensorBoard | `experiments/runs/<ts>_<run>/` | **the training script** (notebook only reads) |
-| Consolidated metrics / results (e.g. eval JSON, NPZ features) | `experiments/results/<experiment>/` | scripts; notebooks may write *analysis* outputs (e.g. eval JSON) into `experiments/results/` |
-| Plots / figures | `experiments/plots/` | notebook / plot scripts |
-
-Use `PROJECT_ROOT`-relative `Path` objects and explicit `write_text` /
-`torch.save` / `SummaryWriter` calls so results survive kernel restarts and
-are reusable by later cells, other notebooks, and scripts. Training history,
-checkpoints, and logs are **never re-saved from a notebook**.
-
-### 2. Each cell must be runnable independently
-Structure the notebook so any specific cell can be executed on its own, without
-requiring all preceding cells — especially resource- or time-intensive ones:
-- **Never contain a training loop.** Notebooks only load persisted artifacts
-  (checkpoints, saved metrics) produced by scripts — see
-  [LOGGING_CHECKPOINT_RULES.md](LOGGING_CHECKPOINT_RULES.md#1-script-only-runs--automatic-persistence).
-- Recompute cheap prerequisites inline (data loaders, model builders, device),
-  OR load persisted artifacts instead of depending on an earlier cell having run.
-- Cells should be idempotent and safe to re-run in isolation once their cheap
-  prerequisites are satisfied.
-- If an artifact is missing, print the exact script command that produces it
-  instead of silently training.
+1. **NO TRAINING IN NOTEBOOKS:** Training loops (`for epoch in range(epochs):`) are strictly prohibited in notebooks. All training must be executed from scripts.
+2. **NO UNTRACKED OUTPUTS:** Derived figures or tables intended for reports must be exported by scripts into `experiments/results/`.

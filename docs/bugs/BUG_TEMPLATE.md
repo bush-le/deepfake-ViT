@@ -1,5 +1,15 @@
 # <TITLE> — Template (agents/bugs)
 
+- **Motivation/Background**: Document bug diagnosis, root cause analysis, and regression prevention for BUG_TEMPLATE.
+- **Purpose**: Track lifecycle and remediation evidence for issue BUG_TEMPLATE.
+- **Overview Pipeline**: Bug discovery -> root cause analysis -> patch verification -> regression testing.
+- **Detailed Plan**: §1 Bug Description & Symptoms; §2 Root Cause Diagnosis; §3 Remediation & Code Changes; §4 Verification & Prevention.
+- **References**: `src/`, `tests/`, `agents/rules/CODEBASE_AUDIT.md`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 Copy this file into `agents/bugs/` as `BUG_<NN>_<SHORT_SNAKE_NAME>.md` for each
 new bug. Register it in `agents/bugs/README.md`.
 

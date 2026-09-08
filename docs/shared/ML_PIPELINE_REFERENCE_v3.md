@@ -1,5 +1,15 @@
 # ML Pipeline Reference
 
+- **Motivation/Background**: Document universal operational standards, agent setups, or pipeline references shared across all research tracks.
+- **Purpose**: Provide canonical reference standard for ML_PIPELINE_REFERENCE_v3.
+- **Overview Pipeline**: Standard operating procedure codification -> universal guideline distribution.
+- **Detailed Plan**: §1 Core Objectives; §2 Operational Guidelines; §3 Execution Protocol; §4 Quality Standards.
+- **References**: `agents/rules/AGENT_AI.md`, `docs/README.md`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 **Version:** 2.0
 **Scope:** Steps 1–18 (Problem Framing → Experimental Methodology), plus introductory coverage of Error Analysis and Interpretability. See coverage table below for what remains thin.
 **Audience:** Human practitioners and AI coding agents.

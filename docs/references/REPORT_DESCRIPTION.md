@@ -1,5 +1,15 @@
 # TASK: Phân tích lý thuyết và so sánh mô hình trong project
 
+- **Motivation/Background**: Provide operational guidelines, command references, and reusable technical workflows for REPORT_DESCRIPTION.
+- **Purpose**: Standardize engineering practices and technical procedures for REPORT_DESCRIPTION.
+- **Overview Pipeline**: Operational procedure formulation -> best practices curation -> reference guide compilation.
+- **Detailed Plan**: §1 Overview & Prerequisites; §2 Procedural Guide; §3 Common Commands & Examples; §4 Troubleshooting & FAQs.
+- **References**: `docs/shared/`, `agents/rules/`.
+- **Created**: 2026-09-02T12:43:23+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 Hãy **scan toàn bộ project hiện tại** (source code, config, README, training scripts, dataset preparation, experiment logs, model definitions và các file liên quan) để hiểu chính xác project đang sử dụng mô hình, dữ liệu, pipeline và các thí nghiệm nào.
 
 Sau đó tạo một file Markdown hoàn chỉnh:

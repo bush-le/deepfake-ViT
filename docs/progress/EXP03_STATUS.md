@@ -1,8 +1,15 @@
 # EXP-03 / EXP-04 Status & Benchmark Progress Tracker
 
-- **Experiment Name:** EXP-03 / EXP-04 Zero-Leakage 44-Methods Benchmarking
-- **Status:** **COMPLETED & VERIFIED ON DISK**
-- **Target Notebooks:**
+- **Motivation/Background**: Provide real-time progress tracking, checklist status, and milestone completion for EXP03_STATUS.
+- **Purpose**: Maintain an accurate audit trail of completed tasks and active blockers for EXP03_STATUS.
+- **Overview Pipeline**: Milestone tracking -> task checklist review -> verification status update.
+- **Detailed Plan**: §1 Current Milestone Status; §2 Completed Deliverables; §3 Active Blockers; §4 Next Priorities.
+- **References**: `docs/OVERVIEW.md`, `docs/phases/`.
+- **Created**: 2026-08-23T01:34:32+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   - [`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb) (Master EDA, 46 cells (20 sections))
   - [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb) (Master Evaluation, 35 cells)
   - [`notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb) (Single Image Predictor, 9 cells)

@@ -1,8 +1,15 @@
 # 📊 EDA — Comprehensive Data Inventory, 44 Deepfake Methods & Split Accounting
 
-- **Project:** `deepfake-ViT` (Anti-Deepfake Face Detection via Meta DINOv3 ViT & ConvNeXt)
-- **Scope:** Complete data inventory across **44 Fake Methods** and **7 Real Sources**.
-- **Official Splits:**
+- **Motivation/Background**: Establish technical specification, requirements, and deliverables for pipeline phase EDA_DATA_INVENTORY.
+- **Purpose**: Guide the execution and quality gates of phase EDA_DATA_INVENTORY.
+- **Overview Pipeline**: Phase scope definition -> implementation guidelines -> verification gates -> status sign-off.
+- **Detailed Plan**: §1 Phase Overview & Scope; §2 Technical Specification; §3 Deliverables & Artifacts; §4 Verification Protocol.
+- **References**: `docs/OVERVIEW.md`, `docs/PURPOSE.md`, `agents/rules/`.
+- **Created**: 2026-08-24T11:24:47+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   - [`data/splits/train_v5_weakfix_v3.csv`](../data/splits/train_v5_weakfix_v3.csv) (**129,884 samples**)
   - [`data/splits/val_v5_combined_universal_kaggle_boost.csv`](../data/splits/val_v5_combined_universal_kaggle_boost.csv) (**6,000 samples**)
   - [`test_coursework_44methods_balanced_zero_leakage.csv`](../data/splits/test_coursework_44methods_balanced_zero_leakage.csv) (**21,446 samples**)

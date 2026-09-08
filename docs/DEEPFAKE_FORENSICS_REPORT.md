@@ -1,4 +1,15 @@
-# 🔬 BÁO CÁO NGHIÊN CỨU & THỰC NGHIỆM TOÀN DIỆN
+# DEEPFAKE FORENSICS REPORT — Comprehensive 44-Method Benchmark
+
+- **Motivation/Background**: Provide full forensic evaluation writeup across 44 manipulation methods and 5 domain categories.
+- **Purpose**: Deliver the comprehensive coursework report covering experimental setup, performance tables, error analysis, and conclusions.
+- **Overview Pipeline**: Multi-model evaluation on 50k full and 21.4k balanced test suites -> statistical aggregation -> report generation.
+- **Detailed Plan**: §1 Executive Summary; §2 Methodology & Benchmark Design; §3 Performance Results Across 44 Methods; §4 Category Breakdown; §5 Error Analysis; §6 Forensic Recommendations.
+- **References**: `experiments/results/courseWorkCheck/`, `notebooks/coursework_deepfake.ipynb`.
+- **Created**: 2026-09-06T17:50:10+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 # HỆ THỐNG PHÁT HIỆN DEEPFAKE KHUÔN MẶT BẰNG VISION TRANSFORMER (META DINOv3 ViT) VÀ MODERN CNN (CONVNEXT)
 
 ---

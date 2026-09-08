@@ -1,4 +1,14 @@
-# 📚 Project Documentation Portal (`docs/`)
+# Documentation Index & Architectural Navigation Guide
+
+- **Motivation/Background**: Centralized documentation index cataloging all living roadmaps, research notes, phase specifications, experiment tracking, and bug diagnoses under Archetype A.
+- **Purpose**: Provide seamless navigation across all project documentation directories in deepfake-ViT.
+- **Overview Pipeline**: Comprehensive documentation tree mapping the 6-stage deep learning development lifecycle.
+- **Detailed Plan**: §1 Executive Overview; §2 Core Documents; §3 Pipeline Phases; §4 Experiments & Benchmarks; §5 Bug Reports; §6 Progress Tracking; §7 References & SOPs.
+- **References**: `docs/PURPOSE.md`, `docs/OVERVIEW.md`, `agents/rules/FOLDER_STRUCTURE.md`.
+- **Created**: 2026-09-08T08:44:12+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
 
 Welcome to the human-readable documentation portal for the **High-Generalization Facial Deepfake Forensics & Detection** project (`deepfake-ViT`).
 

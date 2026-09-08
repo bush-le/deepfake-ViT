@@ -1,12 +1,15 @@
 # EXP-03: Zero-Leakage Dataset Restructuring & Advanced Training Plan
 
-- **Experiment ID:** EXP-03
-- **Title:** Zero-Leakage Data Restructuring & Comprehensive DINOv3 ViT Training
-- **Date Created:** 2026-08-22
-- **Last Updated:** 2026-08-22
-- **Status:** Completed & Integrated
-- **Author:** Deepfake ViT Research Team
-- **Predecessors:** 
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for EXP_03_ZERO_LEAKAGE_AND_BALANCED_TRAINING_PLAN.
+- **Purpose**: Provide rigorous experimental documentation and tracking for EXP_03_ZERO_LEAKAGE_AND_BALANCED_TRAINING_PLAN.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-23T01:34:32+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   - [EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](EXP_01_ACCURACY_OPTIMIZATION_PLAN.md)
   - [EXP_02_ACCURACY_IMPROVEMENT_PLAN.md](EXP_02_ACCURACY_IMPROVEMENT_PLAN.md)
 

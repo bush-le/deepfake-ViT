@@ -1,10 +1,12 @@
 # EVAL.md — Evaluation & Comparative Benchmarking Specifications
 
-- **Title:** Model Evaluation, 44-Methods Zero-Leakage Benchmark & Post-Training Diagnostics
-- **Date Created:** 2026-08-18
-- **Last Updated:** 2026-08-28
-- **Description:** Rigorous multi-metric evaluation protocol on the CourseWork 44-Methods Zero-Leakage Test Suites (21.4k balanced & 50.0k full), confusion matrices, post-training visualizations, and side-by-side DINOv3 ViT vs. ConvNeXt comparisons.
-- **Status:** **Completed & Verified**
+- **Motivation/Background**: Establish technical specification, requirements, and deliverables for pipeline phase EVAL.
+- **Purpose**: Guide the execution and quality gates of phase EVAL.
+- **Overview Pipeline**: Phase scope definition -> implementation guidelines -> verification gates -> status sign-off.
+- **Detailed Plan**: §1 Phase Overview & Scope; §2 Technical Specification; §3 Deliverables & Artifacts; §4 Verification Protocol.
+- **References**: `docs/OVERVIEW.md`, `docs/PURPOSE.md`, `agents/rules/`.
+- **Created**: 2026-08-18T11:19:39+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

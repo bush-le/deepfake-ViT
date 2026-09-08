@@ -1,6 +1,15 @@
-# MODELS.md — Download & Test the Published Models
+# MODELS.md — Model Weights & Architecture Catalog
 
-- **Motivation/Background**: The teammate's weights are not in the git repo
+- **Motivation/Background**: Document exact parameter counts, architectural specifications, tensor naming formats, and checkpoint locations for DINOv3 ViT and ConvNeXt.
+- **Purpose**: Provide an authoritative reference for model reconstruction and weight verification.
+- **Overview Pipeline**: Safetensors extraction -> backbone parameter inspection -> classification head attachment.
+- **Detailed Plan**: §1 Backbone Architectures; §2 Model Weight Files; §3 Linear Probe vs Finetuning Heads; §4 Parameter Counts & Inference Throughput.
+- **References**: `src/models/dinov3_vit.py`, `src/models/dinov3_convnext.py`, `experiments/checkpoints/`.
+- **Created**: 2026-08-18T11:44:53+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   (they are gitignored); they are published on Hugging Face Hub. This guide
   covers downloading the published models + test data and testing them locally.
 - **Purpose**: One self-contained runbook to reproduce model evaluation on any

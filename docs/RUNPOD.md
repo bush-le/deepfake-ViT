@@ -1,4 +1,14 @@
-# Running Anti-Deepfake Project on RunPod (Ubuntu + GPU Cloud)
+# RUNPOD.md — RunPod Cloud GPU Execution Guide
+
+- **Motivation/Background**: Training and evaluating 129k+ image splits with DINOv3 ViT requires GPU acceleration on RunPod cloud instances.
+- **Purpose**: Provide step-by-step setup, dependency installation, dataset mounting, and training commands for RunPod environments.
+- **Overview Pipeline**: Cloud container setup -> PyTorch CUDA 12.4 installation -> repo clone -> model evaluation.
+- **Detailed Plan**: §1 Environment Overview; §2 Installation & Setup; §3 Dataset & Storage Configuration; §4 Execution & Evaluation Commands.
+- **References**: `requirements.txt`, `src/training/`, `scripts/`.
+- **Created**: 2026-08-18T07:59:58+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
 
 **Objective**: Execute comprehensive GPU evaluation and fine-tuning of Meta DINOv3 on high-performance cloud GPUs.
 **Standard Pipeline**: **Local Push to Hugging Face Hub → RunPod Pull → Setup Environment → Execute Benchmarks / Training**.

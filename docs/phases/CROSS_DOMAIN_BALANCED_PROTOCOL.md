@@ -1,5 +1,15 @@
 # Cross-Domain Balanced Dataset Protocol
 
+- **Motivation/Background**: Establish technical specification, requirements, and deliverables for pipeline phase CROSS_DOMAIN_BALANCED_PROTOCOL.
+- **Purpose**: Guide the execution and quality gates of phase CROSS_DOMAIN_BALANCED_PROTOCOL.
+- **Overview Pipeline**: Phase scope definition -> implementation guidelines -> verification gates -> status sign-off.
+- **Detailed Plan**: §1 Phase Overview & Scope; §2 Technical Specification; §3 Deliverables & Artifacts; §4 Verification Protocol.
+- **References**: `docs/OVERVIEW.md`, `docs/PURPOSE.md`, `agents/rules/`.
+- **Created**: 2026-08-22T21:44:36+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 This document defines the standard protocol for cross-domain balanced dataset construction and evaluation in `deepfake-ViT`.
 
 ---

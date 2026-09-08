@@ -1,8 +1,15 @@
 # TECHNICAL_GUIDE.md — Current State, Model Architectures, Workflows & Benchmarking
 
-- **Motivation/Background**: This technical guide provides an authoritative reference for engineers and AI agents on model loading, dataset split schemas, execution workflows, training procedures, and benchmark evaluation protocols for `deepfake-ViT`.
-- **Target Audience**: AI Agents, Researchers, Code Reviewers, and Graders.
-- **Key Checkpoints**:
+- **Motivation/Background**: Provide operational guidelines, command references, and reusable technical workflows for TECHNICAL_GUIDE.
+- **Purpose**: Standardize engineering practices and technical procedures for TECHNICAL_GUIDE.
+- **Overview Pipeline**: Operational procedure formulation -> best practices curation -> reference guide compilation.
+- **Detailed Plan**: §1 Overview & Prerequisites; §2 Procedural Guide; §3 Common Commands & Examples; §4 Troubleshooting & FAQs.
+- **References**: `docs/shared/`, `agents/rules/`.
+- **Created**: 2026-08-22T21:44:36+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   - [`experiments/checkpoints/best_model_v3.pt`](../experiments/checkpoints/best_model_v3.pt) (DINOv3 ViT-Small/16, 21.60M params)
   - [`experiments/checkpoints/convnext_weakfix_v3.pt`](../experiments/checkpoints/convnext_weakfix_v3.pt) (DINOv3 ConvNeXt-Tiny, 28.12M params)
 

@@ -1,10 +1,12 @@
 # OVERVIEW.md — Project Overview & Strategic Roadmap
 
-- **Project:** `deepfake-ViT` (Universal Deepfake Detection via Meta DINOv3 ViT & ConvNeXt)
-- **Problem Statement:** Binary classification of human face images (**Real: 0** vs. **Fake: 1**) across 44 modern Deepfake Generation & Manipulation Methods (Diffusion Models, Generative Adversarial Networks, Face Swapping, Facial Reenactment, Audio-Driven Animation, and Commercial APIs).
-- **Core Models:** Meta DINOv3 ViT-Small/16 (Transformer) and Meta DINOv3 ConvNeXt-Tiny (CNN Baseline).
-- **Key Artifacts:** Checkpoints [`best_model_v3.pt`](../experiments/checkpoints/best_model_v3.pt) (ViT) & [`convnext_weakfix_v3.pt`](../experiments/checkpoints/convnext_weakfix_v3.pt) (ConvNeXt).
-- **Interactive Checkpoint Evaluator:** [`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb).
+- **Motivation/Background**: Deepfake generation has evolved from traditional face-swapping to high-fidelity diffusion and GAN synthesis, requiring robust cross-generator evaluation across 44 methods.
+- **Purpose**: Serve as the living master roadmap, architecture guide, and checkpoint index for the deepfake-ViT project.
+- **Overview Pipeline**: Multi-generator benchmarking pipeline comparing DINOv3 ViT-S/16 against ConvNeXt-Tiny under strict zero-leakage constraints.
+- **Detailed Plan**: §1 Project Motivation & Scope; §2 Dataset Architecture & Zero-Leakage Protocol; §3 Model Architectures & Checkpoints; §4 Interactive Notebooks & Utilities; §5 Pipeline Phases & Roadmap; §6 Hardware & Execution Constraints; §7 Progress Pointers.
+- **References**: `docs/PURPOSE.md`, `docs/phases/DATA_PREP.md`, `docs/phases/MODEL.md`, `docs/phases/EVAL.md`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

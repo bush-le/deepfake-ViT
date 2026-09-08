@@ -1,6 +1,15 @@
 # GIT_AND_RELEASE_BEST_PRACTICES.md — Git, CI, and Release Best Practices
 
-- **Motivation/Background**: AI agents can trivially `git commit`, `git push`,
+- **Motivation/Background**: Provide operational guidelines, command references, and reusable technical workflows for GIT_AND_RELEASE_BEST_PRACTICES.
+- **Purpose**: Standardize engineering practices and technical procedures for GIT_AND_RELEASE_BEST_PRACTICES.
+- **Overview Pipeline**: Operational procedure formulation -> best practices curation -> reference guide compilation.
+- **Detailed Plan**: §1 Overview & Prerequisites; §2 Procedural Guide; §3 Common Commands & Examples; §4 Troubleshooting & FAQs.
+- **References**: `docs/shared/`, `agents/rules/`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   and publish releases, but an unapproved push can overwrite teammate work,
   leak secrets, or publish unfinished code. This guide codifies safe, reviewable
   git, CI, and release workflows.

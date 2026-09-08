@@ -1,5 +1,13 @@
 # 🐛 TECHNICAL INCIDENT REPORT: CELEB-DF TEST LABELING BUG & BENCHMARK SYNCHRONIZATION (BUG-01)
 
+- **Motivation/Background**: Document bug diagnosis, root cause analysis, and regression prevention for BUG_01_CELEBDF_TEST_LABEL_FIX.
+- **Purpose**: Track lifecycle and remediation evidence for issue BUG_01_CELEBDF_TEST_LABEL_FIX.
+- **Overview Pipeline**: Bug discovery -> root cause analysis -> patch verification -> regression testing.
+- **Detailed Plan**: §1 Bug Description & Symptoms; §2 Root Cause Diagnosis; §3 Remediation & Code Changes; §4 Verification & Prevention.
+- **References**: `src/`, `tests/`, `agents/rules/CODEBASE_AUDIT.md`.
+- **Created**: 2026-08-22T21:44:36+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
 ---
 
 ## 1. Executive Summary

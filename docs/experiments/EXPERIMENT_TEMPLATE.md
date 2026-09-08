@@ -1,5 +1,15 @@
 # <TITLE> — Template (agents/experiments)
 
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for EXPERIMENT_TEMPLATE.
+- **Purpose**: Provide rigorous experimental documentation and tracking for EXPERIMENT_TEMPLATE.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 Copy this file into `agents/experiments/` as `<EXP_OR_NAME>.md` for each
 experiment. Register it in `agents/experiments/README.md`.
 

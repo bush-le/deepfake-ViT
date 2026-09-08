@@ -1,5 +1,15 @@
 # [Reference Title] — Reference Guide Template
 
+- **Motivation/Background**: Document project requirements, guidelines, and specifications for REFERENCE_TEMPLATE.
+- **Purpose**: Provide clear architectural and operational context for REFERENCE_TEMPLATE.
+- **Overview Pipeline**: Documentation codification -> verification -> publication.
+- **Detailed Plan**: §1 Context & Motivation; §2 Core Content; §3 Verification & References.
+- **References**: `docs/README.md`, `agents/rules/`.
+- **Created**: 2026-09-08T10:15:07+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 | Field | Value |
 | :--- | :--- |
 | **Document Type** | Reference Guide Template |

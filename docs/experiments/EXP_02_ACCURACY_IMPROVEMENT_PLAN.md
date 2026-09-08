@@ -1,12 +1,12 @@
 # EXP-02: Accuracy Enhancement & Weak Method Remediation Plan
 
-- **Title:** Comprehensive Accuracy Enhancement Plan for Multi-Domain Deepfake Detection
-- **Date Created:** 2026-08-22
-- **Last Updated:** 2026-08-22
-- **Description:** Comprehensive bottleneck analysis of baseline balanced dataset training, root cause identification of weak detection on specific generators, and prioritized roadmap to achieve >97% benchmark accuracy.
-- **Status:** Completed & Superseded by EXP-03 / EXP-04
-- **Experiment ID:** EXP-02
-- **Predecessor:** [EXP_01_ACCURACY_OPTIMIZATION_PLAN.md](EXP_01_ACCURACY_OPTIMIZATION_PLAN.md)
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for EXP_02_ACCURACY_IMPROVEMENT_PLAN.
+- **Purpose**: Provide rigorous experimental documentation and tracking for EXP_02_ACCURACY_IMPROVEMENT_PLAN.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-22T21:44:36+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

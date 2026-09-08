@@ -1,11 +1,12 @@
 # EXP-04 — CourseWork 44-Methods Zero-Leakage Benchmark & Inductive Bias Analysis
 
-- **Experiment ID:** `EXP-04`
-- **Title:** Comprehensive 44-Methods Zero-Leakage Benchmark, Inductive Bias Analysis (DINOv3 ViT-S/16 vs. DINOv3 ConvNeXt-Tiny) & Deep Error Diagnostics
-- **Date:** 2026-08-28
-- **Lead Agent / Engineer:** Antigravity AI / Deepfake-ViT Core Team
-- **Status:** **Completed & Verified (Target Exceeded 🏆)**
-- **Primary Deliverables:** [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb), [`src/data/evaluate_expanded_test_sets.py`](../../src/data/evaluate_expanded_test_sets.py)
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for EXP_04_COURSEWORK_44METHODS_BENCHMARK.
+- **Purpose**: Provide rigorous experimental documentation and tracking for EXP_04_COURSEWORK_44METHODS_BENCHMARK.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-28T11:00:31+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

@@ -1,11 +1,12 @@
 # EVAL_STATUS.md — Evaluation & Comparative Benchmarking Status
 
-- **Title:** Evaluation & Comparative Benchmarking Status (DINOv3 ViT vs. ConvNeXt)
-- **Date Created:** 2026-08-18
-- **Last Updated:** 2026-08-28
-- **Description:** Status of live inference benchmarking, per-method accuracy rankings, confusion matrix analysis, and post-training diagnostics.
-- **Status:** **Done & Verified**
-- **Phase Doc:** [`../phases/EVAL.md`](../phases/EVAL.md)
+- **Motivation/Background**: Provide real-time progress tracking, checklist status, and milestone completion for EVAL_STATUS.
+- **Purpose**: Maintain an accurate audit trail of completed tasks and active blockers for EVAL_STATUS.
+- **Overview Pipeline**: Milestone tracking -> task checklist review -> verification status update.
+- **Detailed Plan**: §1 Current Milestone Status; §2 Completed Deliverables; §3 Active Blockers; §4 Next Priorities.
+- **References**: `docs/OVERVIEW.md`, `docs/phases/`.
+- **Created**: 2026-08-18T11:19:39+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

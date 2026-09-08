@@ -1,5 +1,15 @@
 # 🐛 Bug Reports & Troubleshooting Directory
 
+- **Motivation/Background**: Document bug diagnosis, root cause analysis, and regression prevention for README.
+- **Purpose**: Track lifecycle and remediation evidence for issue README.
+- **Overview Pipeline**: Bug discovery -> root cause analysis -> patch verification -> regression testing.
+- **Detailed Plan**: §1 Bug Description & Symptoms; §2 Root Cause Diagnosis; §3 Remediation & Code Changes; §4 Verification & Prevention.
+- **References**: `src/`, `tests/`, `agents/rules/CODEBASE_AUDIT.md`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 This directory contains documented bug reports, root cause analyses, and verified resolution guides encountered during the `deepfake-ViT` project lifecycle.
 
 ---

@@ -1,12 +1,12 @@
 # EXP-01: Strategic Optimization Plan for Maximizing DINOv3 ViT Deepfake Classification Accuracy
 
-- **Title:** Strategic Fine-Tuning Optimization Plan for Maximum Accuracy on DF40
-- **Date created:** 2026-08-21
-- **Last updated:** 2026-08-21
-- **Description:** Complete architectural, algorithmic, and data optimization roadmap to push binary classification accuracy above 97.5% on the held-out DF40 test split.
-- **Status:** In Progress
-- **Experiment ID:** EXP-01
-- **Target Deliverable:** training executed via [`src/training/train.py`](../../src/training/train.py) with EXP-01 hyperparameters; dedicated execution notebook planned (not yet created).
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for EXP_01_ACCURACY_OPTIMIZATION_PLAN.
+- **Purpose**: Provide rigorous experimental documentation and tracking for EXP_01_ACCURACY_OPTIMIZATION_PLAN.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-22T10:49:10+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

@@ -1,8 +1,15 @@
 # DATA_SPLIT_SUMMARIZE.md — Unified Data Architecture & Zero-Leakage Split Summary
 
-- **Motivation/Background**: Developing high-accuracy, highly generalizable facial deepfake detection models (**deepfake-ViT**) requires integrating diverse benchmark domains (FaceForensics++, Celeb-DF v1 & v2, DF40, SFHQ, FFHQ, Kaggle Boost, Midjourney Boost) under strict class balance and **0% identity/video/byte data leakage**.
-- **Purpose**: Document the unified data partitioning architecture, sample census across Train/Val/Test splits, formal mathematical proof of the 3-Tier Zero-Leakage protocol, and the comprehensive catalog of 44 evaluated deepfake methods.
-- **Key References**:
+- **Motivation/Background**: Establish technical specification, requirements, and deliverables for pipeline phase DATA_SPLIT_SUMMARIZE.
+- **Purpose**: Guide the execution and quality gates of phase DATA_SPLIT_SUMMARIZE.
+- **Overview Pipeline**: Phase scope definition -> implementation guidelines -> verification gates -> status sign-off.
+- **Detailed Plan**: §1 Phase Overview & Scope; §2 Technical Specification; §3 Deliverables & Artifacts; §4 Verification Protocol.
+- **References**: `docs/OVERVIEW.md`, `docs/PURPOSE.md`, `agents/rules/`.
+- **Created**: 2026-08-22T10:49:10+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   - `data/splits/train_v5_weakfix_v3.csv` (**129,884 samples**)
   - `data/splits/val_v5_combined_universal_kaggle_boost.csv` (**6,000 samples**)
   - `test_coursework_44methods_balanced_zero_leakage.csv` (**21,446 samples**)

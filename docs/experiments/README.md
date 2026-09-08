@@ -1,5 +1,15 @@
 # Model Experiments & Research Documentation
 
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for README.
+- **Purpose**: Provide rigorous experimental documentation and tracking for README.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 This directory contains research experiment proposals, optimization plans, methodology audits, and empirical benchmark logs for the `deepfake-ViT` project.
 
 ---

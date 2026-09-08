@@ -1,5 +1,15 @@
 # How to Set Up an AI Agent Workflow (v2)
 
+- **Motivation/Background**: Document universal operational standards, agent setups, or pipeline references shared across all research tracks.
+- **Purpose**: Provide canonical reference standard for HOW_TO_SETUP_AI_AGENT.
+- **Overview Pipeline**: Standard operating procedure codification -> universal guideline distribution.
+- **Detailed Plan**: §1 Core Objectives; §2 Operational Guidelines; §3 Execution Protocol; §4 Quality Standards.
+- **References**: `agents/rules/AGENT_AI.md`, `docs/README.md`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 ## Step 1: Set default rules for the AI agent
 
 Place these in `agents/rules/`. These are the **always-on** files — the only

@@ -1,8 +1,12 @@
 # EXP-02 Status & Milestone Tracker
 
-- **Experiment Name:** EXP-02 Multi-Domain Accuracy Optimization
-- **Status:** **COMPLETED**
-- **Target Notebooks:** [`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb), [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb)
+- **Motivation/Background**: Provide real-time progress tracking, checklist status, and milestone completion for EXP02_STATUS.
+- **Purpose**: Maintain an accurate audit trail of completed tasks and active blockers for EXP02_STATUS.
+- **Overview Pipeline**: Milestone tracking -> task checklist review -> verification status update.
+- **Detailed Plan**: §1 Current Milestone Status; §2 Completed Deliverables; §3 Active Blockers; §4 Next Priorities.
+- **References**: `docs/OVERVIEW.md`, `docs/phases/`.
+- **Created**: 2026-08-22T21:44:36+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

@@ -1,4 +1,14 @@
-# Anti-Face Deepfake — Vision Transformer (Meta DINOv3) Image Classification
+# deepfake-ViT: DINOv3 ViT vs ConvNeXt Deepfake Benchmark
+
+- **Motivation/Background**: Provide a production-grade, reproducible research repository comparing Vision Transformers (Meta DINOv3 ViT-S/16) against Convolutional Networks (ConvNeXt-Tiny) on face deepfake detection across 44 manipulation methods.
+- **Purpose**: Serve as the primary entry point and high-level architectural documentation for the deepfake-ViT project.
+- **Overview Pipeline**: DINOv3 ViT & ConvNeXt training and evaluation pipeline on 44-method zero-leakage benchmarks.
+- **Detailed Plan**: §1 Overview & Highlights; §2 Benchmark Performance; §3 Repository Structure; §4 Quickstart & Setup; §5 Training & Evaluation SOP; §6 Results & Notebooks.
+- **References**: `src/`, `docs/`, `experiments/`, `notebooks/`, `requirements.txt`.
+- **Created**: 2026-08-10T23:29:24+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
 
 Academic Coursework & Research Project: Detecting facial deepfakes using Vision Transformers (DINOv3) — self-supervised ViT developed by Meta AI.
 

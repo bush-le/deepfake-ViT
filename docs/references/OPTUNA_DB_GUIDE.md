@@ -1,4 +1,15 @@
 # OPTUNA_DB_GUIDE.md
+
+- **Motivation/Background**: Provide operational guidelines, command references, and reusable technical workflows for OPTUNA_DB_GUIDE.
+- **Purpose**: Standardize engineering practices and technical procedures for OPTUNA_DB_GUIDE.
+- **Overview Pipeline**: Operational procedure formulation -> best practices curation -> reference guide compilation.
+- **Detailed Plan**: §1 Overview & Prerequisites; §2 Procedural Guide; §3 Common Commands & Examples; §4 Troubleshooting & FAQs.
+- **References**: `docs/shared/`, `agents/rules/`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 Quick reference for loading, analyzing, and exporting an Optuna SQLite study.
 Read on demand when doing HPO analysis — not part of always-on rules.
 Runnable script version: `src/utils/optuna_db_report.py`

@@ -1,8 +1,15 @@
 # DATA_PREP_SUMMARY_REPORT.md — Summary Report: Data Preparation & Partitioning Pipeline
 
-- **Motivation/Background**: Training and evaluating facial deepfake detection models (**deepfake-ViT**) requires rigorous data curation: multi-domain integration (FaceForensics++, Celeb-DF v1 & v2, DF40, SFHQ, FFHQ, Kaggle Boost, Midjourney), class balance preservation, and zero data leakage (Zero Identity/Video/Byte Leakage).
-- **Purpose**: Comprehensive technical specification of data partitioning structures, extraction mechanisms, MD5 deduplication audits, and the authoritative split manifests used for model training and evaluation.
-- **Key Pipeline Artifacts**:
+- **Motivation/Background**: Establish technical specification, requirements, and deliverables for pipeline phase DATA_PREP_SUMMARY_REPORT.
+- **Purpose**: Guide the execution and quality gates of phase DATA_PREP_SUMMARY_REPORT.
+- **Overview Pipeline**: Phase scope definition -> implementation guidelines -> verification gates -> status sign-off.
+- **Detailed Plan**: §1 Phase Overview & Scope; §2 Technical Specification; §3 Deliverables & Artifacts; §4 Verification Protocol.
+- **References**: `docs/OVERVIEW.md`, `docs/PURPOSE.md`, `agents/rules/`.
+- **Created**: 2026-08-22T10:49:10+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   - `train_v5_weakfix_v3.csv` (**129,884 samples**)
   - `val_v5_combined_universal_kaggle_boost.csv` (**6,000 samples**)
   - `test_coursework_44methods_balanced_zero_leakage.csv` (**21,446 samples**)

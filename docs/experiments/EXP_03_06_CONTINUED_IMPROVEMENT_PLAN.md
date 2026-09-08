@@ -1,11 +1,12 @@
 # EXP-03 / EXP-06: Comprehensive Deepfake Detection Optimization Plan
 
-- **Title:** Unified Advanced Optimization Plan — Resolving Generative Blindspots & Domain Shortcuts
-- **Date Created:** 2026-08-22
-- **Last Updated:** 2026-08-22
-- **Predecessor:** [EXP_02_ACCURACY_IMPROVEMENT_PLAN.md](EXP_02_ACCURACY_IMPROVEMENT_PLAN.md)
-- **Status:** Completed & Integrated
-- **Experiment ID:** EXP-03 / EXP-06
+- **Motivation/Background**: Document experiment hypothesis, parameters, evaluation methodology, and results for EXP_03_06_CONTINUED_IMPROVEMENT_PLAN.
+- **Purpose**: Provide rigorous experimental documentation and tracking for EXP_03_06_CONTINUED_IMPROVEMENT_PLAN.
+- **Overview Pipeline**: Hypothesis formulation -> dataset split preparation -> model training/eval -> metrics analysis.
+- **Detailed Plan**: §1 Experiment Objective & Hypotheses; §2 Configuration & Hyperparameters; §3 Execution Protocol; §4 Results & Findings; §5 Next Actions.
+- **References**: `configs/`, `src/training/`, `src/eval/`, `experiments/results/`.
+- **Created**: 2026-08-23T00:58:28+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

@@ -1,5 +1,15 @@
 # <TITLE> — Template (agents/phases)
 
+- **Motivation/Background**: Establish technical specification, requirements, and deliverables for pipeline phase PHASE_TEMPLATE.
+- **Purpose**: Guide the execution and quality gates of phase PHASE_TEMPLATE.
+- **Overview Pipeline**: Phase scope definition -> implementation guidelines -> verification gates -> status sign-off.
+- **Detailed Plan**: §1 Phase Overview & Scope; §2 Technical Specification; §3 Deliverables & Artifacts; §4 Verification Protocol.
+- **References**: `docs/OVERVIEW.md`, `docs/PURPOSE.md`, `agents/rules/`.
+- **Created**: 2026-08-18T08:56:25+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
 Copy this file into `agents/phases/` as `<PHASE>.md` for each phase/stage
 (DATA_PREP.md, TRAINING_INFO.md, MODEL.md, EVAL.md, ...). Everything for a
 phase stays in this single file.

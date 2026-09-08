@@ -1,8 +1,15 @@
 # PURPOSE.md — Project Brief & Requirements
 
-- **Motivation/Background**: This document establishes the foundational problem brief, research objectives, rubric requirements, scope boundaries, and success criteria for the `deepfake-ViT` coursework project.
-- **Problem Formulation**: Binary Deepfake Face Image Classification (**Real = 0** vs. **Fake = 1**).
-- **Core Research Deliverables:**
+- **Motivation/Background**: Establish the foundational problem brief, research objectives, rubric requirements, scope boundaries, and success criteria for the deepfake-ViT coursework project.
+- **Purpose**: Define the locked academic and practical requirements for binary face deepfake classification (>95% accuracy goal).
+- **Overview Pipeline**: Problem formulation -> requirements definition -> model & dataset scope -> rubric criteria.
+- **Detailed Plan**: §1 Academic & Practical Brief; §2 Detailed Requirements & Scope; §3 Success Criteria & Rubric Alignment; §4 Locked Objectives & Deliverables.
+- **References**: `docs/OVERVIEW.md`, `docs/phases/MODEL.md`, `docs/phases/DATA_PREP.md`.
+- **Created**: 2026-08-18T08:56:20+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
+
   1. Fine-tuned **DINOv3 ViT-Small/16** face deepfake classifier exceeding >95% accuracy rubric requirement.
   2. Direct comparative benchmark against matched **DINOv3 ConvNeXt-Tiny** CNN baseline across **44 deepfake methods**.
   3. Interactive evaluation notebook ([`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb)) with live inference, zero-leakage auditing, and per-method accuracy breakdown.

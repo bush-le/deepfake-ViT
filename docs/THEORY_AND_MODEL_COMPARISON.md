@@ -1,4 +1,14 @@
-# Theory and Model Comparison
+# THEORY AND MODEL COMPARISON — ViT vs CNN Inductive Bias Analysis
+
+- **Motivation/Background**: Theoretical investigation comparing Self-Supervised Vision Transformers against Convolutional Networks on deepfake detection.
+- **Purpose**: Document theoretical foundations, architectural tradeoffs, attention visualization insights, and comparative empirical results.
+- **Overview Pipeline**: Theoretical inductive bias analysis -> experimental benchmark across 44 methods -> correlation scatter analysis.
+- **Detailed Plan**: §1 Introduction & Mathematical Foundations; §2 Vision Transformers vs CNNs in Image Forensics; §3 Experimental Benchmark Setup; §4 Empirical Findings; §5 Qualitative Attention Map Analysis; §6 Conclusion & Future Directions.
+- **References**: `src/models/dinov3_vit.py`, `notebooks/coursework_deepfake.ipynb`, `docs/phases/EVAL.md`.
+- **Created**: 2026-09-02T12:43:23+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
+
+---
 
 ## 1. Theoretical Foundations of Evaluated Architectures
 

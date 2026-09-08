@@ -1,12 +1,12 @@
 # BUG-02 — Python 3.14+ Forkserver DataLoader Pickle Error (`ImgDS`)
 
-- **Bug ID:** `BUG-02`
-- **Title:** `AttributeError: module '__main__' has no attribute 'ImgDS'` during multi-worker DataLoader execution in Python 3.14+
-- **Component:** `notebooks/coursework_deepfake.ipynb` / Interactive PyTorch DataLoaders
-- **Date Reported:** 2026-08-28
-- **Date Resolved:** 2026-08-28
-- **Severity:** High
-- **Status:** **Resolved & Verified ✅**
+- **Motivation/Background**: Document bug diagnosis, root cause analysis, and regression prevention for BUG_02_IMGDS_PICKLE_FORKSERVER.
+- **Purpose**: Track lifecycle and remediation evidence for issue BUG_02_IMGDS_PICKLE_FORKSERVER.
+- **Overview Pipeline**: Bug discovery -> root cause analysis -> patch verification -> regression testing.
+- **Detailed Plan**: §1 Bug Description & Symptoms; §2 Root Cause Diagnosis; §3 Remediation & Code Changes; §4 Verification & Prevention.
+- **References**: `src/`, `tests/`, `agents/rules/CODEBASE_AUDIT.md`.
+- **Created**: 2026-08-28T11:00:31+07:00
+- **Last Updated**: 2026-09-08T10:15:00+07:00
 
 ---
 

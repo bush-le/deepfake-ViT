@@ -1,32 +1,14 @@
 # GIT_AND_RELEASE_BEST_PRACTICES.md — Git, CI, and Release Best Practices
 
-- **Motivation/Background**: Provide operational guidelines, command references, and reusable technical workflows for GIT_AND_RELEASE_BEST_PRACTICES.
-- **Purpose**: Standardize engineering practices and technical procedures for GIT_AND_RELEASE_BEST_PRACTICES.
+- **Motivation/Background**: Provide operational guidelines, command references, and reusable technical workflows for Git, CI, and release management.
+- **Purpose**: Standardize engineering practices and technical procedures for Git operations, commit messages, and release packaging.
 - **Overview Pipeline**: Operational procedure formulation -> best practices curation -> reference guide compilation.
-- **Detailed Plan**: §1 Overview & Prerequisites; §2 Procedural Guide; §3 Common Commands & Examples; §4 Troubleshooting & FAQs.
-- **References**: `docs/shared/`, `agents/rules/`.
-- **Created**: 2026-08-18T08:56:25+07:00
-- **Last Updated**: 2026-09-08T10:15:00+07:00
+- **Detailed Plan**: §1 Mandatory Human-Approval Gate; §2 Commit Messages & Companion-Doc Standard; §3 GitHub Actions; §4 Release Pushes; §5 Updating or Fixing an Existing Release; §6 Checklist.
+- **References**: `agents/rules/COMMIT_CONVENTION.md`, `agents/rules/MD_CONVENTION.md`.
+- **Created**: 2026-08-11T18:15:00+07:00
+- **Last Updated**: 2026-09-08T11:05:00+07:00
 
 ---
-
-  and publish releases, but an unapproved push can overwrite teammate work,
-  leak secrets, or publish unfinished code. This guide codifies safe, reviewable
-  git, CI, and release workflows.
-- **Purpose**: Establish the authoritative rules for writing commit messages,
-  building GitHub Actions, and creating/updating releases — with a **mandatory
-  human-approval gate before any source-code push**.
-- **Overview Pipeline**: Derived from the reference project workflow: conventional commits →
-  CI (lint + tests) → tag → release → asset upload, always gated on explicit
-  human approval.
-- **Detailed Plan**: §0 the mandatory approval gate; §1 commit messages;
-  §2 GitHub Actions; §3 release pushes; §4 updating or fixing an existing
-  release; §5 checklist.
-- **References**: `git`, `git tag`, GitHub REST API, GitHub Actions,
-  [MD_CONVENTION.md](../../agents/rules/MD_CONVENTION.md), [LOGGING_CHECKPOINT_RULES.md](../../agents/rules/LOGGING_CHECKPOINT_RULES.md).
-
----
-
 > ## ⚠️ MANDATORY HUMAN-APPROVAL GATE (read this first)
 >
 > **An AI agent must NEVER push source code — no `git push` of commits,
@@ -109,10 +91,23 @@ Examples:
 - Bullet the concrete changes; reference issue/PR numbers when available.
 - Note caveats the reviewer must know (e.g. "finetune not yet retrained",
   "SOTA metrics reflect original weights, not a fresh retrain").
-- Follow the [5W1H reporting](../../agents/rules/RESULTS_REPORTING.md) spirit for any numbers in
+- Follow the [5W1H reporting](../rules/RESULTS_REPORTING.md) spirit for any numbers in
   the body: state split, seed, and how a metric was computed.
 
-### 2.4 Scope discipline (one logical change per commit)
+### 2.4 Companion Markdown Document Rule & Git Trailers
+Per [agents/rules/COMMIT_CONVENTION.md](../../agents/rules/COMMIT_CONVENTION.md), every non-trivial commit (Tier 1: refactors, PR merges, multi-file features, bug incident fixes, audits) MUST have a companion Markdown document in `docs/` staged and committed together with the code changes.
+
+Every such commit MUST include a standard Git trailer in the footer:
+```text
+Companion-Doc: docs/<path_to_document>.md
+```
+Optional secondary trailers:
+- `Report: docs/<path_to_report>.md`
+- `Fixes: docs/bugs/BUG_<NN>_<NAME>.md`
+
+For minor single-line chores or typos (Tier 2), cite an existing tracking doc (e.g. `docs/progress/<PHASE>_STATUS.md`) or omit if purely self-describing.
+
+### 2.5 Scope discipline (one logical change per commit)
 - A commit should contain **one logical change**. Do not mix an unrelated
   bug fix with a doc update in the same commit.
 - Split mixed working trees into separate commits (e.g. fix + results refresh +
@@ -121,12 +116,12 @@ Examples:
   `git add -A` that could sweep unintended files (secrets, generated outputs)
   into the commit.
 
-### 2.5 Avoid shell-quoting pitfalls
+### 2.6 Avoid shell-quoting pitfalls
 Multi-line messages with quotes or em-dashes are easily mangled by PowerShell.
 Write the message to a file and commit with `git commit -F <file>`; do not
 inline complex messages in `git commit -m "..."`.
 
-### 2.6 Good vs bad
+### 2.7 Good vs bad
 - Good: `fix(<feature>): raise finetune base LR to 1e-3 so head trains`
 - Bad: `did stuff`, `update`, `fixed the thing that was broken earlier and also
   changed docs and bumped epochs`
@@ -173,7 +168,7 @@ jobs:
 - Never upload secrets as build artifacts or release assets.
 
 ### 3.5 CI runs lint and tests
-- Enforce the project lint config (`ruff` / standard formatting) and
+- Enforce the project lint config ([pyproject.toml](../../pyproject.toml)) and
   the test suite. Fail the job on violations.
 - Keep CI deterministic and fast: cache dependencies, run data-independent
   tests (skip when `data/raw` is absent, see
@@ -181,7 +176,7 @@ jobs:
 
 ### 3.6 References
 The project's CI lives in
- (lint + pytest on
+[.github/workflows/ci.yml](../../.github/workflows/ci.yml) (lint + pytest on
 push/PR). Extend it, do not duplicate it.
 
 ## 4. Release Pushes
@@ -197,7 +192,7 @@ push/PR). Extend it, do not duplicate it.
 ### 4.2 Release assets vs git
 - **Never commit large binaries to git.** Model weights, feature caches, and
   logs belong in release assets or git-lfs, not in the source tree.
-  (See [LOGGING_CHECKPOINT_RULES.md](../../agents/rules/LOGGING_CHECKPOINT_RULES.md) and the
+  (See [LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md) and the
   artifact-storage policy in [.gitignore](../../.gitignore).)
 - Publish checkpoints/weights as **release assets**; add a table in the release
   body mapping each asset to its metric.
@@ -261,3 +256,4 @@ To fully retract: delete the release, then delete the tag ref
       logs secrets.
 - [ ] Release uses an annotated SemVer tag pointing at a remote-visible commit.
 - [ ] Updating/fixing a release still required human approval for any source push.
+

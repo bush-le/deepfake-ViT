@@ -10,10 +10,10 @@
 
 ---
 
-  - [`data/splits/train_v5_weakfix_v3.csv`](../data/splits/train_v5_weakfix_v3.csv) (**129,884 samples**)
-  - [`data/splits/val_v5_combined_universal_kaggle_boost.csv`](../data/splits/val_v5_combined_universal_kaggle_boost.csv) (**6,000 samples**)
-  - [`test_coursework_44methods_balanced_zero_leakage.csv`](../data/splits/test_coursework_44methods_balanced_zero_leakage.csv) (**21,446 samples**)
-  - [`test_coursework_44methods_full_zero_leakage.csv`](../data/splits/test_coursework_44methods_full_zero_leakage.csv) (**50,084 samples**)
+  - [`data/splits/train_v5_weakfix_v3.csv`](../../data/splits/train_v5_weakfix_v3.csv) (**129,884 samples**)
+  - [`data/splits/val_v5_combined_universal_kaggle_boost.csv`](../../data/splits/val_v5_combined_universal_kaggle_boost.csv) (**6,000 samples**)
+  - [`test_coursework_44methods_balanced_zero_leakage.csv`](../../data/splits/test_coursework_44methods_balanced_zero_leakage.csv) (**21,446 samples**)
+  - [`test_coursework_44methods_full_zero_leakage.csv`](../../data/splits/test_coursework_44methods_full_zero_leakage.csv) (**50,084 samples**)
 
 ---
 
@@ -118,5 +118,5 @@
 
 - **Filepath Intersection:** Verified **0 overlapping image file paths** ($Train \cap Test_{Bal} = \emptyset$, $Train \cap Test_{Full} = \emptyset$).
 - **MD5 Hash Deduplication:** Cross-audited **127,185 MD5 byte-level hashes**, eliminating historical collisions.
-- **Master EDA Notebook:** [`notebooks/coursework_eda.ipynb`](../notebooks/coursework_eda.ipynb) contains complete reproducible audit code.
-- **Master Benchmark Evaluation Notebook:** [`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb) contains complete live benchmark evaluation code.
+- **Master EDA Notebook:** [`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb) contains complete reproducible audit code.
+- **Master Benchmark Evaluation Notebook:** [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb) contains complete live benchmark evaluation code.

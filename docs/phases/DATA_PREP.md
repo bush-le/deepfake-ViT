@@ -53,7 +53,7 @@ Evaluating Deepfake detection requires diverse, cross-generator representation w
 
 - Master Training EDA Notebook: [`coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb)
 - Master Evaluation Benchmark Notebook: [`coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb)
-- Master Data Summary: [`DATA_SPLIT_SUMMARIZE.md`](../DATA_SPLIT_SUMMARIZE.md)
-- Data Prep Report: [`DATA_PREP_SUMMARY_REPORT.md`](../DATA_PREP_SUMMARY_REPORT.md)
-- EDA Inventory: [`EDA_DATA_INVENTORY.md`](../EDA_DATA_INVENTORY.md)
+- Master Data Summary: [`DATA_SPLIT_SUMMARIZE.md`](DATA_SPLIT_SUMMARIZE.md)
+- Data Prep Report: [`DATA_PREP_SUMMARY_REPORT.md`](DATA_PREP_SUMMARY_REPORT.md)
+- EDA Inventory: [`EDA_DATA_INVENTORY.md`](EDA_DATA_INVENTORY.md)
 - Status Tracker: [`DATA_PREP_STATUS.md`](../progress/DATA_PREP_STATUS.md)

@@ -104,6 +104,6 @@ The official training split `train_v5_weakfix_v3.csv` comprises **129,884 sample
 
 ## 6. Integration into Evaluation Systems & Notebooks
 
-- **Master EDA Notebook:** [`notebooks/coursework_eda.ipynb`](../notebooks/coursework_eda.ipynb) conducts multi-split physical signal and statistical forensic analysis.
-- **Master Evaluation Notebook:** [`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb) loads frozen checkpoints and verifies Zero-Leakage integrity before live inference.
-- **Interactive Single-Image Predictor:** [`notebooks/predict_image.ipynb`](../notebooks/predict_image.ipynb) allows interactive testing on any image.
+- **Master EDA Notebook:** [`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb) conducts multi-split physical signal and statistical forensic analysis.
+- **Master Evaluation Notebook:** [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb) loads frozen checkpoints and verifies Zero-Leakage integrity before live inference.
+- **Interactive Single-Image Predictor:** [`notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb) allows interactive testing on any image.

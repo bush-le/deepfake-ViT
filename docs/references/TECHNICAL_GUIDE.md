@@ -135,11 +135,11 @@ Training is executed exclusively through standalone scripts in `src/training/`:
 
 ## 6. Interactive Notebooks & Execution Guides
 
-1. **[`notebooks/coursework_eda.ipynb`](../notebooks/coursework_eda.ipynb)** (46 cells (20 sections) Master EDA Notebook):
+1. **[`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb)** (46 cells (20 sections) Master EDA Notebook):
    - Comprehensive multi-split census (207,414 samples), 54-methods taxonomy, 2D FFT power spectrum, 1D Radial PSD decay curves, High-Pass noise residuals, GLCM skin texture metrics, and Kolmogorov-Smirnov (KS-Test) statistical verification.
-2. **[`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb)** (35 Cells Master Evaluation Notebook):
+2. **[`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb)** (35 Cells Master Evaluation Notebook):
    - 3-tier zero-leakage auditing (0 overlaps, 127k MD5 byte hashes), live GPU benchmarking (ViT vs ConvNeXt vs Ensemble), 5 post-training visualization charts, Youden's J threshold optimization, and visual error gallery.
-3. **[`notebooks/predict_image.ipynb`](../notebooks/predict_image.ipynb)** (9 Cells Single-Image Predictor):
+3. **[`notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb)** (9 Cells Single-Image Predictor):
    - Interactive single-image test harness for inspecting prediction probabilities on any user image.
 
 ---

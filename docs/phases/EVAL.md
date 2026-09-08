@@ -81,5 +81,5 @@ The evaluation protocol verifies model performance against academic rubric targe
 
 - Status Tracker: [`../progress/EVAL_STATUS.md`](../progress/EVAL_STATUS.md)
 - Experiment 04 Report: [`../experiments/EXP_04_COURSEWORK_44METHODS_BENCHMARK.md`](../experiments/EXP_04_COURSEWORK_44METHODS_BENCHMARK.md)
-- Reporting Rules: [`../rules/RESULTS_REPORTING.md`](../rules/RESULTS_REPORTING.md)
+- Reporting Rules: [`../rules/RESULTS_REPORTING.md`](../../agents/rules/RESULTS_REPORTING.md)
 - Notebook: [`../../notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb)

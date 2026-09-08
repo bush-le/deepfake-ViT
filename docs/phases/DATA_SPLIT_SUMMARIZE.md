@@ -109,6 +109,6 @@ Cross-referenced **127,185 MD5 byte hashes** from the complete training dataset:
 
 ## 5. Integration in Notebooks & Evaluation Tools
 
-- **Master EDA Notebook:** [`notebooks/coursework_eda.ipynb`](../notebooks/coursework_eda.ipynb) conducts comprehensive multi-split exploratory data analysis and physical signal forensics.
-- **Master Benchmark Notebook:** [`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb) executes live GPU comparative evaluation between DINOv3 ViT-S/16 and ConvNeXt-Tiny.
-- **Interactive Single-Image Predictor:** [`notebooks/predict_image.ipynb`](../notebooks/predict_image.ipynb) provides an interactive testing harness for custom face images.
+- **Master EDA Notebook:** [`notebooks/coursework_eda.ipynb`](../../notebooks/coursework_eda.ipynb) conducts comprehensive multi-split exploratory data analysis and physical signal forensics.
+- **Master Benchmark Notebook:** [`notebooks/coursework_deepfake.ipynb`](../../notebooks/coursework_deepfake.ipynb) executes live GPU comparative evaluation between DINOv3 ViT-S/16 and ConvNeXt-Tiny.
+- **Interactive Single-Image Predictor:** [`notebooks/predict_image.ipynb`](../../notebooks/predict_image.ipynb) provides an interactive testing harness for custom face images.

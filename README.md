@@ -30,8 +30,8 @@ All human-readable technical documentation, academic research reports, and theor
 ```
 deepfake-ViT/
 ├── .venv/              # Virtual environment (Python ≥ 3.10, standardized on 3.11/3.14)
-├── docs/               # Human-readable documentation, reports, and theoretical guides
-├── agents/             # Agent AI knowledge base (architecture, rules, phases, progress, experiments)
+├── docs/               # Global project documentation hub (phases, progress, experiments, bugs, references, shared)
+├── agents/             # Universal governance (immutable constitutional rules & document templates)
 ├── configs/            # Experiment configuration files (YAML)
 ├── data/
 │   ├── raw/            # Raw datasets (DF40, FaceForensics++, Celeb-DF, etc.)

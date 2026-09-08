@@ -23,7 +23,7 @@
   §2 GitHub Actions; §3 release pushes; §4 updating or fixing an existing
   release; §5 checklist.
 - **References**: `git`, `git tag`, GitHub REST API, GitHub Actions,
-  [MD_CONVENTION.md](../rules/MD_CONVENTION.md), [LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md).
+  [MD_CONVENTION.md](../../agents/rules/MD_CONVENTION.md), [LOGGING_CHECKPOINT_RULES.md](../../agents/rules/LOGGING_CHECKPOINT_RULES.md).
 
 ---
 
@@ -109,7 +109,7 @@ Examples:
 - Bullet the concrete changes; reference issue/PR numbers when available.
 - Note caveats the reviewer must know (e.g. "finetune not yet retrained",
   "SOTA metrics reflect original weights, not a fresh retrain").
-- Follow the [5W1H reporting](../rules/RESULTS_REPORTING.md) spirit for any numbers in
+- Follow the [5W1H reporting](../../agents/rules/RESULTS_REPORTING.md) spirit for any numbers in
   the body: state split, seed, and how a metric was computed.
 
 ### 2.4 Scope discipline (one logical change per commit)
@@ -197,7 +197,7 @@ push/PR). Extend it, do not duplicate it.
 ### 4.2 Release assets vs git
 - **Never commit large binaries to git.** Model weights, feature caches, and
   logs belong in release assets or git-lfs, not in the source tree.
-  (See [LOGGING_CHECKPOINT_RULES.md](../rules/LOGGING_CHECKPOINT_RULES.md) and the
+  (See [LOGGING_CHECKPOINT_RULES.md](../../agents/rules/LOGGING_CHECKPOINT_RULES.md) and the
   artifact-storage policy in [.gitignore](../../.gitignore).)
 - Publish checkpoints/weights as **release assets**; add a table in the release
   body mapping each asset to its metric.

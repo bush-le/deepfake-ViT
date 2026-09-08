@@ -43,6 +43,6 @@ Interactive Verification (notebooks/coursework_deepfake.ipynb)
 
 ## 📚 Experiment Guidelines
 
-1. **5W1H Result Reporting:** All empirical results must explicitly state Who, What, When, Where, Why, and How ([rules/RESULTS_REPORTING.md](../rules/RESULTS_REPORTING.md)).
+1. **5W1H Result Reporting:** All empirical results must explicitly state Who, What, When, Where, Why, and How ([rules/RESULTS_REPORTING.md](../../agents/rules/RESULTS_REPORTING.md)).
 2. **Deterministic Reproducibility:** Fixed seeds, pinned hyperparameters, and frozen checkpoints.
 3. **No Training in Notebooks:** Full-scale model training is performed strictly via scripts.

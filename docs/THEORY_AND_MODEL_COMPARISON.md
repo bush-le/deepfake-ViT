@@ -352,7 +352,7 @@ ViT-Plus A1           | 28.7M  | 98.47%   | 99.86%  | 97.94%    | 99.02%        
 
 ## 9. Visual Evidence & Coursework Diagnostic Figures
 
-All figures in this section originate directly from the project coursework notebook [`notebooks/coursework_deepfake.ipynb`](file:///home/bush/Desktop/deepfake-ViT/notebooks/coursework_deepfake.ipynb) and [`notebooks/data_train_test_method_analysis.ipynb`](file:///home/bush/Desktop/deepfake-ViT/notebooks/data_train_test_method_analysis.ipynb).
+All figures in this section originate directly from the project coursework notebook [`notebooks/coursework_deepfake.ipynb`](../notebooks/coursework_deepfake.ipynb) and [`notebooks/data_train_test_method_analysis.ipynb`](../notebooks/data_train_test_method_analysis.ipynb).
 
 ### Figure 1: Multi-Split Dataset Census Overview
 ![Multi-Split Dataset Census](../experiments/results/dataset_analysis/multi_split_census_overview.png)

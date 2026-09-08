@@ -83,4 +83,4 @@ Validation Checkpointing on ROC-AUC / F1-Score
 
 - Technical Guide: [`../TECHNICAL_GUIDE.md`](../TECHNICAL_GUIDE.md)
 - Status Tracker: [`../progress/TRAINING_STATUS.md`](../progress/TRAINING_STATUS.md)
-- Logging Rules: [`../rules/LOGGING_CHECKPOINT_RULES.md`](../rules/LOGGING_CHECKPOINT_RULES.md)
+- Logging Rules: [`../rules/LOGGING_CHECKPOINT_RULES.md`](../../agents/rules/LOGGING_CHECKPOINT_RULES.md)

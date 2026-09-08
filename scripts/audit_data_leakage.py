@@ -356,14 +356,14 @@ def run_audit(train_csv_path: str, test_csv_path: str, num_workers: int = 16, ou
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Audit Data Leakage across 4 levels.")
     parser.add_argument("--train-csv", type=str, 
-                        default="/workspace/quangmanh/deepfake/data/finetune_exp02/train_max_v3.csv",
+                        default=os.getenv("TRAIN_CSV", str(Path(__file__).resolve().parents[1] / "data/splits/train_v5_weakfix_v3.csv")),
                         help="Path to training set CSV")
     parser.add_argument("--test-csv", type=str, 
-                        default="/workspace/quangmanh/deepfake/experiments/results/error_analysis_lora/test_balanced.csv",
+                        default=os.getenv("TEST_CSV", str(Path(os.getenv("DF40_ROOT", Path(__file__).resolve().parents[1] / "data")) / "zero_leakage_benchmark_fixed/test_balanced_fixed_zero_leakage.csv")),
                         help="Path to test set CSV")
     parser.add_argument("--workers", type=int, default=16, help="Number of multiprocessing workers")
     parser.add_argument("--out-dir", type=str, 
-                        default="/workspace/hoangtuan/deepfake-ViT/experiments/results/audit",
+                        default=str(Path(__file__).resolve().parents[1] / "experiments/results/audit"),
                         help="Output directory for audit report")
     args = parser.parse_args()
 

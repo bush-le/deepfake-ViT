@@ -20,24 +20,32 @@ LAYERS = [5, 8, 11]
 COLS = ["Original"] + [f"Layer {L}" for L in LAYERS]
 ROWS = ["Real", "Fake"]
 
-fig, axes = plt.subplots(2, 4, figsize=(9.5, 4.6))
-for r, prefix in enumerate(["real", "fake"]):
-    name = "0"
-    files = [f"{prefix}_{name}_original.png"] + [f"{prefix}_{name}_layer{L}.png" for L in LAYERS]
-    for c, fname in enumerate(files):
-        p = os.path.join(ATTN, fname)
-        img = mpimg.imread(p)
-        ax = axes[r, c]
-        ax.imshow(img)
-        ax.set_xticks([]); ax.set_yticks([])
-        if r == 0:
-            ax.set_title(COLS[c], fontsize=11)
-        if c == 0:
-            ax.set_ylabel(ROWS[r], fontsize=11, rotation=0, labelpad=28, va="center")
+def main():
+    fig, axes = plt.subplots(2, 4, figsize=(9.5, 4.6))
+    for r, prefix in enumerate(["real", "fake"]):
+        name = "0"
+        files = [f"{prefix}_{name}_original.png"] + [f"{prefix}_{name}_layer{L}.png" for L in LAYERS]
+        for c, fname in enumerate(files):
+            p = os.path.join(ATTN, fname)
+            if not os.path.exists(p):
+                print(f"Warning: {p} does not exist.")
+                continue
+            img = mpimg.imread(p)
+            ax = axes[r, c]
+            ax.imshow(img)
+            ax.set_xticks([]); ax.set_yticks([])
+            if r == 0:
+                ax.set_title(COLS[c], fontsize=11)
+            if c == 0:
+                ax.set_ylabel(ROWS[r], fontsize=11, rotation=0, labelpad=28, va="center")
 
-fig.suptitle("DINOv3 ViT attention maps (CLS token, averaged over heads)", fontsize=12, y=1.02)
-fig.tight_layout()
-out = os.path.join(FIG_DIR, "attention_grid.png")
-fig.savefig(out, bbox_inches="tight")
-plt.close(fig)
-print("Wrote", out)
+    fig.suptitle("DINOv3 ViT attention maps (CLS token, averaged over heads)", fontsize=12, y=1.02)
+    fig.tight_layout()
+    out = os.path.join(FIG_DIR, "attention_grid.png")
+    fig.savefig(out, bbox_inches="tight")
+    plt.close(fig)
+    print("Wrote", out)
+
+
+if __name__ == "__main__":
+    main()

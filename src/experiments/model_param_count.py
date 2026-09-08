@@ -9,10 +9,14 @@ from torchvision.models.video import (
     swin3d_t, swin3d_s, swin3d_b, r2plus1d_18, r3d_18, mc3_18,
     mvit_v1_b, mvit_v2_s, s3d,
 )
-from pytorchvideo.models.hub import (
-    x3d_xs, x3d_s, x3d_m, x3d_l, mvit_base_16x4, slow_r50,
-    slowfast_r50, i3d_r50, csn_r101, r2plus1d_r50,
-)
+try:
+    from pytorchvideo.models.hub import (
+        x3d_xs, x3d_s, x3d_m, x3d_l, mvit_base_16x4, slow_r50,
+        slowfast_r50, i3d_r50, csn_r101, r2plus1d_r50,
+    )
+    HAVE_PYTORCHVIDEO = True
+except ImportError:
+    HAVE_PYTORCHVIDEO = False
 
 
 def count(name, model):
@@ -22,7 +26,8 @@ def count(name, model):
 
 
 def main():
-    print("== pytorchvideo (Kinetics-400 pretrained) ==")
+    if HAVE_PYTORCHVIDEO:
+        print("== pytorchvideo (Kinetics-400 pretrained) ==")
     count("X3D-XS", x3d_xs(pretrained=False))
     count("X3D-S", x3d_s(pretrained=False))
     count("X3D-M", x3d_m(pretrained=False))

@@ -23,16 +23,17 @@ PRETRAINED = HT / 'models/dinov3_small/model.safetensors'
 OUT = HT / 'experiments/results/courseWorkCheck'
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Model setup
-spec = importlib.util.spec_from_file_location('ht_dinov3', HT / 'src/models/dinov3_vit.py')
-ht = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(ht)
-
-model = ht.build_dinov3_classifier(weights_path=str(PRETRAINED), num_classes=2, img_size=256, device=DEVICE)
-ck = torch.load(str(V3_CKPT), map_location='cpu', weights_only=False)
-model.load_state_dict(ck['model_state_dict'], strict=False)
-model.to(DEVICE)
-model.eval()
+def get_model(device=DEVICE):
+    spec = importlib.util.spec_from_file_location('ht_dinov3', HT / 'src/models/dinov3_vit.py')
+    ht = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ht)
+    model = ht.build_dinov3_classifier(weights_path=str(PRETRAINED), num_classes=2, img_size=256, device=device)
+    if V3_CKPT.exists():
+        ck = torch.load(str(V3_CKPT), map_location='cpu', weights_only=False)
+        model.load_state_dict(ck['model_state_dict'], strict=False)
+    model.to(device)
+    model.eval()
+    return model
 
 IMG_SIZE = 256
 MEAN, STD = [0.485, 0.456, 0.406], [0.229, 0.224, 0.225]
@@ -50,7 +51,7 @@ class ImgDS(Dataset):
         im = Image.open(self.rows[i]['path']).convert('RGB')
         return self.tf(im), int(self.rows[i]['label'])
 
-def evaluate_and_cache(csv_path, npz_out_path, name):
+def evaluate_and_cache(csv_path, npz_out_path, name, model=None):
     print(f"\n{'='*70}")
     print(f"📊 EVALUATING: {name}")
     print(f"   CSV: {csv_path}")
@@ -59,6 +60,8 @@ def evaluate_and_cache(csv_path, npz_out_path, name):
     with open(csv_path, 'r', encoding='utf-8') as f:
         rows = list(csv.DictReader(f))
         
+    if model is None:
+        model = get_model()
     dl = DataLoader(ImgDS(rows, tf), batch_size=128, num_workers=8, pin_memory=True)
     preds, probs = [], []
     t0 = time.time()

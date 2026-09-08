@@ -8,119 +8,120 @@ Features:
 import glob
 import os
 import random
+from pathlib import Path
 import pandas as pd
 import numpy as np
 
 SEED = 42
-random.seed(SEED)
-np.random.seed(SEED)
-
-splits_dir = "data/splits"
-val_csv = os.path.join(splits_dir, "val_domain_balanced.csv")
-test_csv = os.path.join(splits_dir, "test_balanced.csv")
-
-df_val = pd.read_csv(val_csv)
-df_test = pd.read_csv(test_csv)
-
-val_test_paths = set(df_val['path']).union(set(df_test['path']))
-print(f"Total Val+Test paths to exclude: {len(val_test_paths):,}")
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_ROOT = Path(os.getenv("DF40_ROOT", PROJECT_ROOT / "data"))
+SPLITS_DIR = PROJECT_ROOT / "data" / "splits"
 
-# 1. Real Samples Pool
-ff_frames = sorted(glob.glob(str(DATA_ROOT / "FaceForensics++/original_sequences/youtube/c23/frames/*/*.png")))
-celeb_real_frames = sorted(glob.glob(str(PROJECT_ROOT / "data/processed/celeb_df_extracted/*.png")))
 
-ff_train_pool = [p for p in ff_frames if p not in val_test_paths]
-celeb_real_train_pool = [p for p in celeb_real_frames if p not in val_test_paths]
+def main():
+    random.seed(SEED)
+    np.random.seed(SEED)
 
-print(f"Available FF++ Real (train): {len(ff_train_pool):,}")
-print(f"Available Celeb Real (train): {len(celeb_real_train_pool):,}")
+    val_csv = SPLITS_DIR / "val_domain_balanced.csv"
+    test_csv = SPLITS_DIR / "test_balanced.csv"
 
-random.shuffle(ff_train_pool)
-random.shuffle(celeb_real_train_pool)
+    if not val_csv.exists() or not test_csv.exists():
+        print(f"⚠️ Missing validation or test split CSV: {val_csv} / {test_csv}. Exiting.")
+        return
 
-selected_real_ff = ff_train_pool[:20000]
-selected_real_celeb = celeb_real_train_pool[:10000]
-selected_real = [(p, 0) for p in selected_real_ff + selected_real_celeb]
-print(f"Selected Real: {len(selected_real):,} ({len(selected_real_ff)} FF++ + {len(selected_real_celeb)} Celeb-DF)")
+    df_val = pd.read_csv(val_csv)
+    df_test = pd.read_csv(test_csv)
 
-# 2. Fake Samples Pool
-celeb_train_fake = sorted(glob.glob(str(PROJECT_ROOT / "data/processed/celeb_df_train_fake_extracted/*.png")))
-celeb_fake_train_pool = [p for p in celeb_train_fake if p not in val_test_paths]
-random.shuffle(celeb_fake_train_pool)
-selected_fake_celeb = celeb_fake_train_pool[:10000]
+    val_test_paths = set(df_val['path']).union(set(df_test['path']))
+    print(f"Total Val+Test paths to exclude: {len(val_test_paths):,}")
 
-# DF40 Fake Methods Pool
-manifest_path = DATA_ROOT / "DF40_train_manifest.csv"
-if manifest_path.exists():
-    manifest_df = pd.read_csv(manifest_path)
-    manifest_fake = manifest_df[manifest_df['label'] == 1]
-    manifest_fake = manifest_fake[~manifest_fake['path'].isin(val_test_paths)]
-else:
-    manifest_fake = pd.DataFrame(columns=['path', 'method'])
+    # 1. Real Samples Pool
+    ff_frames = sorted(glob.glob(str(DATA_ROOT / "FaceForensics++/original_sequences/youtube/c23/frames/*/*.png")))
+    celeb_real_frames = sorted(glob.glob(str(PROJECT_ROOT / "data/processed/celeb_df_extracted/*.png")))
 
-# Group by method and sample
-diffusion_methods = ['DiT', 'SiT', 'sd2.1', 'pixart', 'ddim', 'RDDM']
-gan_methods = ['StyleGAN2', 'StyleGAN3', 'StyleGANXL', 'VQGAN']
-swap_methods = ['simswap', 'faceswap', 'mobileswap', 'inswap', 'blendface', 'facedancer', 'fsgan', 'uniface']
-reenact_methods = ['sadtalker', 'wav2lip', 'fomm', 'pirender', 'tpsm', 'lia', 'MRAA', 'danet', 'mcnet', 'facevid2vid', 'e4s', 'one_shot_free', 'hyperreenact']
+    ff_train_pool = [p for p in ff_frames if p not in val_test_paths]
+    celeb_real_train_pool = [p for p in celeb_real_frames if p not in val_test_paths]
 
-selected_df40_fake = []
+    print(f"Available FF++ Real (train): {len(ff_train_pool):,}")
+    print(f"Available Celeb Real (train): {len(celeb_real_train_pool):,}")
 
-# Target counts per category:
-# Diffusion: 6 methods * 850 = 5,100
-# GAN: 4 methods * 850 = 3,400
-# Swap: 8 methods * 600 = 4,800
-# Reenact: 13 methods * 515 = 6,700
-# Total DF40 Fake = 20,000
+    random.shuffle(ff_train_pool)
+    random.shuffle(celeb_real_train_pool)
 
-for m in diffusion_methods:
-    paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
-    random.shuffle(paths)
-    selected_df40_fake.extend(paths[:850])
+    selected_real_ff = ff_train_pool[:20000]
+    selected_real_celeb = celeb_real_train_pool[:10000]
+    selected_real = [(p, 0) for p in selected_real_ff + selected_real_celeb]
+    print(f"Selected Real: {len(selected_real):,} ({len(selected_real_ff)} FF++ + {len(selected_real_celeb)} Celeb-DF)")
 
-for m in gan_methods:
-    paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
-    random.shuffle(paths)
-    selected_df40_fake.extend(paths[:850])
+    # 2. Fake Samples Pool
+    celeb_train_fake = sorted(glob.glob(str(PROJECT_ROOT / "data/processed/celeb_df_train_fake_extracted/*.png")))
+    celeb_fake_train_pool = [p for p in celeb_train_fake if p not in val_test_paths]
+    random.shuffle(celeb_fake_train_pool)
+    selected_fake_celeb = celeb_fake_train_pool[:10000]
 
-for m in swap_methods:
-    paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
-    random.shuffle(paths)
-    n_sample = min(len(paths), 600)
-    selected_df40_fake.extend(paths[:n_sample])
+    # DF40 Fake Methods Pool
+    manifest_path = DATA_ROOT / "DF40_train_manifest.csv"
+    if manifest_path.exists():
+        manifest_df = pd.read_csv(manifest_path)
+        manifest_fake = manifest_df[manifest_df['label'] == 1]
+        manifest_fake = manifest_fake[~manifest_fake['path'].isin(val_test_paths)]
+    else:
+        manifest_fake = pd.DataFrame(columns=['path', 'method'])
 
-for m in reenact_methods:
-    paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
-    random.shuffle(paths)
-    n_sample = min(len(paths), 515)
-    selected_df40_fake.extend(paths[:n_sample])
+    diffusion_methods = ['DiT', 'SiT', 'sd2.1', 'pixart', 'ddim', 'RDDM']
+    gan_methods = ['StyleGAN2', 'StyleGAN3', 'StyleGANXL', 'VQGAN']
+    swap_methods = ['simswap', 'faceswap', 'mobileswap', 'inswap', 'blendface', 'facedancer', 'fsgan', 'uniface']
+    reenact_methods = ['sadtalker', 'wav2lip', 'fomm', 'pirender', 'tpsm', 'lia', 'MRAA', 'danet', 'mcnet', 'facevid2vid', 'e4s', 'one_shot_free', 'hyperreenact']
 
-# Fill remaining to exactly 20,000 if needed
-if len(selected_df40_fake) < 20000:
-    diff = 20000 - len(selected_df40_fake)
-    remaining_pool = [p for p in manifest_fake['path'].tolist() if p not in set(selected_df40_fake)]
-    random.shuffle(remaining_pool)
-    selected_df40_fake.extend(remaining_pool[:diff])
-else:
-    selected_df40_fake = selected_df40_fake[:20000]
+    selected_df40_fake = []
 
-selected_fake = [(p, 1) for p in selected_fake_celeb + selected_df40_fake]
-print(f"Selected Fake: {len(selected_fake):,} ({len(selected_fake_celeb)} Celeb-DF + {len(selected_df40_fake)} DF40)")
+    for m in diffusion_methods:
+        paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
+        random.shuffle(paths)
+        selected_df40_fake.extend(paths[:850])
 
-# Combine & Shuffle
-all_train = selected_real + selected_fake
-random.shuffle(all_train)
+    for m in gan_methods:
+        paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
+        random.shuffle(paths)
+        selected_df40_fake.extend(paths[:850])
 
-df_train_v2 = pd.DataFrame(all_train, columns=['path', 'label'])
-out_csv = os.path.join(splits_dir, "train_domain_balanced_v2.csv")
-df_train_v2.to_csv(out_csv, index=False)
-print(f"Saved {out_csv} with {len(df_train_v2):,} samples (Real: {(df_train_v2['label']==0).sum():,}, Fake: {(df_train_v2['label']==1).sum():,})")
+    for m in swap_methods:
+        paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
+        random.shuffle(paths)
+        n_sample = min(len(paths), 600)
+        selected_df40_fake.extend(paths[:n_sample])
 
-# Verification
-train_paths = set(df_train_v2['path'])
-assert len(train_paths & set(df_val['path'])) == 0, "ERROR: Leakage with Val set!"
-assert len(train_paths & set(df_test['path'])) == 0, "ERROR: Leakage with Test set!"
-print("✅ ZERO DATA LEAKAGE VERIFIED successfully!")
+    for m in reenact_methods:
+        paths = manifest_fake[manifest_fake['method'] == m]['path'].tolist()
+        random.shuffle(paths)
+        n_sample = min(len(paths), 515)
+        selected_df40_fake.extend(paths[:n_sample])
+
+    if len(selected_df40_fake) < 20000:
+        diff = 20000 - len(selected_df40_fake)
+        remaining_pool = [p for p in manifest_fake['path'].tolist() if p not in set(selected_df40_fake)]
+        random.shuffle(remaining_pool)
+        selected_df40_fake.extend(remaining_pool[:diff])
+    else:
+        selected_df40_fake = selected_df40_fake[:20000]
+
+    selected_fake = [(p, 1) for p in selected_fake_celeb + selected_df40_fake]
+    print(f"Selected Fake: {len(selected_fake):,} ({len(selected_fake_celeb)} Celeb-DF + {len(selected_df40_fake)} DF40)")
+
+    all_train = selected_real + selected_fake
+    random.shuffle(all_train)
+
+    df_train_v2 = pd.DataFrame(all_train, columns=['path', 'label'])
+    out_csv = SPLITS_DIR / "train_domain_balanced_v2.csv"
+    df_train_v2.to_csv(out_csv, index=False)
+    print(f"Saved {out_csv} with {len(df_train_v2):,} samples (Real: {(df_train_v2['label']==0).sum():,}, Fake: {(df_train_v2['label']==1).sum():,})")
+
+    train_paths = set(df_train_v2['path'])
+    assert len(train_paths & set(df_val['path'])) == 0, "ERROR: Leakage with Val set!"
+    assert len(train_paths & set(df_test['path'])) == 0, "ERROR: Leakage with Test set!"
+    print("✅ ZERO DATA LEAKAGE VERIFIED successfully!")
+
+
+if __name__ == '__main__':
+    main()

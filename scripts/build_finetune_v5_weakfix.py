@@ -30,8 +30,8 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-ROOT = Path("/workspace/hoangtuan/deepfake-ViT")
-DATA = Path("/workspace/data")
+ROOT = Path(os.getenv("REPO_ROOT", Path(__file__).resolve().parents[1]))
+DATA = Path(os.getenv("DF40_ROOT", ROOT / "data"))
 
 V5_TRAIN = ROOT / "data/splits/train_v5_combined_universal_kaggle_boost.csv"
 TEST_CSV = DATA / "zero_leakage_benchmark_fixed/test_balanced_fixed_zero_leakage.csv"

@@ -7,8 +7,10 @@ Deterministic (seed) so runs are reproducible.
 import os, sys, glob, cv2, random, argparse
 from pathlib import Path
 
-VIDEO_DIR = Path("/workspace/data/celebvhq/35666")
-OUT_DIR   = Path("/workspace/data/celebvhq_frames/real")
+ROOT = Path(os.getenv("REPO_ROOT", Path(__file__).resolve().parents[1]))
+DATA = Path(os.getenv("DF40_ROOT", ROOT / "data"))
+VIDEO_DIR = DATA / "celebvhq/35666"
+OUT_DIR   = DATA / "celebvhq_frames/real" 
 
 def main():
     ap = argparse.ArgumentParser()

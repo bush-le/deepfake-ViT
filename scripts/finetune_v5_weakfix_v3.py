@@ -33,7 +33,8 @@ from torchvision import transforms as T
 from sklearn.metrics import (accuracy_score, precision_score, recall_score,
                              f1_score, roc_auc_score, confusion_matrix)
 
-PROJECT_ROOT = Path("/workspace/hoangtuan/deepfake-ViT")
+PROJECT_ROOT = Path(os.getenv("REPO_ROOT", Path(__file__).resolve().parents[1]))
+DATA_ROOT = Path(os.getenv("DF40_ROOT", PROJECT_ROOT / "data"))
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
@@ -176,7 +177,7 @@ def main():
     ap.add_argument("--val-csv", type=str,
                     default=str(PROJECT_ROOT / "data/splits/val_v5_combined_universal_kaggle_boost.csv"))
     ap.add_argument("--test-csv", type=str,
-                    default="/workspace/data/zero_leakage_benchmark_fixed/test_balanced_fixed_zero_leakage.csv")
+                    default=os.getenv("TEST_CSV", str(DATA_ROOT / "zero_leakage_benchmark_fixed/test_balanced_fixed_zero_leakage.csv")))
     ap.add_argument("--init-ckpt", type=str,
                     default=str(PROJECT_ROOT / "experiments/checkpoints/exp05_v5_weakfix/best_model.pt"))
     ap.add_argument("--epochs", type=int, default=3)

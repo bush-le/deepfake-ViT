@@ -9,17 +9,17 @@ import torch
 from pathlib import Path
 from datetime import datetime
 
-ROOT = Path(__file__).resolve().parent.parent
-if not ROOT.exists() or not (ROOT / "src").exists():
-    ROOT = Path("/workspace/hoangtuan/deepfake-ViT")
+ROOT = Path(os.getenv("REPO_ROOT", Path(__file__).resolve().parents[1]))
+DATA = Path(os.getenv("DF40_ROOT", ROOT / "data"))
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "scripts"))
 
 from finetune_v5_weakfix import (DeepfakeDataset, get_eval_transforms, evaluate)
 from torch.utils.data import DataLoader
 from src.models.dinov3_vit import build_dinov3_classifier
 
 CKPT = ROOT / "experiments/checkpoints/best_model_v3.pt" if (ROOT / "experiments/checkpoints/best_model_v3.pt").exists() else ROOT / "experiments/checkpoints/exp05_v5_weakfix_v3/best_model.pt"
-TEST_CSV = "/workspace/data/zero_leakage_benchmark_fixed/test_balanced_fixed_zero_leakage.csv"
+TEST_CSV = os.getenv("TEST_CSV", str(DATA / "zero_leakage_benchmark_fixed/test_balanced_fixed_zero_leakage.csv"))
 BASELINE_CSV = ROOT / "experiments/results/v5_combined_per_method_accuracy.csv"
 V2_CSV = ROOT / "experiments/results/v5_weakfix_per_method_accuracy.csv"
 

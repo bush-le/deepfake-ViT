@@ -303,7 +303,7 @@ def main():
 
     if args.resume and latest_ckpt_path.exists():
         print(f"Resuming from {latest_ckpt_path}...")
-        ckpt = torch.load(latest_ckpt_path, map_location=device)
+        ckpt = torch.load(latest_ckpt_path, map_location=device, weights_only=False)
         model.load_state_dict(ckpt["model_state"])
         model_ema.module.load_state_dict(ckpt["ema_state"])
         optimizer.load_state_dict(ckpt["optimizer_state"])
@@ -401,7 +401,7 @@ def main():
     print("🎯 FINAL EVALUATION ON INDEPENDENT TEST V4 UNIVERSAL SET")
     print("=" * 80)
 
-    best_ckpt = torch.load(best_ckpt_path, map_location=device)
+    best_ckpt = torch.load(best_ckpt_path, map_location=device, weights_only=False)
     model.load_state_dict(best_ckpt["ema_state"])
 
     print("\nEvaluating on Test V4 Universal Balanced (5,000 samples)...")

@@ -104,7 +104,7 @@ Over 4 major development epochs, the `deepfake-ViT` codebase has resolved 26 tec
 - **Status:** `RESOLVED`
 - **Description:** Random seeds were inconsistently initialized across scripts, leaving PyTorch CUDA backend or NumPy random generators unseeded and producing nondeterministic data splits and weight initializations.
 - **Affected:** `src/training/train.py`, `src/training/finetune_lora.py`.
-- **Remediation:** Centralized RNG initialization into [`src/utils/seed.py`](../src/utils/seed.py) via `set_seed()`, seeding Python `random`, `np.random`, `torch.manual_seed`, `torch.cuda.manual_seed_all`, and enforcing deterministic cuDNN algorithms where requested. Tracked in [Action P1.2](#12-prioritized-action-plan--chronological-lifecycle-log).
+- **Remediation:** Centralized RNG initialization into [`src/utils/seeding.py`](../src/utils/seeding.py) via `set_seed()`, seeding Python `random`, `np.random`, `torch.manual_seed`, `torch.cuda.manual_seed_all`, and enforcing deterministic cuDNN algorithms where requested. Tracked in [Action P1.2](#12-prioritized-action-plan--chronological-lifecycle-log).
 - **Resolution Evidence:** Resolved in commit `d08f658`.
 
 ### 3.3 AUD-04: Ad-hoc Evaluation Notebooks Mixing EDA and Reporting

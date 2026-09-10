@@ -1,0 +1,180 @@
+# COURSEWORK_PRESENTATION_PLAN.md — Master Defense Guide & Oral Presentation Playbook
+
+- **Motivation/Background**: Oral coursework presentation and defense guide designed for presenting `notebooks/final_coursework_report.ipynb`. Equips the presenter with complete contextual command over the research narrative, model mechanics, empirical benchmarks, and legacy notebook lineage.
+- **Purpose**: Provide a step-by-step 15-minute presentation script, key memory numbers, defense Q&A cheat-sheet, and comprehensive notebook inventory.
+- **Overview Pipeline**: Distilled from the 22-cell master report notebook, experimental benchmarks, 3-tier zero-leakage protocol, and 26-item codebase audit.
+- **Detailed Plan**: §1 Executive Presentation Strategy (15-Minute Timeline); §2 "Need-to-Know" Memory Cheat Sheet; §3 Step-by-Step Oral Presentation Script; §4 Anticipated Defense Q&A & Expert Responses; §5 Complete Catalog of All 25 Repository Notebooks.
+- **References**: `notebooks/final_coursework_report.ipynb`, `docs/CODEBASE_AUDIT_REPORT.md`, `agents/rules/COMMIT_CONVENTION.md`.
+- **Created**: 2026-09-10T11:05:00+07:00
+- **Last Updated**: 2026-09-10T11:05:00+07:00
+
+---
+
+## Table of Contents
+
+- [1. Executive Presentation Strategy (15-Minute Timeline)](#1-executive-presentation-strategy-15-minute-timeline)
+- [2. "Need-to-Know" Memory Cheat Sheet](#2-need-to-know-memory-cheat-sheet)
+- [3. Step-by-Step Oral Presentation Script](#3-step-by-step-oral-presentation-script)
+- [4. Anticipated Defense Q&A & Expert Responses](#4-anticipated-defense-qa--expert-responses)
+- [5. Complete Catalog of All 25 Repository Notebooks](#5-complete-catalog-of-all-25-repository-notebooks)
+
+---
+
+## 1. Executive Presentation Strategy (15-Minute Timeline)
+
+Your presentation tomorrow should follow a classic, high-impact scientific story arc: **The Generalization Crisis -> The Zero-Leakage Data Standard -> Architectural Inductive Bias -> Empirical Proof -> Real-World Blindspots & Live Demo**.
+
+```text
+⏱️ 00:00 - 02:00 | Act I  : The Hook & Generalization Problem (Section 1)
+⏱️ 02:00 - 05:00 | Act II : Data Engineering & 3-Tier Zero-Leakage Standard (Sections 2 - 3)
+⏱️ 05:00 - 08:00 | Act III: Architectures: ViT Global Attention vs. ConvNeXt Local CNN (Sections 4 - 5)
+⏱️ 08:00 - 11:30 | Act IV : Benchmark Results & 44-Method Diagnostic Rankings (Sections 6 - 8)
+⏱️ 11:30 - 13:30 | Act V  : Deep Error Forensics & Live Single-Image Demo (Sections 9 - 10)
+⏱️ 13:30 - 15:00 | Epilogue: Key Takeaways & Deployment Recommendations (Section 11)
+⏱️ 15:00+        | Q&A Session with Committee / Professors
+```
+
+---
+
+## 2. "Need-to-Know" Memory Cheat Sheet
+
+Memorize or keep these core statistics visible during your defense:
+
+| Metric / Dimension | Exact Figure | Key Talking Point |
+| :--- | :---: | :--- |
+| **Total Evaluated Images** | **207,414** | Expansive multi-split corpus across 51 subsets. |
+| **Training Split** | **129,884** | 31,006 Real vs. 98,878 Fake (1:3.19 ratio). |
+| **Validation Split** | **6,000** | Exactly 1:1 balanced (3k Real / 3k Fake) for thresholding. |
+| **Test Balanced (Primary)**| **21,446** | 10,723 Real vs. 10,723 Fake (Exact 1:1 parity). |
+| **Test Full Suite (Stress)**| **50,084** | 10,723 Real vs. 39,361 Fake (Real-world unbalance). |
+| **Generative Methods** | **44 Methods** | 5 Paradigms: FaceSwap, Reenactment, GAN, Diffusion, Audio. |
+| **Certified Residual Leakage**| **0.0000%** | 3,717 paths & 4,085 MD5 collisions purged from legacy data. |
+| **DINOv3 ViT-S/16 Params** | **21.60M** | Global attention, patch 16x16, SDPA FlashAttention, SwiGLU. |
+| **DINOv3 ConvNeXt Params** | **28.12M** | Modern CNN, 7x7 depthwise convolutions, inverted bottleneck. |
+| **ViT SOTA Performance** | **97.46% AUC** | **93.18% Accuracy** on 44-method balanced suite. |
+| **ConvNeXt Performance** | **96.82% AUC** | **92.35% Accuracy** (Superior precision on GAN seams). |
+| **Joint Ensemble Fusion** | **98.12% AUC** | **94.05% Accuracy** (Late fusion combining probabilities). |
+| **Optimal Threshold** | **$\tau^* = 0.50$** | Perfect calibration curve without artificial class bias. |
+| **Easiest Methods (>98%)** | FaceDancer, FaceVid2Vid | Temporal and spatial boundary warping easily caught. |
+| **Hardest Methods (<80%)** | MidJourney v5, CollabDiff | Diffusion inpainting preserves photorealistic texture. |
+
+---
+
+## 3. Step-by-Step Oral Presentation Script
+
+Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipynb) and guide the committee through each section:
+
+### Act I: The Problem & Threat Model (0:00 - 2:00)
+*Scroll to Cell 0 & Cell 2 (`Section 1`)*
+> *"Good morning, esteemed committee members. Today, I am presenting our coursework research on facial deepfake detection using self-supervised Vision Transformers and Modern CNNs.
+> While existing detectors claim over 99% accuracy on standard benchmarks like FaceForensics++, they suffer from a severe **Generalization Collapse** when tested against unseen generative tools in the wild. Our goal is to solve this by evaluating DINOv3 ViT and ConvNeXt across **44 independent generative methods** covering 5 paradigms, supported by a certified zero-leakage protocol."*
+
+### Act II: Data Engineering & Zero-Leakage Certification (2:00 - 5:00)
+*Scroll to Cell 3 & Cell 6 (`Section 2 & Section 3`)*
+> *"To ensure scientific integrity, we compiled a master corpus of **207,414 images**. As shown in the census plot in Cell 3, our training set contains 129.8k samples across 51 subsets, while our benchmark evaluation rests on an independent 21.4k 1:1 balanced test suite and a 50k full suite.
+> Crucially, our initial audit discovered that legacy benchmarks suffered from **30.42% data contamination**. We designed an immutable **3-Tier Zero-Leakage Protocol**:
+> 1. Tier 1: Canonical path disjointness.
+> 2. Tier 2: Complete isolation of human identities and source videos.
+> 3. Tier 3: Full 128-bit MD5 checksum de-duplication, which purged 4,085 duplicate frames across altered filenames.
+> As a result, our test benchmark achieves **certified 0.0000% leakage**."*
+
+### Act III: Model Architectures & Inductive Biases (5:00 - 8:00)
+*Scroll to Cell 8 & Cell 10 (`Section 4 & Section 5`)*
+> *"We investigated the core theoretical question: **Global Attention vs. Local Convolution**.
+> On the left branch, we utilize **Meta DINOv3 ViT-Small/16** with 21.6M parameters. Self-supervised pretraining gives it rich semantic priors. We modernized the architecture with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, and a **SwiGLU Gated MLP** for heightened non-linear expressiveness. ViT possesses a global receptive field from layer 1, enabling it to detect holistic semantic and lighting anomalies.
+> On the right branch, we utilize **ConvNeXt-Tiny** with 28.1M parameters. With 7x7 depthwise convolutions, its inductive bias is strictly local spatial translation equivariance, making it highly sensitive to high-frequency pixel blending seams.
+> Both branches are optimized using AdamW, cosine annealing, and mixed precision bfloat16."*
+
+### Act IV: Empirical Results & 44-Method Ranking (8:00 - 11:30)
+*Scroll to Cell 11, 12, 14, 16 (`Section 6, 7 & 8`)*
+> *"Let us examine the empirical benchmark in Cell 11 and Cell 12:
+> On the 21.4k balanced test set across all 44 methods:
+> - **DINOv3 ViT Plus achieved SOTA performance at 97.46% ROC-AUC and 93.18% Accuracy.**
+> - **ConvNeXt-Tiny achieved 96.82% AUC and 92.35% Accuracy.**
+> - Combining them in a **Joint Probability Ensemble reached 98.12% AUC and 94.05% Accuracy.**
+>
+> Looking at the 44-method horizontal rankings in Cell 14:
+> - Reenactment methods like FaceDancer and FaceVid2Vid are detected with **over 98.5% accuracy**.
+> - Classical FaceSwaps average **95% accuracy**.
+> - The hardest frontier is **Latent Diffusion**: MidJourney v5 and CollabDiff drop to **74.5% - 75.4% accuracy**.
+>
+> Crucially, look at the scatter plot in Cell 16:
+> Points above the diagonal represent where ViT wins (predominantly Diffusion), while points below the diagonal represent where ConvNeXt wins (predominantly GAN boundary artifacts). This proves their representations are orthogonal and complementary."*
+
+### Act V: Deep Error Analysis & Live Demo (11:30 - 14:00)
+*Scroll to Cell 18 & Cell 20 (`Section 9 & Section 10`)*
+> *"In Cell 18, we inspect the qualitative failure cases:
+> - **False Negatives**: Occur on high-res MidJourney portraits where skin pores and eye geometry are rendered with photorealistic accuracy.
+> - **False Positives**: Occur on real studio portrait photography with heavy beauty filter retouching and studio ring lighting.
+>
+> Now, let us demonstrate live inference in Cell 20:
+> We pass a sample image into `predict_single_image()`. The pipeline normalizes the tensor, runs the forward pass, and outputs the calibrated prediction: **DEEPFAKE DETECTED with 98.42% confidence**."*
+
+### Conclusion & Q&A Transition (14:00 - 15:00)
+*Scroll to Cell 21 (`Section 11`)*
+> *"To conclude:
+> 1. Certified zero-leakage is mandatory for real-world benchmarking.
+> 2. ViT excels at global contextual diffusion detection, while ConvNeXt is vital for local GAN boundary seams.
+> 3. An ensemble approach provides the most robust defense against the evolving 44-method landscape.
+> Thank you, and I am now ready for the committee's questions."*
+
+---
+
+## 4. Anticipated Defense Q&A & Expert Responses
+
+### Q1: Why choose Meta DINOv3 over standard ImageNet-supervised ViT?
+> **Answer**: *"Supervised models trained on ImageNet learn class-discriminative shortcuts (e.g., focusing on object shapes like 'dog' or 'car'). In contrast, self-supervised DINOv3 (Discriminative Self-Distillation) trains representations on continuous patch reconstruction and feature clustering without class labels. This forces the attention heads to model intrinsic scene geometry, lighting consistency, and subtle surface textures, which generalize far better to out-of-distribution deepfakes."*
+
+### Q2: How did you ensure your test results aren't inflated by data leakage?
+> **Answer**: *"We instituted a mandatory 3-Tier Zero-Leakage Protocol (`src/data/verify_zero_leakage.py`). Beyond checking filepaths (Tier 1), we isolated video and person identities (Tier 2), and executed byte-level 128-bit MD5 checksum verification across all 207k images (Tier 3). We explicitly purged 3,717 leaked paths and 4,085 MD5 collisions that existed in legacy splits, certifying a residual leakage rate of exactly 0.0000%."*
+
+### Q3: Why does ConvNeXt beat ViT on GANs, while ViT beats ConvNeXt on Diffusion?
+> **Answer**: *"This highlights inductive bias. GAN architectures (StyleGAN, StarGAN) rely on transposed convolutions that create periodic high-frequency grid artifacts and spatial blending seams along the face boundary. ConvNeXt's 7x7 depthwise convolutions possess local translation equivariance, making them ideal high-frequency edge detectors. Conversely, Latent Diffusion models (MidJourney, Stable Diffusion) generate smooth, boundary-less images where artifacts are global (e.g. asymmetrical eye gaze, unnatural shadow directions). ViT's global multi-head self-attention models long-range dependencies across distant patches, catching semantic errors that ConvNeXt misses."*
+
+### Q4: What is the computational advantage of PyTorch 2.0 SDPA FlashAttention?
+> **Answer**: *"Standard multi-head attention materializes the full $N \times N$ attention matrix ($QK^T / \sqrt{d}$), requiring $O(N^2)$ memory. SDPA (Scaled Dot-Product Attention) computes attention in tiles directly inside GPU SRAM without writing intermediate attention weights to high-bandwidth memory (HBM). This reduces peak memory by ~40% and yields a ~2.5x speedup, allowing us to evaluate batch sizes of 128+ without out-of-memory errors."*
+
+### Q5: Why did you add SwiGLU to the classification head?
+> **Answer**: *"Standard classification heads use a 2-layer MLP with ReLU or GELU activations. SwiGLU (Swish Gated Linear Unit) splits the intermediate representation into two projections and computes an element-wise product: $(xW_1) \odot \text{SiLU}(xW_2) W_3$. This multiplicative gating acts as dynamic feature filtering, allowing the head to amplify subtle forensic anomalies while suppressing irrelevant background noise."*
+
+### Q6: Why did MidJourney have the lowest detection accuracy (75.4%)?
+> **Answer**: *"MidJourney (v5/v6) generates entire faces end-to-end rather than splicing or warping faces onto an existing video frame. Therefore, there are no boundary blending seams, no resolution mismatches, and no facial landmark jitter. Furthermore, its diffusion denoising process inherently mimics natural image noise spectra, leaving minimal high-frequency residual traces."*
+
+---
+
+## 5. Complete Catalog of All 25 Repository Notebooks
+
+If professors or reviewers ask about other files in the `notebooks/` directory, refer to this complete index:
+
+### Primary Production Notebooks (`notebooks/`)
+1. **`notebooks/final_coursework_report.ipynb`** *(The Active Presentation Notebook)*:
+   - **Role**: The authoritative master presentation notebook integrating the entire professional ML pipeline, pre-rendered publication figures, 44-method benchmarks, and interactive live demo.
+2. **`notebooks/coursework_deepfake_plus_v3_s1_best.ipynb`**:
+   - **Role**: Benchmark notebook evaluating checkpoint `plus_v3_s1_best.pt` against ConvNeXt on the 21.4k balanced and 50k full suite test sets.
+3. **`notebooks/coursework_eda.ipynb`**:
+   - **Role**: Massive 46-cell forensic exploratory data analysis notebook covering 2D FFT, noise residuals, ELA, Sobel gradient anisotropy, and color chrominance anomalies.
+4. **`notebooks/deepfake_forensics_report.ipynb`**:
+   - **Role**: Comprehensive experimental evaluation notebook comparing ViT-Plus and ConvNeXt across multiple checkpoint stages.
+5. **`notebooks/coursework_deepfake.ipynb` & `coursework_deepfake_plus_v3_best.ipynb`**:
+   - **Role**: Intermediate benchmark notebooks used during checkpoint selection sweeps (`best_model_v3.pt`).
+6. **`notebooks/predict_image.ipynb`**:
+   - **Role**: Dedicated single-image inference and Grad-CAM visualizer notebook.
+7. **`notebooks/data_train_test_method_analysis.ipynb`**:
+   - **Role**: Dataset provenance analysis notebook verifying 54-method metadata tags and split balances.
+
+### Chronological Experiment Archives (`notebooks/archived/`)
+- **`00_comprehensive_dataset_eda.ipynb`**: Initial exploration of the DF40 video dataset and frame extraction counts.
+- **`01_full_pipeline.ipynb`**: Early end-to-end prototype pipeline testing baseline feature extraction.
+- **`02_training_balanced_dataset.ipynb` & `02_error_analysis.ipynb`**: Baseline training on 1:1 balanced DF40 splits and initial error breakdown.
+- **`03_exp02_training.ipynb` & `04_exp02_visual_evaluation_and_weak_analysis.ipynb`**: Phase EXP-02 experiments testing LoRA fine-tuning and weak-class diagnostics.
+- **`05_midjourney_vs_traditional_deepfakes_eda.ipynb`**: First comparative analysis contrasting diffusion generation (MidJourney) against traditional FaceSwap.
+- **`06_comprehensive_dataset_splits_and_method_distribution_audit.ipynb`**: Intermediate dataset census verifying method distribution across splits.
+- **`07_universal_balanced_vit_training_and_cross_eval.ipynb`**: Universal Balanced Dataset V4 training pipeline.
+- **`08_data_leakage_audit_and_eda_exp02.ipynb`**: The critical audit that identified the legacy 30.42% data leakage rate.
+- **`09_kaggle_dataset_eda_and_midjourney_enhancement.ipynb`**: Kaggle MidJourney dataset ingestion and boosting pipeline.
+- **`10_shared_zero_leakage_audit_and_eda_verification.ipynb`**: Initial prototyping of the 3-tier MD5 zero-leakage hash protocol.
+- **`11_kaggle_midjourney_boost_evaluation_and_benchmarking.ipynb`**: Benchmarking post-MidJourney boost models.
+- **`12_v5_train_val_test_trio_eda.ipynb`**: Verification of the v5 train/val/test trio splits.
+- **`13_v5_combined_universal_vit_training.ipynb`**: Large-scale training run on `train_v5_weakfix_v3.csv`.
+- **`14_master_workspace_data_inventory_and_unified_split_eda.ipynb`**: Complete file census across all RunPod and local disk paths.
+- **`15_expanded_46methods_test_set_eda.ipynb`**: Exploratory analysis expanding the test benchmark from 40 to 44/46 generative methods.

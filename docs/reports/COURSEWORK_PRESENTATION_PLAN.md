@@ -6,7 +6,7 @@
 - **Detailed Plan**: §1 Executive Presentation Strategy (15-Minute Timeline); §2 "Need-to-Know" Memory Cheat Sheet; §3 Step-by-Step Oral Presentation Script; §4 Anticipated Defense Q&A & Expert Responses; §5 Complete Catalog of All 25 Repository Notebooks.
 - **References**: `notebooks/final_coursework_report.ipynb`, `docs/CODEBASE_AUDIT_REPORT.md`, `agents/rules/COMMIT_CONVENTION.md`.
 - **Created**: 2026-09-10T11:05:00+07:00
-- **Last Updated**: 2026-09-10T21:56:00+07:00
+- **Last Updated**: 2026-09-10T22:12:00+07:00
 
 ---
 
@@ -52,6 +52,7 @@ Memorize or keep these core statistics visible during your defense:
 | **ViT-Plus A1 Header** | **0.15M (149,378)** | LN(384) → Drop(0.2) → Linear(384) → GELU → Drop(0.1) → Linear(2). Total: 28.84M. |
 | **ConvNeXt-Tiny Backbone** | **27.82M (27,820,128)** | 4 stages [3,3,9,3], 7x7 depthwise conv, inverted bottleneck, GAP. |
 | **ConvNeXt-Tiny Header** | **0.30M (297,602)** | LN(768) → Drop(0.2) → Linear(384) → GELU → Drop(0.1) → Linear(2). Total: 28.12M. |
+| **LoRA PEFT Budget** | **0.44M params (1.54%)** | Rank $r=16, \alpha=32$ on $q,v$ projections + head; prevents real-class collapse. |
 | **Architectural Parity Delta**| **+2.58%** | Controlled parameter parity (<3% delta) isolates inductive bias effects. |
 | **ViT-Plus A1 Performance** | **99.86% AUC** | **98.53% Accuracy** (Only 100 missed fakes across 10.4k test fakes). |
 | **ConvNeXt Performance** | **99.99% AUC** | **99.49% Accuracy** (Only 22 false alarms across 10.4k real faces). |
@@ -176,6 +177,11 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 > **Answer**: *"Decoupling Backbone and Head is essential for two fundamental reasons:
 > 1. **Controlled Inductive Bias Comparison**: Foundation model representations must be evaluated under strictly controlled capacity parity. The **DINOv3 ViT-Plus A1 Backbone** (`DinoViT`, 28.69M params) and **ConvNeXt-Tiny Backbone** (`DinoConvNext`, 27.82M params) differ by only **+3.14%**, ensuring that empirical performance divergence stems from attention vs. convolution rather than parameter scale.
 > 2. **Task-Specific Head Normalization**: A simple linear probe can underfit complex multi-paradigm manifolds, whereas an overly deep MLP risks overfitting to dataset-specific artifacts. We standardized on a 2-stage MLP head with LayerNorm, Dropout, and a shared 384-dimensional latent bottleneck. The ViT head adds 149,378 params (28.84M total) and the ConvNeXt head adds 297,602 params (28.12M total), maintaining a controlled total capacity delta of only **+2.58%** (<3%)."*
+
+### Q9: Did you utilize Parameter-Efficient Fine-Tuning (LoRA), and what problem did it solve?
+> **Answer**: *"Yes, absolutely. We engineered a modular LoRA adapter (`src/models/lora.py`) with low-rank decomposition $W = W_0 + \frac{\alpha}{r} B \cdot A$ ($r=16, \alpha=32.0$) wrapped around the attention query and value projections (`q_proj`, `v_proj`) across all 12 Transformer blocks (`src/training/finetune_lora.py`).
+>
+> **Why LoRA was critical**: In our early exploratory runs, unconstrained full fine-tuning of the pre-trained DINOv3 backbone caused severe **Real-Class Collapse**: backpropagation overwrote generic self-supervised facial priors, causing the model to overfit to specific synthetic artifacts, misclassify real faces as fakes, and crash ROC-AUC to ~0.45. By freezing the 28.69M backbone and training only the 0.44M LoRA adapters and classification head (just **1.54%** of parameters), we stabilized domain adaptation while preserving pristine facial representations. In our final WeakFix v3 stage, we combined this foundational stability with asymmetric layer-wise differential learning rates ($1.5 \times 10^{-5}$ backbone vs. $4.0 \times 10^{-4}$ head)."*
 
 ---
 

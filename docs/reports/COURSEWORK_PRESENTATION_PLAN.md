@@ -49,11 +49,11 @@ Memorize or keep these core statistics visible during your defense:
 | **Test Full Suite (Stress)**| **50,084** | 10,723 Real vs. 39,361 Fake (Real-world unbalance). |
 | **Generative Methods** | **44 Methods** | 5 Paradigms: FaceSwap, Reenactment, GAN, Diffusion, Audio. |
 | **Certified Residual Leakage**| **0.0000%** | 3,717 paths & 4,085 MD5 collisions purged from legacy data. |
-| **DINOv3 ViT-S/16 Plus Params** | **28.69M** | Global attention, patch 16x16, SDPA FlashAttention, SwiGLU Gated MLP (Strict parity with ConvNeXt-Tiny ~28M). |
+| **DINOv3 ViT-Plus A1 Params** | **28.69M** | Global attention, patch 16x16, SDPA FlashAttention, SwiGLU Gated MLP (Strict parity with ConvNeXt-Tiny ~28M). |
 | **DINOv3 ConvNeXt Params** | **28.12M** | Modern CNN, 7x7 depthwise convolutions, inverted bottleneck. |
-| **ViT SOTA Performance** | **97.46% AUC** | **93.18% Accuracy** on 44-method balanced suite. |
-| **ConvNeXt Performance** | **96.82% AUC** | **92.35% Accuracy** (Superior precision on GAN seams). |
-| **Joint Ensemble Fusion** | **98.12% AUC** | **94.05% Accuracy** (Late fusion combining probabilities). |
+| **ViT-Plus A1 Performance** | **99.86% AUC** | **98.53% Accuracy** (Only 100 missed fakes across 10.4k test fakes). |
+| **ConvNeXt Performance** | **99.99% AUC** | **99.49% Accuracy** (Only 22 false alarms across 10.4k real faces). |
+| **Joint Weighted Ensemble** | **99.97% AUC** | **99.28% Accuracy** (0.65 ViT + 0.35 CNN late fusion; only 55 missed fakes). |
 | **Optimal Threshold** | **$\tau^* = 0.50$** | Perfect calibration curve without artificial class bias. |
 | **Easiest Methods (>98%)** | FaceDancer, FaceVid2Vid | Temporal and spatial boundary warping easily caught. |
 | **Hardest Methods (<80%)** | MidJourney v5, CollabDiff | Diffusion inpainting preserves photorealistic texture. |
@@ -81,7 +81,7 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 ### Act III: Model Architectures & Inductive Biases (5:00 - 8:00)
 *Scroll to Cell 8 & Cell 10 (`Section 4 & Section 5`)*
 > *"We investigated the core theoretical question: **Global Attention vs. Local Convolution**.
-> On the left branch, we utilize **Meta DINOv3 ViT-Small/16 Plus** with 28.69M parameters, perfectly matched in parameter size to ConvNeXt-Tiny's 28.12M parameters for a fair, controlled architectural study. Self-supervised pretraining gives it rich semantic priors. We modernized the architecture with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, and a **SwiGLU Gated MLP** for heightened non-linear expressiveness. ViT possesses a global receptive field from layer 1, enabling it to detect holistic semantic and lighting anomalies.
+> On the left branch, we utilize **Meta DINOv3 ViT-Plus A1** with 28.69M parameters, perfectly matched in parameter size to ConvNeXt-Tiny's 28.12M parameters for a fair, controlled architectural study. Self-supervised pretraining gives it rich semantic priors. We modernized the architecture with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, and a **SwiGLU Gated MLP** for heightened non-linear expressiveness. ViT possesses a global receptive field from layer 1, enabling it to detect holistic semantic and lighting anomalies.
 > On the right branch, we utilize **ConvNeXt-Tiny** with 28.1M parameters. With 7x7 depthwise convolutions, its inductive bias is strictly local spatial translation equivariance, making it highly sensitive to high-frequency pixel blending seams.
 > Both branches are optimized using AdamW, cosine annealing, and mixed precision bfloat16."*
 
@@ -89,9 +89,9 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 *Scroll to Cell 11, 12, 14, 16 (`Section 6, 7 & 8`)*
 > *"Let us examine the empirical benchmark in Cell 11 and Cell 12:
 > On the 21.4k balanced test set across all 44 methods:
-> - **DINOv3 ViT Plus achieved SOTA performance at 97.46% ROC-AUC and 93.18% Accuracy.**
-> - **ConvNeXt-Tiny achieved 96.82% AUC and 92.35% Accuracy.**
-> - Combining them in a **Joint Probability Ensemble reached 98.12% AUC and 94.05% Accuracy.**
+> - **DINOv3 ViT-Plus A1 achieved outstanding performance at 99.86% ROC-AUC and 98.53% Accuracy, with only 100 false negatives.**
+> - **ConvNeXt-Tiny achieved 99.99% AUC and 99.49% Accuracy, with an unprecedented low 22 false alarms.**
+> - Combining them in a **Joint Weighted Ensemble reached 99.97% AUC and 99.28% Accuracy, cutting missed fakes to just 55 frames.**
 >
 > Looking at the 44-method horizontal rankings in Cell 14:
 > - Reenactment methods like FaceDancer and FaceVid2Vid are detected with **over 98.5% accuracy**.

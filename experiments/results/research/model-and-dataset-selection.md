@@ -5,7 +5,7 @@
 ## 1. Architectural Selection: Meta DINOv3 ViT-Small/16
 - **Self-Supervised Feature Robustness**: Pretrained on billions of curated images without supervised label bias.
 - **Global Spatial Self-Attention**: Captures non-local structural incoherence and semantic inconsistencies across synthetic faces.
-- **Computational Efficiency**: 28.69M parameters (DINOv3 ViT-S/16 Plus with SwiGLU Gated MLP) with 256 visual tokens + 4 register tokens, strictly matched to ConvNeXt-Tiny (28.12M) under GPU memory constraints.
+- **Computational Efficiency**: 21.60M parameters with 256 visual tokens + 4 register tokens, operating seamlessly under GPU memory constraints.
 
 ---
 

@@ -39,7 +39,7 @@ Over 4 major development epochs, the `deepfake-ViT` codebase has resolved 26 tec
 
 - **What is strong:**
   1. **Exhaustive Zero-Leakage Guarantee (0.0000% Collision):** Both the 21.4k Balanced and 50.0k Full Suite test datasets are verified 100% disjoint from the 129.8k training split across Relative Paths, Subject/Video Identities, and Byte-Level MD5 hashes, permanently resolving legacy 30.42% data contamination.
-  2. **Multi-Architecture Deepfake Benchmark:** Unites DINOv3 ViT-S/16 Plus (28.69M params) and ConvNeXt-Tiny (28.12M params) across 44 deepfake generation algorithms with PyTorch 2.0 SDPA FlashAttention, SwiGLU gated MLPs, and ensemble probability fusion.
+  2. **Multi-Architecture Deepfake Benchmark:** Unites DINOv3 ViT-S/16 (21.60M params) and ConvNeXt-Tiny (28.12M params) across 44 deepfake generation algorithms with PyTorch 2.0 SDPA FlashAttention, SwiGLU gated MLPs, and ensemble probability fusion.
   3. **Archetype A Dual-Paradigm Architectural Discipline:** Complete physical separation between agent governance (`/agents`, read-only rules/templates) and project documentation (`docs/`, 87 specifications, reports, and runbooks with standardized 7-field ISO 8601 metadata).
   4. **100% Import, Device & Deserialization Safety:** All 99 Python modules pass strict AST compilation (`py_compile`) and isolated import testing with 0 side effects; 100% of checkpoint deserialization calls explicitly declare `weights_only`.
 - **What blocks maturity:**

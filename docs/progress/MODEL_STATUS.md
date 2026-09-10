@@ -13,7 +13,7 @@
 ## Log
 
 - **2026-08-18:** DINOv3 ViT-Small/16, ConvNeXt-Tiny CNN, and LoRA adapters implemented and verified with `strict=True`.
-- **2026-08-22:** Parameter count parity verified (ViT-Plus: 28.69M vs. ConvNeXt: 28.12M, <2% delta).
+- **2026-08-22:** Parameter count parity verified (ViT: 21.60M vs. ConvNeXt: 28.12M).
 - **2026-08-24:** Integrated `DinoConvNextClassifier` with 2-layer GELU MLP head (`classifier_v2.py`).
 - **2026-08-28:** Verified both checkpoints on disk:
   - `experiments/checkpoints/best_model_v3.pt` (DINOv3 ViT-Small/16, Best Val AUC: `0.9940`).

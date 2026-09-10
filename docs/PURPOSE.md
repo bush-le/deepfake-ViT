@@ -41,7 +41,7 @@ The primary objective is to evaluate whether modern Self-Supervised Vision Trans
 
 ### In Scope (✅ IN):
 - **Model Implementations:**
-  - `DinoViTClassifier`: Meta DINOv3 ViT-S/16 Plus backbone with SwiGLU Gated MLP (`embed_dim=384`, 12 layers, 6 heads, 4 registers) + `Linear(384, 2)` head (~28.69M params).
+  - `DinoViTClassifier`: Meta DINOv3 ViT-Small/16 backbone (`embed_dim=384`, 12 layers, 6 heads, 4 registers) + `Linear(384, 2)` head (~21.60M params).
   - `DinoConvNextClassifier`: Meta DINOv3 ConvNeXt-Tiny backbone + 2-layer GELU MLP head (~28.12M params).
   - `EnsembleClassifier`: Joint probability fusion ($0.65 \cdot P_{ViT} + 0.35 \cdot P_{CNN}$).
   - `LoRA`: Parameter-Efficient Fine-Tuning adapter for ViT self-attention.

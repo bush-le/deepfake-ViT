@@ -23,7 +23,7 @@ To assess deepfake detection capabilities under different inductive biases, the 
 ### 2.1 Meta DINOv3 ViT-Small/16 (`src/models/dinov3_vit.py`)
 - **Backbone:** Self-Supervised DINOv3 ViT-S/16 (`embed_dim=384`, `depth=12`, `num_heads=6`, 4 register tokens, SwiGLU MLP).
 - **Classification Head:** Single linear layer `Linear(384, 2)` mapped to binary logits `[Real, Fake]`.
-- **Parameter Count:** **28,693,634** (~28.69M params, DINOv3 ViT-S/16 Plus with SwiGLU Gated MLP).
+- **Parameter Count:** **21,602,306** (~21.60M params).
 - **Checkpoint:** [`experiments/checkpoints/best_model_v3.pt`](../../experiments/checkpoints/best_model_v3.pt).
 
 ### 2.2 Meta DINOv3 ConvNeXt-Tiny (`src/models/dinov3_convnext.py` & `src/models/classifier_v2.py`)

@@ -56,7 +56,7 @@ The dataset comprises **44 Deepfake Fake Methods** and **7 Real Data Sources** (
 ### 🌟 Model 1: Meta DINOv3 ViT-Small/16 (Vision Transformer)
 - **Backbone:** Meta DINOv3 ViT-S/16 (`img_size=256`, `patch_size=16`, `embed_dim=384`, 12 Transformer blocks, 6 attention heads, 4 register tokens).
 - **Classification Head:** `Linear(384, 2)`.
-- **Total Parameters:** **28.69M** (DINOv3 ViT-S/16 Plus with SwiGLU Gated MLP, matching ConvNeXt-Tiny's 28.12M for strict parameter parity).
+- **Total Parameters:** **21.60M**.
 - **Active Checkpoint:** [`experiments/checkpoints/best_model_v3.pt`](../experiments/checkpoints/best_model_v3.pt) (Finetuned on 129.8k samples, Best Val AUC: `0.9940`).
 
 ### 🔷 Model 2: Meta DINOv3 ConvNeXt-Tiny (Modern CNN Baseline / ConvicT)

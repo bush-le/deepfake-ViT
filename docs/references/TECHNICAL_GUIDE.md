@@ -10,7 +10,7 @@
 
 ---
 
-  - [`experiments/checkpoints/best_model_v3.pt`](../experiments/checkpoints/best_model_v3.pt) (DINOv3 ViT-S/16 Plus, 28.69M params)
+  - [`experiments/checkpoints/best_model_v3.pt`](../experiments/checkpoints/best_model_v3.pt) (DINOv3 ViT-Small/16, 21.60M params)
   - [`experiments/checkpoints/convnext_weakfix_v3.pt`](../experiments/checkpoints/convnext_weakfix_v3.pt) (DINOv3 ConvNeXt-Tiny, 28.12M params)
 
 ---
@@ -44,7 +44,7 @@
 ### 2.1 Meta DINOv3 ViT-Small/16 (`src/models/dinov3_vit.py`)
 - **Backbone**: ViT-Small with patch size 16 (`patch_size=16`, `img_size=256`, `embed_dim=384`, `depth=12`, `num_heads=6`, 4 register tokens, SwiGLU feed-forward).
 - **Classification Head**: `Linear(384, 2)` directly operating on the extracted `[CLS]` token embedding.
-- **Total Parameters**: **28,693,634** (~28.69M, DINOv3 ViT-S/16 Plus).
+- **Total Parameters**: **21,602,306** (~21.60M).
 - **Loading Pattern**:
 ```python
 import importlib.util, torch

@@ -21,7 +21,7 @@
   - `test_coursework_44methods_balanced_zero_leakage.csv` (21,446 images, exact 1:1)
   - `test_coursework_44methods_full_zero_leakage.csv` (50,084 images, exact 1:1)
 - [x] Executed full 3-tier Zero-Leakage audit (0 path overlap, 127k MD5 hashes deduplicated).
-- [x] Evaluated **Meta DINOv3 ViT-Small/16** (`best_model_v3.pt`, 21.60M params) vs. **Meta DINOv3 ConvNeXt-Tiny** (`convnext_weakfix_v3.pt`, 28.12M params).
+- [x] Evaluated **Meta DINOv3 ViT-S/16 Plus** (`plus_v3_s1_best.pt`, 28.69M params) vs. **Meta DINOv3 ConvNeXt-Tiny** (`convnext_weakfix_v3.pt`, 28.12M params).
 - [x] Achieved benchmark accuracy $>97.6\%$ and ROC-AUC $>99.6\%$.
 - [x] Successfully verified all notebook cells under Python 3.14 with zero runtime errors.
 

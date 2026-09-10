@@ -30,7 +30,7 @@
 \subsection{Meta DINOv3 ViT‑S/16}
 \begin{frame}{ViT‑S/16 Overview}
   \begin{itemize}
-    \item 21.6M parameters, patch size 16×16, 12 encoder layers, dim 384.
+    \item 28.69M parameters, patch size 16×16, 12 encoder layers, dim 384, SwiGLU Gated MLP (strictly matched to ConvNeXt-Tiny 28.12M).
     \item Global all‑to‑all self‑attention → captures whole‑face illumination and symmetry.
     \item Strengths: Global receptive field, high scalability with pretrained foundation.
     \item Weaknesses: No spatial inductive bias, quadratic cost $O(N^2 D)$.

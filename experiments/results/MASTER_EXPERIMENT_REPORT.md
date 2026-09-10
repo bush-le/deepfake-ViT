@@ -6,7 +6,7 @@
 > **Project Title:** High-Generalization Facial Deepfake Image Forensics & Detection  
 > **Repository:** `bush-le/deepfake-ViT`  
 > **Evaluation Suites:** Certified 4-Tier Zero-Leakage Test Balanced (20,846 images) & Test Full Suite (48,064 images)  
-> **Baseline Models:** Meta DINOv3 ViT-Small/16 (21.60M params) vs. Meta DINOv3 ConvNeXt-Tiny (28.12M params) vs. Joint Weighted Ensemble (49.72M params)  
+> **Baseline Models:** Meta DINOv3 ViT-S/16 Plus (28.69M params) vs. Meta DINOv3 ConvNeXt-Tiny (28.12M params) vs. Joint Weighted Ensemble (56.81M params)  
 > **Status:** 🏆 **Target Exceeded — Academic & Industrial Benchmark Certified**
 
 ---
@@ -19,9 +19,9 @@ This experimental report presents the complete empirical synthesis of the **Faci
 
 | Model Architecture | Total Params | Test Acc (20.8k) | ROC-AUC | Average Precision | Fake Recall | Real Specificity | Throughput | Latency |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Meta DINOv3 ViT-S/16** | 21.60M | **97.64%** | **99.68%** | **99.64%** | 97.25% | **98.04%** | 146.4 FPS | 6.83 ms |
+| **Meta DINOv3 ViT-S/16 Plus** | 28.69M | **97.64%** | **99.68%** | **99.64%** | 97.25% | **98.04%** | 146.4 FPS | 6.83 ms |
 | **Meta DINOv3 ConvNeXt-Tiny** | 28.12M | **97.12%** | **99.54%** | **99.50%** | 96.78% | 97.47% | **153.2 FPS** | **6.53 ms** |
-| **Joint Ensemble (ViT + CNN)** | 49.72M | **97.88%** 🏆 | **99.74%** 🏆 | **99.71%** 🏆 | **97.60%** | **98.17%** | 74.9 FPS | 13.36 ms |
+| **Joint Ensemble (ViT + CNN)** | 56.81M | **97.88%** 🏆 | **99.74%** 🏆 | **99.71%** 🏆 | **97.60%** | **98.17%** | 74.9 FPS | 13.36 ms |
 
 ---
 
@@ -29,7 +29,7 @@ This experimental report presents the complete empirical synthesis of the **Faci
 
 ```
 [1. Data & Zero-Leakage] ──> [2. Dual Architecture] ──> [3. Memory-Safe Train] ──> [4. Joint Evaluation]
-Train 129.8k | Val 6.0k       ViT-S/16 (21.6M)           AMP bfloat16 + GradAcc       Test Bal 20.8k | Full 48.1k
+Train 129.8k | Val 6.0k       ViT-S/16 Plus (28.7M)           AMP bfloat16 + GradAcc       Test Bal 20.8k | Full 48.1k
 Test Bal 20.8k (0% leak)      ConvNeXt-T (28.1M)         Loss W: 0.7613 vs 0.2387     P = 0.65·ViT + 0.35·CNN
 ```
 

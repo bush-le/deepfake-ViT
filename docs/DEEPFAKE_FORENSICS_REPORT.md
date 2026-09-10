@@ -18,7 +18,7 @@
 > **Repository:** `bush-le/deepfake-ViT`  
 > **Tác giả:** Hoang Tuan & Team (`ManhQuangAI`, `bushle`)  
 > **Hạ tầng Dữ liệu Đã Quét:** 23 Jupyter Notebooks | 207,414 ảnh tổng thể | 129,884 ảnh huấn luyện (`bushle/deepfake_train_129k_images`) | 20,846 ảnh Test Balanced Zero-Leakage (38-44 phương pháp) | 48,064 ảnh Test Full Suite  
-> **Kiến trúc Trọng tâm:** Meta DINOv3 ViT-Small/16 (21.60M params) & ViT-Plus s1_best (`plus_v3_s1_best.pt`, 28.69M params) vs. Meta DINOv3 ConvNeXt-Tiny (`convnext_weakfix_v3.pt`, 28.12M params) vs. Joint Weighted Ensemble (49.72M params)  
+> **Kiến trúc Trọng tâm:** Meta DINOv3 ViT-S/16 Plus (`plus_v3_s1_best.pt`, 28.69M params) vs. Meta DINOv3 ConvNeXt-Tiny (`convnext_weakfix_v3.pt`, 28.12M params) vs. Joint Weighted Ensemble (49.72M params)  
 > **Chứng nhận:** 🛡️ Zero-Leakage Protocol Certified (0% MD5 Collision, Identity-Disjoint)
 
 ---
@@ -269,7 +269,7 @@ Dựa trên notebook `08_data_leakage_audit_and_eda_exp02.ipynb` và `10_shared_
 ## 2.5. Trình bày Kiến trúc Mô hình & Cơ sở Lý thuyết (ViT vs. CNN Inductive Bias)
 
 Dự án triển khai và đối sánh 3 kiến trúc nền tảng:
-1. **Meta DINOv3 ViT-Small/16 & ViT-Plus (21.6M - 28.7M params):** Zero Inductive Bias, Multi-Head Self-Attention toàn cục bắt bất đối xứng ánh sáng, phản xạ mắt và tính liên kết toàn cảnh.
+1. **Meta DINOv3 ViT-S/16 Plus (28.69M params):** Zero Inductive Bias, Multi-Head Self-Attention toàn cục bắt bất đối xứng ánh sáng, phản xạ mắt và tính liên kết toàn cảnh.
 2. **Meta DINOv3 ConvNeXt-Tiny (28.1M params):** Strong Spatial Inductive Bias ($7\times 7$ depthwise conv), bắt vết cắt ghép đường biên cục bộ (seam blending), tốc độ thực thi **153.2 FPS**.
 3. **Classification Head:** 2-Layer MLP Head (`LayerNorm -> Linear(384) -> GELU -> Linear(2)`).
 
@@ -353,7 +353,7 @@ Kết quả đánh giá trên tập **Test Balanced Suite (20,846 ảnh: 10,423 
 | **Meta DINOv3 ConvNeXt-Tiny** (`convnext_weakfix_v3.pt`) | 28.12M | **99.49%** 🏆 | **99.99%** 🏆 | **99.79%** 🏆 | 99.18% | **99.79%** 🏆 | **99.49%** 🏆 | **22** 🏆 | 85 | **153.2 FPS** (6.5 ms) |
 | **Meta DINOv3 ViT-Plus A0 (Baseline)** | 28.69M | 97.91% | 99.79% | 98.05% | 97.77% | 98.05% | 97.91% | 209 | 239 | 146.4 FPS (6.8 ms) |
 | **Meta DINOv3 ViT-Plus s1_best** (`plus_v3_s1_best.pt`)| 28.69M | **98.53%** | **99.86%** | 98.03% | **99.04%** | 98.01% | **98.53%** | 207 | **100** | 146.4 FPS (6.8 ms) |
-| **Joint Weighted Ensemble ($0.65\text{ViT} + 0.35\text{CNN}$)** | 49.72M | **99.28%** | **99.97%** | 99.09% | **99.47%** 🏆 | 99.09% | **99.28%** | 95 | **55** 🏆 | 74.9 FPS (13.4 ms) |
+| **Joint Weighted Ensemble ($0.65\text{ViT} + 0.35\text{CNN}$)** | 56.81M | **99.28%** | **99.97%** | 99.09% | **99.47%** 🏆 | 99.09% | **99.28%** | 95 | **55** 🏆 | 74.9 FPS (13.4 ms) |
 
 ![Side-by-Side Confusion Matrices](../experiments/plots/notebook_extracted/coursework_deepfake_plus_v3_s1_best_cell_16_img_1.png)
 *Hình 4.2: Ma trận nhầm lẫn đối sánh ViT-Plus s1_best vs ConvNeXt vs Joint Ensemble trên 20,846 ảnh Test Balanced (Trích xuất từ `coursework_deepfake_plus_v3_s1_best.ipynb`).*

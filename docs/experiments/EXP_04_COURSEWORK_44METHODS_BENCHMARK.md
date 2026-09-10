@@ -26,7 +26,7 @@ Key targets:
 | Characteristic | Primary Model (Transformer) | Baseline Model (Modern CNN) | Ensemble Model |
 | :--- | :--- | :--- | :--- |
 | **Architecture** | **Meta DINOv3 ViT-Small/16** | **Meta DINOv3 ConvNeXt-Tiny** | **Joint Weighted Fusion** |
-| **Parameters** | 21.60M params | 28.12M params | 49.72M params (combined) |
+| **Parameters** | 28.69M params | 28.12M params | 56.81M params (combined) |
 | **Classification Head** | `Linear(384, 2)` | `768 → LayerNorm → 384 → GELU → 2` | $0.65 \cdot P_{\text{ViT}} + 0.35 \cdot P_{\text{CNN}}$ |
 | **Inductive Bias** | Global self-attention, long-range spatial context | Local shift-invariant convolution, high-frequency boundary edges | Multi-scale hybrid representation |
 | **Checkpoint** | [`experiments/checkpoints/best_model_v3.pt`](../../experiments/checkpoints/best_model_v3.pt) | [`experiments/checkpoints/convnext_weakfix_v3.pt`](../../experiments/checkpoints/convnext_weakfix_v3.pt) | Live runtime combination |

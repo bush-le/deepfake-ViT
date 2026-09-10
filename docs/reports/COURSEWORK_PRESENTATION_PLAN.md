@@ -49,7 +49,7 @@ Memorize or keep these core statistics visible during your defense:
 | **Test Full Suite (Stress)**| **50,084** | 10,723 Real vs. 39,361 Fake (Real-world unbalance). |
 | **Generative Methods** | **44 Methods** | 5 Paradigms: FaceSwap, Reenactment, GAN, Diffusion, Audio. |
 | **Certified Residual Leakage**| **0.0000%** | 3,717 paths & 4,085 MD5 collisions purged from legacy data. |
-| **DINOv3 ViT-S/16 Params** | **21.60M** | Global attention, patch 16x16, SDPA FlashAttention, SwiGLU. |
+| **DINOv3 ViT-S/16 Plus Params** | **28.69M** | Global attention, patch 16x16, SDPA FlashAttention, SwiGLU Gated MLP (Strict parity with ConvNeXt-Tiny ~28M). |
 | **DINOv3 ConvNeXt Params** | **28.12M** | Modern CNN, 7x7 depthwise convolutions, inverted bottleneck. |
 | **ViT SOTA Performance** | **97.46% AUC** | **93.18% Accuracy** on 44-method balanced suite. |
 | **ConvNeXt Performance** | **96.82% AUC** | **92.35% Accuracy** (Superior precision on GAN seams). |
@@ -81,7 +81,7 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 ### Act III: Model Architectures & Inductive Biases (5:00 - 8:00)
 *Scroll to Cell 8 & Cell 10 (`Section 4 & Section 5`)*
 > *"We investigated the core theoretical question: **Global Attention vs. Local Convolution**.
-> On the left branch, we utilize **Meta DINOv3 ViT-Small/16** with 21.6M parameters. Self-supervised pretraining gives it rich semantic priors. We modernized the architecture with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, and a **SwiGLU Gated MLP** for heightened non-linear expressiveness. ViT possesses a global receptive field from layer 1, enabling it to detect holistic semantic and lighting anomalies.
+> On the left branch, we utilize **Meta DINOv3 ViT-Small/16 Plus** with 28.69M parameters, perfectly matched in parameter size to ConvNeXt-Tiny's 28.12M parameters for a fair, controlled architectural study. Self-supervised pretraining gives it rich semantic priors. We modernized the architecture with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, and a **SwiGLU Gated MLP** for heightened non-linear expressiveness. ViT possesses a global receptive field from layer 1, enabling it to detect holistic semantic and lighting anomalies.
 > On the right branch, we utilize **ConvNeXt-Tiny** with 28.1M parameters. With 7x7 depthwise convolutions, its inductive bias is strictly local spatial translation equivariance, making it highly sensitive to high-frequency pixel blending seams.
 > Both branches are optimized using AdamW, cosine annealing, and mixed precision bfloat16."*
 

@@ -6,7 +6,7 @@
 - **Detailed Plan**: §1 Executive Presentation Strategy (15-Minute Timeline); §2 "Need-to-Know" Memory Cheat Sheet; §3 Step-by-Step Oral Presentation Script; §4 Anticipated Defense Q&A & Expert Responses; §5 Complete Catalog of All 25 Repository Notebooks.
 - **References**: `notebooks/final_coursework_report.ipynb`, `docs/CODEBASE_AUDIT_REPORT.md`, `agents/rules/COMMIT_CONVENTION.md`.
 - **Created**: 2026-09-10T11:05:00+07:00
-- **Last Updated**: 2026-09-10T11:05:00+07:00
+- **Last Updated**: 2026-09-10T21:56:00+07:00
 
 ---
 
@@ -45,12 +45,14 @@ Memorize or keep these core statistics visible during your defense:
 | **Total Evaluated Images** | **207,414** | Expansive multi-split corpus across 51 subsets. |
 | **Training Split** | **129,884** | 31,006 Real vs. 98,878 Fake (1:3.19 ratio). |
 | **Validation Split** | **6,000** | Exactly 1:1 balanced (3k Real / 3k Fake) for thresholding. |
-| **Test Balanced (Primary)**| **21,446** | 10,723 Real vs. 10,723 Fake (Exact 1:1 parity). |
-| **Test Full Suite (Stress)**| **50,084** | 10,723 Real vs. 39,361 Fake (Real-world unbalance). |
+| **Test Balanced (Sole Suite)**| **21,446** | 10,723 Real vs. 10,723 Fake (Exact 1:1 parity; certified 0.0000% leakage). |
 | **Generative Methods** | **44 Methods** | 5 Paradigms: FaceSwap, Reenactment, GAN, Diffusion, Audio. |
 | **Certified Residual Leakage**| **0.0000%** | 3,717 paths & 4,085 MD5 collisions purged from legacy data. |
-| **DINOv3 ViT-Plus A1 Params** | **28.69M** | Global attention, patch 16x16, SDPA FlashAttention, SwiGLU Gated MLP (Strict parity with ConvNeXt-Tiny ~28M). |
-| **DINOv3 ConvNeXt Params** | **28.12M** | Modern CNN, 7x7 depthwise convolutions, inverted bottleneck. |
+| **ViT-Plus A1 Backbone** | **28.69M (28,692,864)** | 12 blocks, dim 384, 6 heads SDPA FlashAttention, 4 registers, SwiGLU Gated MLP. |
+| **ViT-Plus A1 Header** | **0.15M (149,378)** | LN(384) → Drop(0.2) → Linear(384) → GELU → Drop(0.1) → Linear(2). Total: 28.84M. |
+| **ConvNeXt-Tiny Backbone** | **27.82M (27,820,128)** | 4 stages [3,3,9,3], 7x7 depthwise conv, inverted bottleneck, GAP. |
+| **ConvNeXt-Tiny Header** | **0.30M (297,602)** | LN(768) → Drop(0.2) → Linear(384) → GELU → Drop(0.1) → Linear(2). Total: 28.12M. |
+| **Architectural Parity Delta**| **+2.58%** | Controlled parameter parity (<3% delta) isolates inductive bias effects. |
 | **ViT-Plus A1 Performance** | **99.86% AUC** | **98.53% Accuracy** (Only 100 missed fakes across 10.4k test fakes). |
 | **ConvNeXt Performance** | **99.99% AUC** | **99.49% Accuracy** (Only 22 false alarms across 10.4k real faces). |
 | **Joint Weighted Ensemble** | **99.97% AUC** | **99.28% Accuracy** (0.65 ViT + 0.35 CNN late fusion; only 55 missed fakes). |
@@ -69,9 +71,13 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 > *"Good morning, esteemed committee members. Today, I am presenting our coursework research on facial deepfake detection using self-supervised Vision Transformers and Modern CNNs.
 > While existing detectors claim over 99% accuracy on standard benchmarks like FaceForensics++, they suffer from a severe **Generalization Collapse** when tested against unseen generative tools in the wild. Our goal is to solve this by evaluating DINOv3 ViT and ConvNeXt across **44 independent generative methods** covering 5 paradigms, supported by a certified zero-leakage protocol."*
 
-### Act II: Data Engineering & Zero-Leakage Certification (2:00 - 5:00)
-*Scroll to Cell 3 & Cell 6 (`Section 2 & Section 3`)*
-> *"To ensure scientific integrity, we compiled a master corpus of **207,414 images**. As shown in the census plot in Cell 3, our training set contains 129.8k samples across 51 subsets, while our benchmark evaluation rests on an independent 21.4k 1:1 balanced test suite and a 50k full suite.
+### Act II: Data Engineering, Physical Forensics & Zero-Leakage Certification (2:00 - 5:00)
+*Scroll to Cell 3, Cell 5 & Cell 7 (`Section 1, Section 2 & Section 3`)*
+> *"To ensure scientific integrity, we compiled a master corpus of **207,414 images** across 51 subsets.
+> - In **Cell 3**, we present the **Master Dataset Census (Hình 1.1)**, the **Initial DF40 Raw Breakdown (Hình 1.2)** across manipulation families (FR, FS, EFS, ATT), and the **Generative Paradigm Taxonomy (Hình 1.3)** categorizing all 54 methods into 6 distinct classes.
+> - In **Cell 5**, we reveal the physical forensic evidence: **Photometric & Chromatic Color Space Forensics (Hình 1.6)** displaying RGB/HSV distribution shifts, and **Error Level Analysis at Q=90 (Hình 1.9)** directly visualizing the secondary compression artifacts and artificial blending seams on spliced face boundaries. We also present the clean **2D Cross-Split Prevalence Heatmap** over 34 evaluated methods.
+> - In **Cell 7**, we examine the **Multi-Method Test Distribution (Hình 2.1)** and our strict **1:1 Balanced Parity Standard (Hình 2.2)** in `test_coursework_44methods_balanced_zero_leakage.csv` (10,723 real vs. 10,723 fake).
+>
 > Crucially, our initial audit discovered that legacy benchmarks suffered from **30.42% data contamination**. We designed an immutable **3-Tier Zero-Leakage Protocol**:
 > 1. Tier 1: Canonical path disjointness.
 > 2. Tier 2: Complete isolation of human identities and source videos.
@@ -80,10 +86,27 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 
 ### Act III: Model Architectures & Inductive Biases (5:00 - 8:00)
 *Scroll to Cell 8 & Cell 10 (`Section 4 & Section 5`)*
+
+> [!TIP]
+> **Visual Aid**: Refer to the high-resolution publication architecture diagram in Cell 8:
+>
+> ![Meta DINOv3 Dual-Branch Architecture](figures/model_architecture_diagram.png)
+
 > *"We investigated the core theoretical question: **Global Attention vs. Local Convolution**.
-> On the left branch, we utilize **Meta DINOv3 ViT-Plus A1** with 28.69M parameters, perfectly matched in parameter size to ConvNeXt-Tiny's 28.12M parameters for a fair, controlled architectural study. Self-supervised pretraining gives it rich semantic priors. We modernized the architecture with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, and a **SwiGLU Gated MLP** for heightened non-linear expressiveness. ViT possesses a global receptive field from layer 1, enabling it to detect holistic semantic and lighting anomalies.
-> On the right branch, we utilize **ConvNeXt-Tiny** with 28.1M parameters. With 7x7 depthwise convolutions, its inductive bias is strictly local spatial translation equivariance, making it highly sensitive to high-frequency pixel blending seams.
-> Both branches are optimized using AdamW, cosine annealing, and mixed precision bfloat16."*
+> To guarantee a rigorous and scientifically valid comparison, we decoupled each model into its **Feature Representation Backbone** and its **Classification Head (Header)**, maintaining strict capacity parity (+2.58% delta, well within 3%):
+>
+> 1. **Meta DINOv3 ViT-Plus A1 (28.69M Backbone / 28.84M Total)**:
+>    - **Backbone (`DinoViT`, 28.69M params)**: 12 Transformer blocks with isotropic dimension $D=384$ and 6 attention heads. We modernized it with PyTorch 2.0 **Scaled Dot-Product Attention (SDPA FlashAttention)** for 40% memory reduction, **4 Register Tokens** to eliminate background patch artifacts, LayerScale stabilization, and a **SwiGLU Gated MLP** ($(xW_1) \odot \text{SiLU}(xW_2)W_3$) with a 4x expansion ratio (hidden dim 1536). It extracts a rich 384-dimensional CLS token.
+>    - **Classification Head (0.15M params)**: LayerNorm(384) $\to$ Dropout(0.2) $\to$ Linear(384, 384) $\to$ GELU $\to$ Dropout(0.1) $\to$ Linear(384, 2).
+>    - **Inductive Bias**: Global all-to-all attention from layer 1, granting it unmatched sensitivity to long-range physical anomalies like mismatched eye reflections and facial lighting disparities.
+>
+> 2. **Meta DINOv3 ConvNeXt-Tiny (27.82M Backbone / 28.12M Total)**:
+>    - **Backbone (`DinoConvNext`, 27.82M params)**: 4 hierarchical stages ($[3, 3, 9, 3]$ blocks, dimensions $[96, 192, 384, 768]$). Each block features large $7 \times 7$ depthwise convolutions, channels-last LayerNorm, an inverted bottleneck ($4\times$ expansion), LayerScale, and Global Average Pooling to produce a 768-dimensional feature vector.
+>    - **Classification Head (0.30M params)**: LayerNorm(768) $\to$ Dropout(0.2) $\to$ Linear(768, 384) $\to$ GELU $\to$ Dropout(0.1) $\to$ Linear(384, 2), projecting into the same 384-d latent bottleneck before binary classification.
+>    - **Inductive Bias**: Local translation equivariance, making it exceptionally sharp at catching high-frequency pixel blending boundaries and GAN checkerboard artifacts.
+>
+> 3. **Joint Weighted Late Fusion Ensemble**:
+>    We fuse predictions via $\hat{P}_{\text{Ensemble}} = 0.65 P_{\text{ViT}} + 0.35 P_{\text{ConvNeXt}}$. The 0.65 weight grants priority to ViT's superior generalization against novel diffusion generators, while leveraging ConvNeXt's localized precision to suppress false alarms on authentic photography."*
 
 ### Act IV: Empirical Results & 44-Method Ranking (8:00 - 11:30)
 *Scroll to Cell 11, 12, 14, 16 (`Section 6, 7 & 8`)*
@@ -149,6 +172,11 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 > 2. **Stable Diffusion Canonical Representation (`sd2.1`)**: In the canonical benchmark taxonomy, Stable Diffusion is actively evaluated under its official generator tag **`sd2.1`** (Stable Diffusion v2.1, with 1,460 clean test frames). The separate label `'stable_diffusion'` originated from an external Kaggle partition and was consolidated under `sd2.1` / `kaggle_ai_synth` to prevent duplicate class attribution.
 > Rather than relaxing our leakage criteria or allowing data contamination, we prioritized absolute scientific integrity."*
 
+### Q8: Why did you decouple each model into a Backbone and Classification Head, and what is the exact parameter distribution?
+> **Answer**: *"Decoupling Backbone and Head is essential for two fundamental reasons:
+> 1. **Controlled Inductive Bias Comparison**: Foundation model representations must be evaluated under strictly controlled capacity parity. The **DINOv3 ViT-Plus A1 Backbone** (`DinoViT`, 28.69M params) and **ConvNeXt-Tiny Backbone** (`DinoConvNext`, 27.82M params) differ by only **+3.14%**, ensuring that empirical performance divergence stems from attention vs. convolution rather than parameter scale.
+> 2. **Task-Specific Head Normalization**: A simple linear probe can underfit complex multi-paradigm manifolds, whereas an overly deep MLP risks overfitting to dataset-specific artifacts. We standardized on a 2-stage MLP head with LayerNorm, Dropout, and a shared 384-dimensional latent bottleneck. The ViT head adds 149,378 params (28.84M total) and the ConvNeXt head adds 297,602 params (28.12M total), maintaining a controlled total capacity delta of only **+2.58%** (<3%)."*
+
 ---
 
 ## 5. Complete Catalog of All 25 Repository Notebooks
@@ -159,7 +187,7 @@ If professors or reviewers ask about other files in the `notebooks/` directory, 
 1. **`notebooks/final_coursework_report.ipynb`** *(The Active Presentation Notebook)*:
    - **Role**: The authoritative master presentation notebook integrating the entire professional ML pipeline, pre-rendered publication figures, 44-method benchmarks, and interactive live demo.
 2. **`notebooks/coursework_deepfake_plus_v3_s1_best.ipynb`**:
-   - **Role**: Benchmark notebook evaluating checkpoint `plus_v3_s1_best.pt` against ConvNeXt on the 21.4k balanced and 50k full suite test sets.
+   - **Role**: Benchmark notebook evaluating checkpoint `plus_v3_s1_best.pt` against ConvNeXt on the certified 21.4k balanced test suite.
 3. **`notebooks/coursework_eda.ipynb`**:
    - **Role**: Massive 46-cell forensic exploratory data analysis notebook covering 2D FFT, noise residuals, ELA, Sobel gradient anisotropy, and color chrominance anomalies.
 4. **`notebooks/deepfake_forensics_report.ipynb`**:

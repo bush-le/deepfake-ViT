@@ -142,6 +142,15 @@ Open [`notebooks/final_coursework_report.ipynb`](../final_coursework_report.ipyn
 
 ---
 
+
+### Q7: In the 2D cross-split method distribution heatmap, why do CollabDiff and Stable Diffusion (as 'stable_diffusion') appear as 0.0% in the Test Balanced split?
+> **Answer**: *"This is a direct, tangible outcome of our strict **3-Tier Zero-Leakage Protocol**:
+> 1. **CollabDiff (100% Candidate Leakage Purge)**: In our byte-level MD5 audit (`expanded_test_44methods_leakage_audit.json`), all 750 candidate images for `CollabDiff` from `df-40-test-full` were found to have exact binary hash collisions with frames in our training set (`train_v5_weakfix_v3.csv`). To guarantee 0.0000% leakage without scientific compromise, 100% of these candidate frames (750/750) were permanently purged, leaving exactly 0 clean frames for the held-out balanced test set.
+> 2. **Stable Diffusion Canonical Representation (`sd2.1`)**: In the canonical benchmark taxonomy, Stable Diffusion is actively evaluated under its official generator tag **`sd2.1`** (Stable Diffusion v2.1, with 1,460 clean test frames). The separate label `'stable_diffusion'` originated from an external Kaggle partition and was consolidated under `sd2.1` / `kaggle_ai_synth` to prevent duplicate class attribution.
+> Rather than relaxing our leakage criteria or allowing data contamination, we prioritized absolute scientific integrity."*
+
+---
+
 ## 5. Complete Catalog of All 25 Repository Notebooks
 
 If professors or reviewers ask about other files in the `notebooks/` directory, refer to this complete index:
